@@ -1,4 +1,4 @@
-package com.ielts.mcpp.ielts;
+package com.ielts.mcpp.ielts.fragments;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.ielts.mcpp.ielts.R;
 import com.octo.android.robospice.SpiceManager;
 import com.octo.android.robospice.persistence.DurationInMillis;
 import com.octo.android.robospice.persistence.exception.SpiceException;
