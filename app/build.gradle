@@ -34,4 +34,5 @@ dependencies {
     compile 'com.google.code.gson:gson:2.3.1'
     compile 'com.github.navasmdc:MaterialDesign:1.+@aar'
     compile 'org.json:json:20141113'
+    compile 'com.android.support:recyclerview-v7:22.0.0'
 }
