@@ -2,7 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.ielts.mcpp.ielts.fragments.TestFragment">
+    tools:context="com.ielts.mcpp.ielts.fragments.TestFragment"
+    android:background="@mipmap/back">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -35,7 +36,7 @@
 - Record a test, send, get FeedBack"
                     android:id="@+id/textView"
                     android:fontFamily="sans-serif-condensed"
-                    android:textColor="#4B0082"
+
                     />
             </LinearLayout>
             <LinearLayout
