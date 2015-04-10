@@ -43,6 +43,7 @@ public class MyTestsRecyclerAdapter extends RecyclerView.Adapter<MyTestsRecycler
 
         ViewHolder vh = new ViewHolder(v);
         return vh;
+
     }
 
     // Replace the contents of a view (invoked by the layout manager)
