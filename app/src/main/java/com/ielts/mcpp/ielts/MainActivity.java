@@ -1,17 +1,31 @@
 package com.ielts.mcpp.ielts;
 
-import android.support.v7.app.ActionBarActivity;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import it.neokree.materialnavigationdrawer.MaterialNavigationDrawer;
 
-public class MainActivity extends ActionBarActivity {
+
+public class MainActivity extends MaterialNavigationDrawer {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    public void init(Bundle savedInstanceState) {
+
+        // set the header image
+        this.setDrawerHeaderImage(R.drawable.mat2);
+
+        // create sections
+        this.addSection(newSection("JackTest", new MainFragment()));
+
+//        this.addBottomSection(newSection(getResources().getString(R.string.about), new AboutFragment()));
+//        this.addSection(newSection("Section 3", R.drawable.ic_mic_white_24dp, new FragmentButton()).setSectionColor(Color.parseColor("#9c27b0")));
+//        this.addSection(newSection("Section", R.drawable.ic_hotel_grey600_24dp, new FragmentButton()).setSectionColor(Color.parseColor("#03a9f4")));
+//
+        //
+//        create bottom section
+//        this.addBottomSection(newSection("Bottom Section", R.drawable.ic_settings_black_24dp, new Intent(this, Settings.class)));
     }
 
     @Override
