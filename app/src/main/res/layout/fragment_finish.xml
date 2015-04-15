@@ -2,9 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.ielts.mcpp.ielts.fragments.TestFragment"
+    tools:context="com.ielts.mcpp.ielts.fragments.FinishFragment"
     android:background="@mipmap/back">
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -30,11 +29,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="\n Test-Me the perfect way to practice the IELTS speaking test \n \n
-- Marked by IELTS examiners \n \n
-- Guaranted to improve your score \n \n
-- Record a test, send, get FeedBack"
+                    android:text="\n \n \n \n \n Congratulations you finish test \n \n We check it, and let you know results \n \n"
                     android:id="@+id/textView"
+                    android:textSize="30dp"
                     android:fontFamily="sans-serif-condensed"
 
                     />
@@ -62,11 +59,12 @@
             android:layout_height="wrap_content"
             android:layout_weight="0">
             <com.gc.materialdesign.views.ButtonRectangle
-                android:id="@+id/btn_test_me"
+                android:id="@+id/btn_finish_me"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#9400D3"
-                android:text="@string/test_me_button" />
+                android:text="Finish" />
         </LinearLayout>
     </LinearLayout>
+
 </FrameLayout>

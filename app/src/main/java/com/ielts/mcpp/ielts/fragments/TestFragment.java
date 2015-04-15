@@ -1,6 +1,7 @@
 package com.ielts.mcpp.ielts.fragments;
 
 
+import android.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -47,10 +48,21 @@ public class TestFragment extends Fragment {
                              Bundle savedInstanceState) {
         mainView = inflater.inflate(R.layout.fragment_test, container, false);
         ButtonRectangle button = (ButtonRectangle) mainView.findViewById(R.id.btn_test_me);
-        button.setOnClickListener(buttonListener);
+//        button.setOnClickListener(buttonListener);
+        button.setOnClickListener(testMeListener);
 
         return mainView;
     }
+
+    View.OnClickListener testMeListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.container, new TestTaskFragment());
+            fragmentTransaction.commit();
+
+        }
+    };
 
     View.OnClickListener buttonListener = new View.OnClickListener() {
         @Override
@@ -90,9 +102,9 @@ public class TestFragment extends Fragment {
                 public void done(byte[] data, ParseException e) {
                     if (e == null) {
                         // data has the bytes for the resume
-                        ImageView image = (ImageView) mainView.findViewById(R.id.testImageViewParse);
-                        Bitmap bMap = BitmapFactory.decodeByteArray(data, 0, data.length);
-                        image.setImageBitmap(bMap);
+//                        ImageView image = (ImageView) mainView.findViewById(R.id.testImageViewParse);
+//                        Bitmap bMap = BitmapFactory.decodeByteArray(data, 0, data.length);
+//                        image.setImageBitmap(bMap);
 
                     } else {
                         Log.d("Jack", e.getMessage());
