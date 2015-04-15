@@ -1,10 +1,12 @@
 package com.ielts.mcpp.ielts;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.ielts.mcpp.ielts.fragments.AboutFragment;
+import com.ielts.mcpp.ielts.fragments.LayerTestTaskFragment;
 import com.ielts.mcpp.ielts.fragments.MainFragment;
 import com.ielts.mcpp.ielts.fragments.MyTestsFragment;
 import com.ielts.mcpp.ielts.fragments.SettingsFragment;
@@ -17,6 +19,8 @@ import it.neokree.materialnavigationdrawer.MaterialNavigationDrawer;
 
 public class MainActivity extends MaterialNavigationDrawer {
 
+    public static ProgressDialog pd;
+
     @Override
     public void init(Bundle savedInstanceState) {
 
@@ -24,7 +28,7 @@ public class MainActivity extends MaterialNavigationDrawer {
         this.setDrawerHeaderImage(R.drawable.mat2);
 
         // create sections
-        this.addSection(newSection(getString(R.string.nav_drawer_test), new TestFragment()));
+        this.addSection(newSection(getString(R.string.nav_drawer_test), new LayerTestTaskFragment()));
         this.addSection(newSection(getString(R.string.nav_drawer_tests), new MyTestsFragment()));
         this.addSection(newSection(getString(R.string.nav_drawer_vocabulary), new VocabularyFragment()));
         this.addSection(newSection(getString(R.string.nav_drawer_useful_staff), new UsefulStuffFragment()));
