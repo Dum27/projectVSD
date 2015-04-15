@@ -40,7 +40,7 @@
                     />
             </LinearLayout>
             <LinearLayout
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:gravity="right"
@@ -51,6 +51,11 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/imageView"
                     android:background="@mipmap/ielts_icon" />
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:id="@+id/testImageViewParse"
+                    android:background="#ffff9a36" />
             </LinearLayout>
 
 
@@ -62,7 +67,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0">
             <com.gc.materialdesign.views.ButtonRectangle
-                android:id="@+id/btn_inter"
+                android:id="@+id/btn_test_me"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#9400D3"
