@@ -5,14 +5,18 @@ import android.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Toast;
+import android.widget.PopupWindow;
+import android.widget.TextView;
+import android.view.ViewGroup.LayoutParams;
 
 import com.ielts.mcpp.ielts.R;
 
@@ -20,6 +24,7 @@ import com.ielts.mcpp.ielts.R;
 public class VocabularyFragment extends Fragment {
 
     private ListView listView;
+    View popupView;
     ArrayAdapter<String> adapter;
     EditText inputSearch;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -34,10 +39,13 @@ public class VocabularyFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_vocabulary, null);
+        final View v = inflater.inflate(R.layout.fragment_vocabulary, null);
         listView = (ListView) v.findViewById(R.id.listView);
         adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, products);
         listView.setAdapter(adapter);
+        LayoutInflater layoutInflater = (LayoutInflater) getActivity().getBaseContext().getSystemService(getActivity().LAYOUT_INFLATER_SERVICE);
+        popupView = layoutInflater.inflate(R.layout.vocabulary_popup_window, null);
+        final PopupWindow popupWindow = new PopupWindow(popupView, LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
         inputSearch = (EditText) v.findViewById(R.id.inputSearch);
         inputSearch.addTextChangedListener(new TextWatcher() {
 
@@ -59,8 +67,17 @@ public class VocabularyFragment extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> arg0, View view, int pos, long arg3) {
-                String item = (String) adapter.getItem(pos);
-                Toast.makeText(getActivity(), item + " выбран", Toast.LENGTH_LONG).show();
+                popupWindow.dismiss();
+                TextView title = (TextView) popupView.findViewById(R.id.title);
+                title.setText(adapter.getItem(pos));
+                Button btnDismiss = (Button) popupView.findViewById(R.id.dismiss);
+                btnDismiss.setOnClickListener(new Button.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        popupWindow.dismiss();
+                    }
+                });
+                popupWindow.showAtLocation(listView, Gravity.CENTER, 0, 0);
             }
         });
         return v;
