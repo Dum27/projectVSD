@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,6 +33,21 @@ public class MyTestsFragment extends Fragment {
         View v =  inflater.inflate(R.layout.fragment_my_tests, container, false);
 
         mRecyclerView = (RecyclerView) v.findViewById(R.id.my_recycler_view);
+        mRecyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
+              @Override
+              public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                  super.onScrollStateChanged(recyclerView, newState);
+              }
+
+              @Override
+              public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                  super.onScrolled(recyclerView, dx, dy);
+                  Log.d("taras","  dx :"+dx);
+                  Log.d("taras","  dy :"+dy);
+              }
+          }
+
+        );
 
 // use this setting to improve performance if you know that changes
 // in content do not change the layout size of the RecyclerView
