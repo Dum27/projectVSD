@@ -3,6 +3,7 @@ package com.ielts.mcpp.ielts.fragments;
 import android.app.Activity;
 import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 import com.gc.materialdesign.views.ButtonRectangle;
 import com.ielts.mcpp.ielts.MainActivity;
 import com.ielts.mcpp.ielts.R;
+import com.rengwuxian.materialedittext.Colors;
 
 import java.util.LinkedHashMap;
 
@@ -64,6 +66,7 @@ public class TestTaskFragment extends Fragment {
                 fragmentTransaction.replace(R.id.container, new FinishFragment());
                 fragmentTransaction.commit();
             } else {
+                MainActivity.testSection.setSectionColor(Color.parseColor("#03a9f4"));
                 TextView textView = (TextView) view.findViewById(R.id.text_test_my);
                 textView.setText("\n It`s speaking test # " + numberTest + " \n \n - Answer the questions ");
             }

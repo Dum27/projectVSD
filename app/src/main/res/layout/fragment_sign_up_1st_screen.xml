@@ -75,7 +75,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/editText3"
+            android:id="@+id/first_name"
             android:layout_marginRight="20dp" />
     </LinearLayout>
 
@@ -96,7 +96,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/editText4"
+            android:id="@+id/last_name"
             android:layout_marginRight="20dp" />
 
     </LinearLayout>
@@ -118,7 +118,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/editText6"
+            android:id="@+id/nationality"
             android:layout_marginRight="20dp" />
     </LinearLayout>
 
@@ -139,7 +139,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/editText7"
+            android:id="@+id/date_of_birth"
             android:layout_marginRight="20dp" />
     </LinearLayout>
 
@@ -160,7 +160,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/editText8"
+            android:id="@+id/email"
             android:layout_marginRight="20dp" />
     </LinearLayout>
 
@@ -174,14 +174,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Promo code"
-            android:id="@+id/textView15"
+            android:id="@+id/dddd"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="10dp" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/editText9"
+            android:id="@+id/promo_code"
             android:layout_marginRight="20dp" />
     </LinearLayout>
 
@@ -192,18 +192,18 @@
         android:layout_weight="1"
         android:weightSum="2">
 
-        <Button
+        <com.gc.materialdesign.views.ButtonRectangle
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="Home"
-            android:id="@+id/button10"
+            android:id="@+id/button_screen_1_home"
             android:layout_weight="1" />
 
-        <Button
+        <com.gc.materialdesign.views.ButtonRectangle
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="Next"
-            android:id="@+id/button11"
+            android:id="@+id/button_screen_1_next"
             android:layout_weight="1" />
     </LinearLayout>
 </LinearLayout>

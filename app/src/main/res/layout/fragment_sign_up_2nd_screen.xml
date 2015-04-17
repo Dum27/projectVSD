@@ -125,10 +125,10 @@
         android:layout_weight="1"
         android:gravity="right">
 
-        <Button
+        <com.gc.materialdesign.views.ButtonRectangle
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Next"
-            android:id="@+id/button12" />
+            android:id="@+id/button_screen_2_next" />
     </LinearLayout>
 </LinearLayout>

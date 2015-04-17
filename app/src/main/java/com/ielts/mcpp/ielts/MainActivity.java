@@ -15,11 +15,13 @@ import com.ielts.mcpp.ielts.fragments.UsefulStuffFragment;
 import com.ielts.mcpp.ielts.fragments.VocabularyFragment;
 
 import it.neokree.materialnavigationdrawer.MaterialNavigationDrawer;
+import it.neokree.materialnavigationdrawer.elements.MaterialSection;
 
 
 public class MainActivity extends MaterialNavigationDrawer {
 
     public static ProgressDialog pd;
+    public static MaterialSection testSection;
 
     @Override
     public void init(Bundle savedInstanceState) {
@@ -28,7 +30,8 @@ public class MainActivity extends MaterialNavigationDrawer {
         this.setDrawerHeaderImage(R.drawable.mat2);
 
         // create sections
-        this.addSection(newSection(getString(R.string.nav_drawer_test), new LayerTestTaskFragment()));
+        testSection = newSection(getString(R.string.nav_drawer_test), new LayerTestTaskFragment());
+        this.addSection(testSection);
         this.addSection(newSection(getString(R.string.nav_drawer_tests), new MyTestsFragment()));
         this.addSection(newSection(getString(R.string.nav_drawer_vocabulary), new VocabularyFragment()));
         this.addSection(newSection(getString(R.string.nav_drawer_useful_staff), new UsefulStuffFragment()));
@@ -43,4 +46,5 @@ public class MainActivity extends MaterialNavigationDrawer {
 //        create bottom section
 //        this.addBottomSection(newSection("Bottom Section", R.drawable.ic_settings_black_24dp, new Intent(this, Settings.class)));
     }
+
 }

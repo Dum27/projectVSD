@@ -22,8 +22,6 @@ public class IELTSApplication extends Application {
     // Add your initialization code here
     Parse.initialize(this, "AuVRqKXJkZvst1rZ1Rsa2dtcsSxttGW1iHjnVANl", "YztTIqOPmfwdGQbc2jBpXekd76yHKy3XYvvf64If");
 
-
-
     ParseUser.enableAutomaticUser();
     ParseACL defaultACL = new ParseACL();
     // Optionally enable public read access.
