@@ -1,10 +1,82 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.ielts.mcpp.ielts.fragments.AboutFragment">
+    tools:context="com.ielts.mcpp.ielts.fragments.AboutFragment"
+    android:id="@+id/about_cont">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView android:layout_width="match_parent" android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:weightSum="10">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="3"
+            android:gravity="center_vertical|center_horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="image"
+                android:id="@+id/textView20" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageView2" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="5.5">
+            <com.gc.materialdesign.views.ButtonRectangle
+                android:id="@+id/btn_rate_us"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#008000"
+                android:text="Rate Test Me" />
+            <com.gc.materialdesign.views.ButtonRectangle
+                android:id="@+id/btn_about_us"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#008000"
+                android:text="About us" />
+            <com.gc.materialdesign.views.ButtonRectangle
+                android:id="@+id/btn_features"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#008000"
+                android:text="Features" />
+            <com.gc.materialdesign.views.ButtonRectangle
+                android:id="@+id/btn_feedback"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#008000"
+                android:text="Feedback" />
+            </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.5"
+            android:gravity="center_horizontal"
+            android:paddingTop="25dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Terms &amp; Privacy"
+                android:id="@+id/textView15" />
+        </LinearLayout>
+    </LinearLayout>
 
 </FrameLayout>
