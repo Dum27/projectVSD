@@ -16,6 +16,14 @@
             android:layout_height="wrap_content"
             android:text="image"
             android:id="@+id/textView4" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Test Log in"
+            android:id="@+id/test_log_in"
+            android:nestedScrollingEnabled="false"
+            />
     </LinearLayout>
 
     <LinearLayout

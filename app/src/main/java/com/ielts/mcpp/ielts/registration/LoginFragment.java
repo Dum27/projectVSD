@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,6 +35,9 @@ public class LoginFragment extends Fragment {
         btnLogin.setOnClickListener(loginButtonListener);
         btnSignUp.setOnClickListener(signUpButtonListener);
         btnRestore.setOnClickListener(restoreButtonListener);
+
+        Button testLl = (Button) view.findViewById(R.id.test_log_in);
+        testLl.setOnClickListener(testLogInListener);
         return view;
     }
 
@@ -65,6 +69,12 @@ public class LoginFragment extends Fragment {
             fragmentTransaction.replace(R.id.welcome_activity_container, new RestorePasswordFragment());
             fragmentTransaction.addToBackStack("");
             fragmentTransaction.commit();
+        }
+    };
+    View.OnClickListener testLogInListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            startActivity(new Intent(getActivity(), MainActivity.class));
         }
     };
 }
