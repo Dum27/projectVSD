@@ -1,0 +1,78 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.ielts.mcpp.ielts.fragments.StayCalmFragment"
+    android:id="@+id/container">
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Beat exam anxiety"
+            android:id="@+id/textView15"
+            android:layout_gravity="left|top"
+            android:background="#ffff4df1"
+            android:paddingLeft="10dp"
+            android:textColor="#ffffffff"
+            android:textSize="20dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="• Learning to relax will help you reduce tension, nervousness and anxiety."
+            android:id="@+id/textView20"
+            android:layout_gravity="center_horizontal|top"
+            android:textSize="15dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="20dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="• It is simply NOT possible to be stressed when you body is completely relaxed."
+            android:id="@+id/textView21"
+            android:paddingTop="10dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:textSize="15dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="• It is simply NOT possible to be very anxious, tense or nervous when your body is completely relaxed."
+            android:id="@+id/textView22"
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+            android:paddingRight="10dp"
+            android:textIsSelectable="false"
+            android:textSize="15dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="• These exercises will get you to relax in a short time."
+            android:id="@+id/textView23"
+            android:padding="10dp"
+            android:textSize="15dp" />
+
+        <com.gc.materialdesign.views.ButtonRectangle
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Breathing"
+            android:id="@+id/breathing" />
+
+        <com.gc.materialdesign.views.ButtonRectangle
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Progressive exercises"
+            android:id="@+id/progressive" />
+
+    </LinearLayout>
+
+</FrameLayout>

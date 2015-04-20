@@ -1,0 +1,75 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.ielts.mcpp.ielts.fragments.DontsDuringTheTest">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Don'ts"
+        android:id="@+id/textView15"
+        android:layout_gravity="left|top"
+        android:background="#ffff4df1"
+        android:paddingLeft="10dp"
+        android:textColor="#ffffffff"
+        android:textSize="20dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="During the Test"
+        android:id="@+id/textView34"
+        android:background="#ffe000ff"
+        android:textColor="#ffffffff"
+        android:layout_margin="5dp"
+        android:textSize="18dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="• Do not be too chatty with the examiner when you first meet. "
+            android:id="@+id/textView59"
+            android:textSize="15dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+            android:paddingRight="10dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="• DON&apos;T make jokes!"
+            android:id="@+id/textView60"
+            android:textSize="15dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+            android:paddingRight="10dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="• DON&apos;T use an English name like &quot;Wonder Woman&quot; or an invented name like &quot;Kalintopnop&quot;! It does not show that you ate fluent in English."
+            android:id="@+id/textView61"
+            android:textSize="15dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+            android:paddingRight="10dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="• DON&apos;T use phrases like &quot;broaden my horizons&quot; or &quot;relax myself&quot; as these are never used in fluent English."
+            android:id="@+id/textView62"
+            android:textSize="15dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+            android:paddingRight="10dp" />
+
+    </LinearLayout>
+
+</FrameLayout>
