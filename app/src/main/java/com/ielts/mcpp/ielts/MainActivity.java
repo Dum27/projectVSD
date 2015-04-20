@@ -6,6 +6,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.ielts.mcpp.ielts.fragments.AboutFragment;
+import com.ielts.mcpp.ielts.fragments.LayerAboutFrament;
 import com.ielts.mcpp.ielts.fragments.LayerTestTaskFragment;
 import com.ielts.mcpp.ielts.fragments.MainFragment;
 import com.ielts.mcpp.ielts.fragments.MyTestsFragment;
@@ -36,7 +37,7 @@ public class MainActivity extends MaterialNavigationDrawer {
         this.addSection(newSection(getString(R.string.nav_drawer_vocabulary), new VocabularyFragment()));
         this.addSection(newSection(getString(R.string.nav_drawer_useful_staff), new UsefulStuffFragment()));
         this.addSection(newSection(getString(R.string.nav_drawer_settings), new SettingsFragment()));
-        this.addBottomSection(newSection(getString(R.string.nav_drawer_about), new AboutFragment()));
+        this.addBottomSection(newSection(getString(R.string.nav_drawer_about), new LayerAboutFrament()));
 
 //        this.addBottomSection(newSection(getResources().getString(R.string.about), new AboutFragment()));
 //        this.addSection(newSection("Section 3", R.drawable.ic_mic_white_24dp, new FragmentButton()).setSectionColor(Color.parseColor("#9c27b0")));

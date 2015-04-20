@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Test score"
+        android:id="@+id/text_test_score"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:textColor="#ff000000" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="• Accurately marked by experienced IELTS examiners\n• Find out the score within 48 hours of submission\n• Comprehensive feedback broken down into the 4 IELTS criteria\n• Provides a true guide to your performance"
+        android:id="@+id/text_test_score_bigtext"
+        android:textSize="18sp"
+        android:layout_marginTop="20dp"
+        android:textColor="#ff000000" />
+</LinearLayout>

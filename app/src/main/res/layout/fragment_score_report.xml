@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Test score feedback"
+        android:id="@+id/text_score"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:textColor="#ff000000" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="• In-depth report showing precise improvement areas!\n• Fast return within 48 hours of submission!\n• Written by trained IELTS examiners!\n• An excellent guidline for further study!"
+        android:id="@+id/text_score_bigtext"
+        android:textSize="18sp"
+        android:layout_marginTop="20dp"
+        android:textColor="#ff000000" />
+</LinearLayout>

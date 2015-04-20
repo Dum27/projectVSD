@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Speaking test"
+        android:id="@+id/text_speaking_test"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:textColor="#ff000000" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="• All of the actual questions used in the IELTS test!\n• Real Examiners asking the questions!\n• Conducted under strict IELTS exam conditions!\n• Ability to take a test everyday at low cost!"
+        android:id="@+id/text_speaking_test_bigtext"
+        android:textSize="18sp"
+        android:layout_marginTop="20dp"
+        android:textColor="#ff000000" />
+</LinearLayout>
