@@ -73,9 +73,6 @@ public class TestFragment extends Fragment {
 //            ByteArrayOutputStream stream = new ByteArrayOutputStream();
 //            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
 //            byte[] data = stream.toByteArray();
-
-
-
             // Audio
 
 //            byte[] data = new byte[8192];

@@ -59,7 +59,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/editText5"
+            android:id="@+id/edit_text_work"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="40dp" />
     </LinearLayout>
@@ -90,31 +90,32 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:paddingRight="30dp"
-            android:paddingLeft="200dp">
+            android:paddingLeft="200dp"
+            android:id="@+id/sing_up_radiogroup">
 
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="working"
-                android:id="@+id/radioButton2" />
+                android:id="@+id/radioButtonWorking" />
 
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="a student"
-                android:id="@+id/radioButton3" />
+                android:id="@+id/radioButtonStudent" />
 
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="both"
-                android:id="@+id/radioButton4" />
+                android:id="@+id/radioButtonBoth" />
 
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="neither"
-                android:id="@+id/radioButton" />
+                android:id="@+id/radioButtonNeither" />
         </RadioGroup>
     </LinearLayout>
 
