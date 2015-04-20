@@ -52,6 +52,7 @@ public class FeaturesFragment extends Fragment {
                 fragmentTransaction.replace(R.id.about_layer_cont,new ScoreReportFragment());
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
+
             }
         });
         return v;
