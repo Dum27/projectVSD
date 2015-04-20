@@ -1,0 +1,33 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.ielts.mcpp.ielts.fragments.ProgressiveFragment">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Breathing"
+        android:id="@+id/textView15"
+        android:layout_gravity="left|top"
+        android:background="#ffff4df1"
+        android:paddingLeft="10dp"
+        android:textColor="#ffffffff"
+        android:textSize="20dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Progressive exercises can help offset excess energy caused by anxiety or nervousness.\n\nBefore the test, sitting outside the exam room, close your eyes.\n\nStarting with your feet, tense the foot muscles for 5 - 8 seconds. Release.\n\nThen inhale through your nose and exhale through your mouth twice.\n\nNext, tense the calve muscles for 5- 8 seconds. Release.\n\nRepeat with the different muscle groups: upper legs, abdomen, arms/hands, shoulders and face/jaw. Taking deep breath between tensing times.\n\nThen tense your whole body and release. This will rid your body of excess energy so keeping you calm."
+            android:id="@+id/textView54"
+            android:textSize="15dp"
+            android:padding="10dp" />
+
+    </LinearLayout>
+
+</FrameLayout>

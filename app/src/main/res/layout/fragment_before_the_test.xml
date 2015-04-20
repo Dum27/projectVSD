@@ -1,0 +1,66 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.ielts.mcpp.ielts.fragments.DosBeforeTheTestFragment">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Do's"
+        android:id="@+id/textView15"
+        android:layout_gravity="left|top"
+        android:background="#ffff4df1"
+        android:paddingLeft="10dp"
+        android:textColor="#ffffffff"
+        android:textSize="20dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Before the Test"
+        android:id="@+id/textView34"
+        android:background="#ffe000ff"
+        android:textColor="#ffffffff"
+        android:layout_margin="5dp"
+        android:textSize="18dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="• Learn how to pronounce your major or job title."
+            android:id="@+id/textView43"
+            android:textSize="15dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="• Learn the meaning of &quot;passport&quot;, &quot;identification card&quot; (IF card) and know the difference."
+            android:id="@+id/textView44"
+            android:textSize="15dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="• Dress accordingly! It&apos;s an interview style exam, so dirty hands, clothes or nails will not impress examiners. Get clean!"
+            android:id="@+id/textView45"
+            android:textSize="15dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="10dp" />
+
+
+    </LinearLayout>
+
+</FrameLayout>

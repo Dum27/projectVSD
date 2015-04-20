@@ -1,0 +1,45 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" tools:context="com.ielts.mcpp.ielts.fragments.DosFragment">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Do&apos;s"
+        android:id="@+id/textView15"
+        android:layout_gravity="left|top"
+        android:background="#ffff4df1"
+        android:paddingLeft="10dp"
+        android:textColor="#ffffffff"
+        android:textSize="20dp" />
+
+        <com.gc.materialdesign.views.ButtonRectangle
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Before the Test"
+            android:id="@+id/before"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp" />
+
+        <com.gc.materialdesign.views.ButtonRectangle
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="During the Test"
+            android:id="@+id/during"
+            android:layout_gravity="center_horizontal" />
+
+        <com.gc.materialdesign.views.ButtonRectangle
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="After the Test"
+            android:id="@+id/after"
+            android:layout_gravity="center_horizontal" />
+
+    </LinearLayout>
+
+</FrameLayout>

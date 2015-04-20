@@ -1,8 +1,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.ielts.mcpp.ielts.fragments.UsefulStuffFragment"
-    android:id="@+id/container">
+    tools:context="com.ielts.mcpp.ielts.fragments.DontsFragment">
 
     <LinearLayout
         android:orientation="vertical"
@@ -13,7 +12,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Useful Stuff"
+        android:text="Don&apos;ts"
         android:id="@+id/textView15"
         android:layout_gravity="left|top"
         android:background="#ffff4df1"
@@ -21,52 +20,28 @@
         android:textColor="#ffffffff"
         android:textSize="20dp" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="IELTS Test"
-        android:id="@+id/textView34"
-        android:background="#ffe000ff"
-        android:textColor="#ffffffff"
-        android:layout_margin="5dp"
-        android:textSize="18dp" />
-
         <com.gc.materialdesign.views.ButtonRectangle
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Stay calm"
-            android:id="@+id/stayCalm"
+            android:text="Before the Test"
+            android:id="@+id/before"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="20dp" />
 
         <com.gc.materialdesign.views.ButtonRectangle
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Test facts"
-            android:id="@+id/testFacts"
+            android:text="During the Test"
+            android:id="@+id/during"
             android:layout_gravity="center_horizontal" />
 
         <com.gc.materialdesign.views.ButtonRectangle
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Exam rules"
-            android:id="@+id/examRules"
+            android:text="After the Test"
+            android:id="@+id/after"
             android:layout_gravity="center_horizontal" />
 
-        <com.gc.materialdesign.views.ButtonRectangle
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Do&apos;s"
-            android:id="@+id/dos"
-            android:layout_gravity="center_horizontal" />
-
-        <com.gc.materialdesign.views.ButtonRectangle
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Don&apos;ts"
-            android:id="@+id/donts"
-            android:layout_gravity="center_horizontal" />
-
-    </LinearLayout>
+    </LinearLayout>>
 
 </FrameLayout>

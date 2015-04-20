@@ -7,6 +7,7 @@ import android.view.MenuItem;
 
 import com.ielts.mcpp.ielts.fragments.AboutFragment;
 import com.ielts.mcpp.ielts.fragments.LayerAboutFrament;
+import com.ielts.mcpp.ielts.fragments.LayerStaffFragment;
 import com.ielts.mcpp.ielts.fragments.LayerTestTaskFragment;
 import com.ielts.mcpp.ielts.fragments.MainFragment;
 import com.ielts.mcpp.ielts.fragments.MyTestsFragment;
@@ -35,7 +36,7 @@ public class MainActivity extends MaterialNavigationDrawer {
         this.addSection(testSection);
         this.addSection(newSection(getString(R.string.nav_drawer_tests), new MyTestsFragment()));
         this.addSection(newSection(getString(R.string.nav_drawer_vocabulary), new VocabularyFragment()));
-        this.addSection(newSection(getString(R.string.nav_drawer_useful_staff), new UsefulStuffFragment()));
+        this.addSection(newSection(getString(R.string.nav_drawer_useful_staff), new LayerStaffFragment()));
         this.addSection(newSection(getString(R.string.nav_drawer_settings), new SettingsFragment()));
         this.addBottomSection(newSection(getString(R.string.nav_drawer_about), new LayerAboutFrament()));
 
