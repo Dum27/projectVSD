@@ -55,7 +55,7 @@ public class SignUpSecondFragment extends Fragment {
     View.OnClickListener nextButtonListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            new RegistrationAuthorization().regisrate(WelcomeActivity.registrationForm, getActivity());
+            new RegistrationAuthorization().regisrate(WelcomeActivity.registrationForm, getActivity(), getActivity());
         }
     };
 }

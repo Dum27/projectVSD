@@ -1,5 +1,6 @@
 package com.ielts.mcpp.ielts.connect;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -8,9 +9,12 @@ import android.widget.Toast;
 
 import com.google.common.io.ByteStreams;
 import com.ielts.mcpp.ielts.MainActivity;
+import com.ielts.mcpp.ielts.dao.SecurityDAO;
+import com.ielts.mcpp.ielts.dao.SecurityDaoImpl;
 import com.ielts.mcpp.ielts.model.ParseKeys;
 import com.ielts.mcpp.ielts.model.RegistrationForm;
 import com.ielts.mcpp.ielts.registration.WelcomeActivity;
+import com.parse.FindCallback;
 import com.parse.GetDataCallback;
 import com.parse.LogInCallback;
 import com.parse.Parse;
@@ -19,6 +23,7 @@ import com.parse.ParseCrashReporting;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.RequestPasswordResetCallback;
 import com.parse.SaveCallback;
@@ -26,6 +31,8 @@ import com.parse.SignUpCallback;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by Jack on 4/17/2015.
@@ -33,7 +40,7 @@ import java.io.IOException;
 public class RegistrationAuthorization {
     ProgressDialog progressDialog;
 
-    public void regisrate(RegistrationForm registrationForm, Context myContext) {
+    public void regisrate(final RegistrationForm registrationForm, final Context myContext, final Activity activity) {
         final Context context = myContext;
         ParseUser parseUser = ParseKeys.parseUser;
         parseUser.put(ParseKeys.firstName, registrationForm.getFirstName());
@@ -47,39 +54,44 @@ public class RegistrationAuthorization {
         parseUser.put("whatsYourJob", registrationForm.getProffesion());
         progressDialog = ProgressDialog.show(context, "Sign Up", "Please wait", true);
         parseUser.signUpInBackground(new SignUpCallback() {
+            @Override
             public void done(ParseException e) {
                 if (e == null) {
                     progressDialog.dismiss();
-                    Toast.makeText(context,
-                            "Successfully Signed up, please log in.",
-                            Toast.LENGTH_LONG).show();
+                    SecurityDAO securityDAO = new SecurityDaoImpl(context);
+                    securityDAO.saveUsername(registrationForm.getEmail());
+                    securityDAO.savePassword(registrationForm.getPassword());
+                    Toast.makeText(context, "Successfully Signed up, please log in.", Toast.LENGTH_LONG).show();
+
                     context.startActivity(new Intent(context, MainActivity.class));
+                    activity.finish();
                 } else {
                     progressDialog.dismiss();
                     Toast.makeText(context,
                             "Sign up Error " + e.getMessage(), Toast.LENGTH_LONG).show();
                 }
-                progressDialog.cancel();
             }
         });
     }
 
-    public void logIn(String password, String username, final Context myContext) {
+    public void logIn(final String password, final String username, final Context myContext, final Activity activity) {
         progressDialog = ProgressDialog.show(myContext, "Log In", "Please wait");
         ParseUser.logInInBackground(username, password,
                 new LogInCallback() {
+                    @Override
                     public void done(ParseUser user, ParseException e) {
                         if (user != null) {
                             progressDialog.dismiss();
+                            SecurityDAO securityDAO = new SecurityDaoImpl(myContext);
+                            securityDAO.saveUsername(username);
+                            securityDAO.savePassword(password);
                             Intent intent = new Intent(myContext, MainActivity.class);
                             myContext.startActivity(intent);
-                            Toast.makeText(myContext,
-                                    "Successfully Logged in",
-                                    Toast.LENGTH_LONG).show();
+                            Toast.makeText(myContext, "Successfully Logged in", Toast.LENGTH_LONG).show();
+                            activity.finish();
                         } else {
                             progressDialog.dismiss();
-                            Toast.makeText(
-                                    myContext, "No such user exist, please signup",
+                            Toast.makeText(myContext, "No such user exist, please signup",
                                     Toast.LENGTH_LONG).show();
                         }
                     }
@@ -90,15 +102,31 @@ public class RegistrationAuthorization {
         ParseUser.requestPasswordResetInBackground(email, new RequestPasswordResetCallback() {
             @Override
             public void done(ParseException e) {
-                if (e == null){
+                if (e == null) {
                     Toast.makeText(myContext, "Successfully restored, check your mail",
                             Toast.LENGTH_LONG).show();
                 } else {
                     Toast.makeText(
                             myContext, "No such user exist", Toast.LENGTH_LONG).show();
-                    Log.d("Jack", "!!!!!! " + e.getMessage());
                 }
             }
         });
+    }
+
+    public String getSecuredKey(){
+        String securedKey = null;
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("_User");
+        query.whereEqualTo("objectId","U8mCwTHOaC");
+        query.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> objects, ParseException e) {
+                if (e == null) {
+                    objects.get(1).getString("securedKey");
+                } else {
+                    // error
+                }
+            }
+        });
+        return securedKey;
     }
 }

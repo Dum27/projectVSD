@@ -77,6 +77,8 @@ public class SignUpFirstFragment extends Fragment {
         }
     };
 
+
+
     public static class DatePickerFragment extends DialogFragment
             implements DatePickerDialog.OnDateSetListener {
 

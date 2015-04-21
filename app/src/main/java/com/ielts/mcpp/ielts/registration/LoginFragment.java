@@ -15,6 +15,8 @@ import com.gc.materialdesign.views.ButtonRectangle;
 import com.ielts.mcpp.ielts.MainActivity;
 import com.ielts.mcpp.ielts.R;
 import com.ielts.mcpp.ielts.connect.RegistrationAuthorization;
+import com.ielts.mcpp.ielts.dao.SecurityDAO;
+import com.ielts.mcpp.ielts.dao.SecurityDaoImpl;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
@@ -32,25 +34,29 @@ public class LoginFragment extends Fragment {
         ButtonRectangle btnLogin = (ButtonRectangle) view.findViewById(R.id.button_login);
         ButtonRectangle btnSignUp = (ButtonRectangle) view.findViewById(R.id.button_sign_up);
         ButtonRectangle btnRestore = (ButtonRectangle) view.findViewById(R.id.button_restore);
+        btnLogin.setRippleSpeed(40F);
+        btnSignUp.setRippleSpeed(40F);
+        btnRestore.setRippleSpeed(40F);
         btnLogin.setOnClickListener(loginButtonListener);
         btnSignUp.setOnClickListener(signUpButtonListener);
         btnRestore.setOnClickListener(restoreButtonListener);
 
         Button testLl = (Button) view.findViewById(R.id.test_log_in);
         testLl.setOnClickListener(testLogInListener);
+
         return view;
     }
 
     View.OnClickListener loginButtonListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Intent intent = new Intent(getActivity(), MainActivity.class);
             getActivity().getIntent().setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
             TextView password = (TextView) view.findViewById(R.id.login_screen_password);
             TextView username = (TextView) view.findViewById(R.id.login_screen_username);
             new RegistrationAuthorization().logIn(password.getText().toString(),
-                    username.getText().toString(), getActivity());
-        }};
+                    username.getText().toString(), getActivity(), getActivity());
+        }
+    };
 
     View.OnClickListener signUpButtonListener = new View.OnClickListener() {
         @Override
@@ -74,7 +80,9 @@ public class LoginFragment extends Fragment {
     View.OnClickListener testLogInListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+
             startActivity(new Intent(getActivity(), MainActivity.class));
+            getActivity().finish();
         }
     };
 }
