@@ -3,12 +3,16 @@ package com.ielts.mcpp.ielts.fragments;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.gc.materialdesign.views.ButtonRectangle;
+import com.ielts.mcpp.ielts.MainActivity;
 import com.ielts.mcpp.ielts.R;
+
+import it.neokree.materialnavigationdrawer.elements.MaterialSection;
 
 public class DontsFragment extends Fragment implements View.OnClickListener{
 
@@ -28,9 +32,10 @@ public class DontsFragment extends Fragment implements View.OnClickListener{
         ButtonRectangle during = (ButtonRectangle) view.findViewById(R.id.during);
         ButtonRectangle after = (ButtonRectangle) view.findViewById(R.id.after);
         before.setOnClickListener(this);
-//        during.setOnClickListener(this);
-//        after.setOnClickListener(this);
+        during.setOnClickListener(this);
+        after.setOnClickListener(this);
         fragmentTransaction = getFragmentManager().beginTransaction();
+        ((MainActivity) this.getActivity()).setPageTitle("Dont's");
         return view;
     }
 
@@ -41,14 +46,14 @@ public class DontsFragment extends Fragment implements View.OnClickListener{
                 fragmentTransaction.replace(R.id.container_stuff, new DontsBeforeTheTestFragment());
                 fragmentTransaction.commit();
                 break;
-//            case R.id.during:
-//                fragmentTransaction.replace(R.id.container_stuff, new DosDuringTheTestFragment());
-//                fragmentTransaction.commit();
-//                break;
-//            case R.id.after:
-//                fragmentTransaction.replace(R.id.container_stuff, new DosAfterTheTestFragment());
-//                fragmentTransaction.commit();
-//                break;
+            case R.id.during:
+                fragmentTransaction.replace(R.id.container_stuff, new DontsBeforeTheTestFragment());
+                fragmentTransaction.commit();
+                break;
+            case R.id.after:
+                fragmentTransaction.replace(R.id.container_stuff, new DontsAfterTheTestFragment());
+                fragmentTransaction.commit();
+                break;
         }
     }
 

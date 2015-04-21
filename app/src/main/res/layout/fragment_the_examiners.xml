@@ -1,0 +1,23 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.ielts.mcpp.ielts.fragments.TheExaminersFragment">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="All IELTS marking takes place at the regional head office by trained examiners.\n\nTEST ME have hand-picked the most experienced to mark your test and give you professional feedback on how to improve.\n\nAll TEST ME markers are monitored to ensure high quality score and feedback."
+            android:id="@+id/textView66"
+            android:layout_gravity="right"
+            android:textSize="15dp"
+            android:padding="10dp" />
+
+    </LinearLayout>
+
+</FrameLayout>

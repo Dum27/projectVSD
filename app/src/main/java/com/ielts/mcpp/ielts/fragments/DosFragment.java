@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.gc.materialdesign.views.ButtonRectangle;
+import com.ielts.mcpp.ielts.MainActivity;
 import com.ielts.mcpp.ielts.R;
 
 public class DosFragment extends Fragment implements View.OnClickListener{
@@ -31,6 +32,7 @@ public class DosFragment extends Fragment implements View.OnClickListener{
         during.setOnClickListener(this);
         after.setOnClickListener(this);
         fragmentTransaction = getFragmentManager().beginTransaction();
+        ((MainActivity) this.getActivity()).setPageTitle("Do's");
         return view;
     }
 

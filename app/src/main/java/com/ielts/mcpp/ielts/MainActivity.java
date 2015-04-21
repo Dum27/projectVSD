@@ -2,6 +2,7 @@ package com.ielts.mcpp.ielts;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -48,5 +49,10 @@ public class MainActivity extends MaterialNavigationDrawer {
 //        create bottom section
 //        this.addBottomSection(newSection("Bottom Section", R.drawable.ic_settings_black_24dp, new Intent(this, Settings.class)));
     }
+
+    public void setPageTitle(String title){
+        this.setTitle(title);
+    }
+
 
 }

@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.gc.materialdesign.views.ButtonRectangle;
+import com.ielts.mcpp.ielts.MainActivity;
 import com.ielts.mcpp.ielts.R;
 
 public class StayCalmFragment extends Fragment implements View.OnClickListener{
@@ -28,6 +29,7 @@ public class StayCalmFragment extends Fragment implements View.OnClickListener{
         ButtonRectangle progressive = (ButtonRectangle) view.findViewById(R.id.progressive);
         breathing.setOnClickListener(this);
         progressive.setOnClickListener(this);
+        ((MainActivity) this.getActivity()).setPageTitle("Stay Calm");
         fragmentTransaction = getFragmentManager().beginTransaction();
         return view;
     }

@@ -31,12 +31,16 @@ public class UsefulStuffFragment extends Fragment implements View.OnClickListene
         ButtonRectangle examRules = (ButtonRectangle) view.findViewById(R.id.examRules);
         ButtonRectangle dos = (ButtonRectangle) view.findViewById(R.id.dos);
         ButtonRectangle donts = (ButtonRectangle) view.findViewById(R.id.donts);
+        ButtonRectangle sample = (ButtonRectangle) view.findViewById(R.id.sampleTasks);
+        ButtonRectangle examiners = (ButtonRectangle) view.findViewById(R.id.theExaminers);
         fragmentTransaction = getFragmentManager().beginTransaction();
         stayCalm.setOnClickListener(this);
         testFacts.setOnClickListener(this);
         examRules.setOnClickListener(this);
         dos.setOnClickListener(this);
         donts.setOnClickListener(this);
+        sample.setOnClickListener(this);
+        examiners.setOnClickListener(this);
         return view;
     }
 
@@ -61,6 +65,14 @@ public class UsefulStuffFragment extends Fragment implements View.OnClickListene
                 break;
             case R.id.donts:
                 fragmentTransaction.replace(R.id.container_stuff, new DontsFragment());
+                fragmentTransaction.commit();
+                break;
+            case R.id.sampleTasks:
+                fragmentTransaction.replace(R.id.container_stuff, new SampleTasksFragment());
+                fragmentTransaction.commit();
+                break;
+            case R.id.theExaminers:
+                fragmentTransaction.replace(R.id.container_stuff, new TheExaminersFragment());
                 fragmentTransaction.commit();
                 break;
         }
