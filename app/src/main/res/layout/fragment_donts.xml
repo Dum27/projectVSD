@@ -9,17 +9,6 @@
         android:layout_height="fill_parent"
         android:layout_gravity="center">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Don&apos;ts"
-        android:id="@+id/textView15"
-        android:layout_gravity="left|top"
-        android:background="#ffff4df1"
-        android:paddingLeft="10dp"
-        android:textColor="#ffffffff"
-        android:textSize="20dp" />
-
         <com.gc.materialdesign.views.ButtonRectangle
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

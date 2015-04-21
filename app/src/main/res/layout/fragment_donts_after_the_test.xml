@@ -1,7 +1,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.ielts.mcpp.ielts.fragments.DosAfterTheTestFragment">
+    tools:context="com.ielts.mcpp.ielts.fragments.DontsAfterTheTestFragment">
 
     <LinearLayout
         android:orientation="vertical"
@@ -23,13 +23,24 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="• When you hear the examiner say &quot;Thank you very much thai is the end of the speaking test.&quot; Say &quot;Thank you!&quot; and then leave the test room closing the door behind you. "
-            android:id="@+id/textView52"
+            android:text="• Don&apos;t ask for your score at the end of the test. The examiner cannot tell you the result."
+            android:id="@+id/textView63"
+            android:layout_gravity="center_horizontal"
             android:textSize="15dp"
             android:paddingLeft="10dp"
             android:paddingTop="10dp"
             android:paddingRight="10dp" />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="• DON&apos;T bow when leaving! Unless you are taking the test in Japan!"
+            android:id="@+id/textView64"
+            android:layout_gravity="center_horizontal"
+            android:textSize="15dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+            android:paddingRight="10dp" />
 
     </LinearLayout>
 

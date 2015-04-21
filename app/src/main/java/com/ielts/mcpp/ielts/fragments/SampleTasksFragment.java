@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import com.ielts.mcpp.ielts.MainActivity;
 import com.ielts.mcpp.ielts.R;
 
-public class TestFactsFragment extends Fragment {
+public class SampleTasksFragment extends Fragment {
 
     View view;
 
@@ -21,8 +21,8 @@ public class TestFactsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_test_facts, container, false);
-        ((MainActivity) this.getActivity()).setPageTitle("Test Facts");
+        view = inflater.inflate(R.layout.fragment_sample_tasks, container, false);
+        ((MainActivity) this.getActivity()).setPageTitle("Sample Task");
         return view;
     }
 

@@ -6,9 +6,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.ielts.mcpp.ielts.MainActivity;
 import com.ielts.mcpp.ielts.R;
 
 public class DosDuringTheTestFragment extends Fragment {
+
+    View view;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -18,7 +21,9 @@ public class DosDuringTheTestFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_during_the_test, container, false);
+        view = inflater.inflate(R.layout.fragment_during_the_test, container, false);
+        ((MainActivity) this.getActivity()).setPageTitle("Do's");
+        return view;
     }
 
 }
