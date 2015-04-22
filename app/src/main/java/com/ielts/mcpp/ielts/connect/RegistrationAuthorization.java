@@ -44,7 +44,7 @@ public class RegistrationAuthorization {
         final Context context = myContext;
         ParseUser parseUser = ParseKeys.parseUser;
         parseUser.put(ParseKeys.firstName, registrationForm.getFirstName());
-        parseUser.put("username", registrationForm.getEmail());
+        parseUser.put("username", registrationForm.getEmail().toLowerCase());
         parseUser.put("password", registrationForm.getPassword());
         parseUser.put(ParseKeys.lastName, registrationForm.getLastName());
         parseUser.put(ParseKeys.email, registrationForm.getEmail());
@@ -99,7 +99,7 @@ public class RegistrationAuthorization {
     }
 
     public void restorePasswrod(String email, final Context myContext){
-        ParseUser.requestPasswordResetInBackground(email, new RequestPasswordResetCallback() {
+        ParseUser.requestPasswordResetInBackground(email.toLowerCase(), new RequestPasswordResetCallback() {
             @Override
             public void done(ParseException e) {
                 if (e == null) {
