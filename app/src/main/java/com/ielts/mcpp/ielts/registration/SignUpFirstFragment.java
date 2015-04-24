@@ -5,9 +5,7 @@ import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -18,7 +16,6 @@ import android.widget.EditText;
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.gc.materialdesign.views.ButtonRectangle;
-import com.ielts.mcpp.ielts.MainActivity;
 import com.ielts.mcpp.ielts.R;
 
 import java.util.Calendar;
@@ -83,7 +80,6 @@ public class SignUpFirstFragment extends Fragment {
                 WelcomeActivity.registrationForm.setDateOfBirth(dateOfBirth.getText().toString());
                 WelcomeActivity.registrationForm.setEmail(email.getText().toString());
                 WelcomeActivity.registrationForm.setPromoCode(promo.getText().toString());
-                Log.d("Jack", "!!!!!  " + promo.getText().toString());
                 FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.welcome_activity_container, new SignUpSecondFragment());
                 fragmentTransaction.addToBackStack("");
