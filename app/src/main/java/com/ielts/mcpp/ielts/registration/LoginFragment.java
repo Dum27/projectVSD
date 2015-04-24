@@ -5,25 +5,19 @@ import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
-import android.widget.EdgeEffect;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
-import com.basgeekball.awesomevalidation.utility.RegexTemplate;
 import com.gc.materialdesign.views.ButtonRectangle;
 import com.ielts.mcpp.ielts.MainActivity;
 import com.ielts.mcpp.ielts.R;
 import com.ielts.mcpp.ielts.connect.RegistrationAuthorization;
-
 
 
 /**
@@ -98,20 +92,18 @@ public class LoginFragment extends Fragment {
     View.OnClickListener testLogInListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            if (mAwesomeValidation.validate()){
-                startActivity(new Intent(getActivity(), MainActivity.class));
-                getActivity().finish();
-            }
+            startActivity(new Intent(getActivity(), MainActivity.class));
+            getActivity().finish();
         }
     };
     View.OnFocusChangeListener emailValidateListener = new View.OnFocusChangeListener() {
         @Override
         public void onFocusChange(View v, boolean hasFocus) {
-            if (hasFocus){
-                 mAwesomeValidation.validate();
+            if (hasFocus) {
+                mAwesomeValidation.validate();
 
                 Log.d("Jack", "!!!!! No focus");
             }
-       }
+        }
     };
 }
