@@ -40,6 +40,7 @@
         <item name="popupTheme">@style/Base.V21.Theme.AppCompat.Light.Dialog</item>
         <item name="drawerType">@integer/DRAWERTYPE_ACCOUNTS</item>
         <item name="drawerColor">#fafafa</item>
+        <item name="android:textColor">#558b2f</item>
         <item name="rippleBackport">true</item>
         <item name="uniqueToolbarColor">false</item>
         <item name="singleAccount">false</item>

@@ -30,7 +30,7 @@ public class MainActivity extends MaterialNavigationDrawer {
                         .build()
         );
         // set the header image
-        this.setDrawerHeaderImage(R.drawable.mat2);
+        this.setDrawerHeaderImage(R.mipmap.logo_rectangle);
 
         // create sections
         testSection = newSection(getString(R.string.nav_drawer_test), new LayerTestTaskFragment());
