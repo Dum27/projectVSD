@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.basgeekball.awesomevalidation.AwesomeValidation;
@@ -50,7 +51,7 @@ public class LoginFragment extends Fragment {
                 getResources().getString(R.string.error_wrong_email));
         mAwesomeValidation.addValidation(passwordEditText, "^[a-zA-Z0-9]*.{6,20}",
                 getResources().getString(R.string.error_wrong_password));
-        Button testLl = (Button) view.findViewById(R.id.test_log_in);
+        ImageView testLl = (ImageView) view.findViewById(R.id.test_log_in);
         testLl.setOnClickListener(testLogInListener);
 
         return view;
