@@ -53,6 +53,9 @@ public class MainActivity extends MaterialNavigationDrawer {
     public void setPageTitle(String title){
         this.setTitle(title);
     }
+    public void setPageColor(int primaryColor, int darkColor){
+        this.changeToolbarColor(primaryColor, darkColor);
+    }
 
 
 }

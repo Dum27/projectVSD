@@ -2,35 +2,27 @@ package com.ielts.mcpp.ielts.fragments;
 
 
 import android.app.FragmentTransaction;
-import android.content.DialogInterface;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.app.Fragment;
-import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageView;
 
 import com.gc.materialdesign.views.ButtonRectangle;
 import com.google.common.io.ByteStreams;
 import com.ielts.mcpp.ielts.R;
+import com.ielts.mcpp.ielts.testsfragments.FirstTestFragment;
 import com.parse.GetDataCallback;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
 
-import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
-import java.util.Locale;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -58,7 +50,7 @@ public class TestFragment extends Fragment {
         @Override
         public void onClick(View v) {
             FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.container, new TestTaskFragment());
+            fragmentTransaction.replace(R.id.container, new FirstTestFragment());
             fragmentTransaction.commit();
 
         }
