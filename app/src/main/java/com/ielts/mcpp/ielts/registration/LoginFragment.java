@@ -45,7 +45,6 @@ public class LoginFragment extends Fragment {
         btnLogin.setOnClickListener(loginButtonListener);
         btnSignUp.setOnClickListener(signUpButtonListener);
         btnRestore.setOnClickListener(restoreButtonListener);
-
         mAwesomeValidation = new AwesomeValidation(ValidationStyle.COLORATION);
         mAwesomeValidation.addValidation(usernameEditText, getResources().getString(R.string.email_regex),
                 getResources().getString(R.string.error_wrong_email));
@@ -108,4 +107,5 @@ public class LoginFragment extends Fragment {
             }
         }
     };
+
 }
