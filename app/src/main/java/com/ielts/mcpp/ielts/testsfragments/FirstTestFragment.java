@@ -66,7 +66,7 @@ public class FirstTestFragment extends Fragment implements View.OnClickListener 
             @Override
             public void run() {
                 changeColor();
-                handler.postDelayed(this, 3000);
+                handler.postDelayed(this, 2000);
             }
         };
         handler = new Handler();

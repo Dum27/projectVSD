@@ -30,6 +30,12 @@
                 android:gravity="center_vertical|right"
                 android:padding="20dp">
 
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/imageView3"
+                    android:layout_gravity="left|center_vertical" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -37,6 +43,7 @@
                     android:text="00:00"
                     android:id="@+id/timer"
                     android:textSize="30sp" />
+
             </LinearLayout>
 
             <LinearLayout
