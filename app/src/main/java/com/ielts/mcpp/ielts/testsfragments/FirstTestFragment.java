@@ -59,6 +59,7 @@ public class FirstTestFragment extends Fragment implements View.OnClickListener 
         mTimer = (TextView) view.findViewById(R.id.timer);
         mStopBtn.setBackgroundColor(0xFFF36C3B);
         mStopBtn.setRippleColor(0xF8D16F37);
+        mStopBtn.setOnClickListener(this);
         ((MainActivity) this.getActivity()).setPageTitle("Part 1");
         ((MainActivity) this.getActivity()).setPageColor(0xFFF36C3B,Color.BLACK);
         runnable = new Runnable() {
@@ -119,14 +120,14 @@ public class FirstTestFragment extends Fragment implements View.OnClickListener 
 
     @Override
     public void onClick(View v) {
-//        switch(v.getId()){
-//            case R.id.btn_next_test:
-//                FragmentTransaction  fragmentTransaction = getFragmentManager().beginTransaction();
-//                fragmentTransaction.replace(R.id.container, new SecondTestFragment());
-//                fragmentTransaction.commit();
-//                break;
-//            default:
-//                break;
-//        }
+        switch(v.getId()){
+            case R.id.buttonFloat:
+                FragmentTransaction  fragmentTransaction = getFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.container, new SecondTestFragment());
+                fragmentTransaction.commit();
+                break;
+            default:
+                break;
+        }
     }
 }

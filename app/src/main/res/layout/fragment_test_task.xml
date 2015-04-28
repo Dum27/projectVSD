@@ -35,7 +35,8 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:text="00:00"
-                    android:id="@+id/timer" />
+                    android:id="@+id/timer"
+                    android:textSize="30sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -52,12 +53,14 @@
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:text="Topic"
                     android:id="@+id/textView70"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:background="#FFF36C3B"
+                    android:textSize="28sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Topic name"
+                    android:text="Weather"
                     android:id="@+id/textView71"
                     android:layout_marginTop="10dp" />
             </LinearLayout>
