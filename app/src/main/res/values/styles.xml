@@ -5,18 +5,16 @@
     <style name="ImageHeaderLight" parent="MaterialNavigationDrawerTheme.Light.DarkActionBar">
         <item name="colorPrimary">#8bc34a</item>
         <item name="colorPrimaryDark">#558b2f</item>
-        <item name="colorAccent">#000000</item>
+        <!--<item name="colorAccent">#000000</item>-->
         <item name="color">#558b2f</item>
-        <!--<item name="colorBackground">#558b2f</item>-->
         <item name="android:textColorPrimary">#558b2f</item>
         <!--<item name="drawerType">@integer/DRAWERTYPE_IMAGE</item>-->
         <item name="android:textColor">#000000</item>
         <item name="android:textSize">22dp</item>
         <item name="android:editTextColor">#000000</item>
+        <item name="android:color">#8bc34a</item>
+        <item name="android:colorBackground">#8bc34a</item>
         <item name="android:divider">@drawable/apptheme_textfield_activated_holo_light</item>
         <!--<item name="android:background">@drawable/apptheme_textfield_activated_holo_light"</item>-->
-    </style>
-    <style name="testo" parent="@android:style/Widget.DeviceDefault.DatePicker">
-        <item name="android:divider">@color/material_blue_grey_900</item>
     </style>
 </resources>

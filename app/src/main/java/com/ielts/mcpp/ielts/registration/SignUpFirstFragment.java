@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -49,10 +50,12 @@ public class SignUpFirstFragment extends Fragment {
             }
         });
         mAwesomeValidation = new AwesomeValidation(ValidationStyle.COLORATION);
+        mAwesomeValidation.setColor(Color.BLUE);
         mAwesomeValidation.addValidation(usernameEditText, getResources().getString(R.string.email_regex),
                 getResources().getString(R.string.error_wrong_email));
         mAwesomeValidation.addValidation(passwordEditText, "^[a-zA-Z0-9]*.{6,20}",
                 getResources().getString(R.string.error_wrong_password));
+        mAwesomeValidation.setColor(Color.BLUE);
 
         return view;
     }
