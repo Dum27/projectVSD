@@ -28,7 +28,8 @@ import java.util.List;
 public class RegistrationAuthorization {
     ProgressDialog progressDialog;
 
-    public void regisrate(final RegistrationForm registrationForm, final Context myContext, final Activity activity) {
+    public void regisrate(final RegistrationForm registrationForm, final Context myContext,
+                          final Activity activity, boolean yesCheckBox) {
         final Context context = myContext;
         ParseUser parseUser = ParseKeys.parseUser;
         parseUser.put(ParseKeys.firstName, registrationForm.getFirstName());
@@ -40,11 +41,15 @@ public class RegistrationAuthorization {
         parseUser.put("couponNumber", registrationForm.getPromoCode());
         parseUser.put("nationality", registrationForm.getNationality());
         parseUser.put("whatsYourJob", registrationForm.getProffesion());
-        parseUser.put("numOfTestTaken",registrationForm.getHowManyTries());
         parseUser.put("scoreYouWant", registrationForm.getScoreDoYouNeed());
-        parseUser.put("takenTestBefore", registrationForm.isTakenTestBefore());
-        parseUser.put("whatWasYourScore", registrationForm.getLastScore());
-        parseUser.put("yourLevel", registrationForm.getEnglishLevel());
+        if (yesCheckBox) {
+            parseUser.put("numOfTestTaken",registrationForm.getHowManyTries());
+            parseUser.put("takenTestBefore", registrationForm.isTakenTestBefore());
+            parseUser.put("whatWasYourScore", registrationForm.getLastScore());
+        }
+        if (!yesCheckBox){
+            parseUser.put("yourLevel", registrationForm.getEnglishLevel());
+        }
         progressDialog = ProgressDialog.show(context, "Sign Up", "Please wait", true);
         parseUser.signUpInBackground(new SignUpCallback() {
             @Override
