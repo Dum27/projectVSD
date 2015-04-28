@@ -22,7 +22,7 @@ public class RegistrationForm implements Serializable{
     private String additionalScreenLanguage;
     private String howManyTries;
     private String lastScore;
-    private boolean takenTestBefore;
+    private String takenTestBefore;
 
     public RegistrationForm() {
     }
@@ -147,11 +147,11 @@ public class RegistrationForm implements Serializable{
         this.lastScore = lastScore;
     }
 
-    public boolean isTakenTestBefore() {
+    public String isTakenTestBefore() {
         return takenTestBefore;
     }
 
-    public void setTakenTestBefore(boolean takenTestBefore) {
+    public void setTakenTestBefore(String takenTestBefore) {
         this.takenTestBefore = takenTestBefore;
     }
 }

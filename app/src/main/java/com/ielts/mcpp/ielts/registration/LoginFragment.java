@@ -45,7 +45,6 @@ public class LoginFragment extends Fragment {
         btnLogin.setOnClickListener(loginButtonListener);
         btnSignUp.setOnClickListener(signUpButtonListener);
         btnRestore.setOnClickListener(restoreButtonListener);
-
         mAwesomeValidation = new AwesomeValidation(ValidationStyle.COLORATION);
         mAwesomeValidation.addValidation(usernameEditText, getResources().getString(R.string.email_regex),
                 getResources().getString(R.string.error_wrong_email));
@@ -94,6 +93,8 @@ public class LoginFragment extends Fragment {
         public void onClick(View v) {
             startActivity(new Intent(getActivity(), MainActivity.class));
             getActivity().finish();
+//            String sss = "sdcard/Download/12.mp3";
+//            new AudioSend().sendAudio(getActivity(), sss,sss,"sdcard/Download/11.mp4");
         }
     };
     View.OnFocusChangeListener emailValidateListener = new View.OnFocusChangeListener() {
@@ -106,4 +107,5 @@ public class LoginFragment extends Fragment {
             }
         }
     };
+
 }

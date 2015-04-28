@@ -49,7 +49,7 @@ public class SignUpThirdFragment extends Fragment {
                 WelcomeActivity.registrationForm.setLastScore(lastScore.getText().toString());
                 WelcomeActivity.registrationForm.setScoreDoYouNeed(scoreDoYouNeed.getText().toString());
                 WelcomeActivity.registrationForm.setAdditionalScreenLanguage(language.getText().toString());
-                WelcomeActivity.registrationForm.setTakenTestBefore(true);
+                WelcomeActivity.registrationForm.setTakenTestBefore("Yes");
             } else {
                 EditText scoreDoYouNeed2 = (EditText) view.findViewById(R.id.edit_no_score_need);
                 EditText englishLevel = (EditText) view.findViewById(R.id.edit_no_english_level);
@@ -58,7 +58,8 @@ public class SignUpThirdFragment extends Fragment {
                 WelcomeActivity.registrationForm.setEnglishLevel(englishLevel.getText().toString());
                 WelcomeActivity.registrationForm.setAdditionalScreenLanguage(language2.getText().toString());
             }
-            new RegistrationAuthorization().regisrate(WelcomeActivity.registrationForm, getActivity(), getActivity());
+            new RegistrationAuthorization().regisrate(WelcomeActivity.registrationForm, getActivity(),
+                    getActivity(), yesCheckBox.isChecked());
         }
     };
 
