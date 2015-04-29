@@ -50,6 +50,7 @@ public class RegistrationAuthorization {
         if (!yesCheckBox){
             parseUser.put("yourLevel", registrationForm.getEnglishLevel());
         }
+//        parseUser.signUp();
         progressDialog = ProgressDialog.show(context, "Sign Up", "Please wait", true);
         parseUser.signUpInBackground(new SignUpCallback() {
             @Override
