@@ -1,20 +1,24 @@
 package com.ielts.mcpp.ielts;
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 
+import com.ielts.mcpp.ielts.fragments.AboutFragment;
 import com.ielts.mcpp.ielts.fragments.LayerAboutFrament;
 import com.ielts.mcpp.ielts.fragments.LayerStaffFragment;
 import com.ielts.mcpp.ielts.fragments.LayerTestTaskFragment;
+import com.ielts.mcpp.ielts.fragments.MainFragment;
 import com.ielts.mcpp.ielts.fragments.MyTestsFragment;
 import com.ielts.mcpp.ielts.fragments.SettingsFragment;
+import com.ielts.mcpp.ielts.fragments.TestFragment;
+import com.ielts.mcpp.ielts.fragments.UsefulStuffFragment;
 import com.ielts.mcpp.ielts.fragments.VocabularyFragment;
 
 import it.neokree.materialnavigationdrawer.MaterialNavigationDrawer;
 import it.neokree.materialnavigationdrawer.elements.MaterialSection;
-import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
-import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 
 public class MainActivity extends MaterialNavigationDrawer {
@@ -52,6 +56,16 @@ public class MainActivity extends MaterialNavigationDrawer {
 
     public void setPageTitle(String title){
         this.setTitle(title);
+    }
+    public void setPageColor(int primaryColor, int darkColor){
+        this.changeToolbarColor(primaryColor, darkColor);
+    }
+
+    @Override
+    public void onBackPressed() {
+        getFragmentManager().popBackStack();
+        if (getFragmentManager().getBackStackEntryCount() == 0)
+            super.onBackPressed();
     }
 
     @Override

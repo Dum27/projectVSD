@@ -6,7 +6,7 @@
     tools:context="com.ielts.mcpp.ielts.testsfragments.FirstTestFragment">
 
     <LinearLayout
-        android:id="@+id/test_task_fragment_layout"
+        android:id="@+id/test2_task_fragment_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:weightSum="1"
@@ -30,20 +30,13 @@
                 android:gravity="center_vertical|right"
                 android:padding="20dp">
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/imageView3"
-                    android:layout_gravity="left|center_vertical" />
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:text="00:00"
-                    android:id="@+id/timer"
+                    android:id="@+id/timer2"
                     android:textSize="30sp" />
-
             </LinearLayout>
 
             <LinearLayout
@@ -59,16 +52,16 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:text="Topic"
-                    android:id="@+id/textView70"
+                    android:id="@+id/textView702"
                     android:textStyle="bold"
-                    android:background="#FFF36C3B"
+                    android:background="#FFA4C904"
                     android:textSize="28sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Weather"
-                    android:id="@+id/textView71"
+                    android:text="Describe a person"
+                    android:id="@+id/textView712"
                     android:layout_marginTop="10dp" />
             </LinearLayout>
 
@@ -79,7 +72,7 @@
                 android:layout_weight="1"
                 android:gravity="center_vertical|right">
                 <com.gc.materialdesign.views.ButtonFloatSmall
-                    android:id="@+id/buttonFloatSmall"
+                    android:id="@+id/buttonFloatSmall2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
@@ -88,7 +81,7 @@
                     android:background="#afc4c4c4"
                     materialdesign:iconDrawable="@drawable/ic_microphone"/>
 
-                </LinearLayout>
+            </LinearLayout>
 
             <LinearLayout
                 android:orientation="vertical"
@@ -97,7 +90,7 @@
                 android:layout_weight="2"
                 android:gravity="center_vertical|right">
                 <com.gc.materialdesign.views.ButtonFloat
-                    android:id="@+id/buttonFloat"
+                    android:id="@+id/buttonFloat2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
@@ -105,7 +98,7 @@
                     android:layout_marginRight="10dp"
                     android:background="#1E88E5"
                     materialdesign:iconDrawable="@drawable/text_skip"/>
-                </LinearLayout>
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -116,10 +109,10 @@
             android:gravity="center">
 
             <com.gc.materialdesign.views.ButtonRectangle
-                android:id="@+id/admob"
+                android:id="@+id/admob2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#2cea5f41"
+                android:background="#6b98b606"
                 android:text="Ads will be here" />
         </LinearLayout>
     </LinearLayout>

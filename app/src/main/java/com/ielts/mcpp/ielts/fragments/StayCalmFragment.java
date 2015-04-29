@@ -39,10 +39,12 @@ public class StayCalmFragment extends Fragment implements View.OnClickListener{
         switch (v.getId()) {
             case R.id.breathing:
                 fragmentTransaction.replace(R.id.container_stuff, new BreathingFragment());
+                fragmentTransaction.addToBackStack("");
                 fragmentTransaction.commit();
                 break;
             case R.id.progressive:
                 fragmentTransaction.replace(R.id.container_stuff, new ProgressiveFragment());
+                fragmentTransaction.addToBackStack("");
                 fragmentTransaction.commit();
                 break;
         }

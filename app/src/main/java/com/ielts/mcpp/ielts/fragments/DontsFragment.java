@@ -44,14 +44,17 @@ public class DontsFragment extends Fragment implements View.OnClickListener{
         switch (v.getId()) {
             case R.id.before:
                 fragmentTransaction.replace(R.id.container_stuff, new DontsBeforeTheTestFragment());
+                fragmentTransaction.addToBackStack("");
                 fragmentTransaction.commit();
                 break;
             case R.id.during:
                 fragmentTransaction.replace(R.id.container_stuff, new DontsBeforeTheTestFragment());
+                fragmentTransaction.addToBackStack("");
                 fragmentTransaction.commit();
                 break;
             case R.id.after:
                 fragmentTransaction.replace(R.id.container_stuff, new DontsAfterTheTestFragment());
+                fragmentTransaction.addToBackStack("");
                 fragmentTransaction.commit();
                 break;
         }
