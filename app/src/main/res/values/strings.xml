@@ -15,4 +15,9 @@
     <string name="title_activity_welcome">WelcomeActivity</string>
     <string name="username_login">username_login</string>
     <string name="password_login">password_login</string>
+    <string name="validation_username">You must enter valid email</string>
+    <string name="validation_username_length">Not valid length</string>
+    <string name="error_wrong_email">You input wrong email address</string>
+    <string name="error_wrong_password">You input wrong password</string>
+    <string name="email_regex">^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$</string>
 </resources>

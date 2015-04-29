@@ -2,17 +2,18 @@ package com.ielts.mcpp.ielts.registration;
 
 import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
-import android.support.v7.app.ActionBarActivity;
+import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.support.v7.app.ActionBarActivity;
 
 import com.ielts.mcpp.ielts.R;
 import com.ielts.mcpp.ielts.connect.RegistrationAuthorization;
 import com.ielts.mcpp.ielts.dao.SecurityDAO;
 import com.ielts.mcpp.ielts.dao.SecurityDaoImpl;
 import com.ielts.mcpp.ielts.model.RegistrationForm;
+
+import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class WelcomeActivity extends ActionBarActivity {
 
@@ -22,6 +23,11 @@ public class WelcomeActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
+                        .setDefaultFontPath("fonts/blue.ttf")
+                        .setFontAttrId(R.attr.fontPath)
+                        .build()
+        );
         setContentView(R.layout.activity_welcome);
         registrationForm = new RegistrationForm();
         SecurityDAO securityDAO = new SecurityDaoImpl(this);
@@ -39,5 +45,9 @@ public class WelcomeActivity extends ActionBarActivity {
         getFragmentManager().popBackStack();
         if (getFragmentManager().getBackStackEntryCount() == 0)
             super.onBackPressed();
+    }
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 }

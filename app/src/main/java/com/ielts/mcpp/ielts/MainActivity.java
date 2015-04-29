@@ -28,9 +28,13 @@ public class MainActivity extends MaterialNavigationDrawer {
 
     @Override
     public void init(Bundle savedInstanceState) {
-
+        CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
+                        .setDefaultFontPath("fonts/blue.ttf")
+                        .setFontAttrId(R.attr.fontPath)
+                        .build()
+        );
         // set the header image
-        this.setDrawerHeaderImage(R.drawable.mat2);
+        this.setDrawerHeaderImage(R.mipmap.logo_rectangle);
 
         // create sections
         testSection = newSection(getString(R.string.nav_drawer_test), new LayerTestTaskFragment());
@@ -53,6 +57,9 @@ public class MainActivity extends MaterialNavigationDrawer {
     public void setPageTitle(String title){
         this.setTitle(title);
     }
+    public void setPageColor(int primaryColor, int darkColor){
+        this.changeToolbarColor(primaryColor, darkColor);
+    }
 
     @Override
     public void onBackPressed() {
@@ -61,4 +68,8 @@ public class MainActivity extends MaterialNavigationDrawer {
             super.onBackPressed();
     }
 
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+    }
 }

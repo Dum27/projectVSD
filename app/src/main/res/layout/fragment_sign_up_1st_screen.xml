@@ -2,20 +2,20 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="11">
+    android:weightSum="12">
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_weight="2"
         android:gravity="center_vertical|center_horizontal">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="image"
-            android:id="@+id/textView7" />
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:src="@mipmap/logo"
+            android:id="@+id/ffff"/>
     </LinearLayout>
 
     <LinearLayout
@@ -38,7 +38,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/progressBar"
-            android:progress="65" />
+            android:progress="50" />
 
     </LinearLayout>
 
@@ -76,7 +76,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/edit_first_name"
-            android:layout_marginRight="20dp" />
+            android:layout_marginRight="20dp"
+            android:textColor="@color/material_blue_grey_900"
+            android:background="@drawable/apptheme_textfield_activated_holo_light"/>/>
     </LinearLayout>
 
     <LinearLayout
@@ -97,7 +99,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/edit_last_name"
-            android:layout_marginRight="20dp" />
+            android:layout_marginRight="20dp"
+            android:textColor="@color/material_blue_grey_900"
+            android:background="@drawable/apptheme_textfield_activated_holo_light"/>/>
 
     </LinearLayout>
 
@@ -120,7 +124,9 @@
             android:layout_height="wrap_content"
             android:id="@+id/edit_password"
             android:layout_marginRight="20dp"
-            android:password="true" />
+            android:password="true"
+            android:textColor="@color/material_blue_grey_900"
+            android:background="@drawable/apptheme_textfield_activated_holo_light"/>/>
     </LinearLayout>
 
     <LinearLayout
@@ -141,7 +147,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/edit_nationality"
-            android:layout_marginRight="20dp" />
+            android:layout_marginRight="20dp"
+            android:textColor="@color/material_blue_grey_900"
+            android:background="@drawable/apptheme_textfield_activated_holo_light"/>/>
     </LinearLayout>
 
     <LinearLayout
@@ -162,7 +170,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/edit_date_of_birth"
-            android:layout_marginRight="20dp" />
+            android:layout_marginRight="20dp"
+            android:textColor="@color/material_blue_grey_900"
+            android:background="@drawable/apptheme_textfield_activated_holo_light"/>/>
     </LinearLayout>
 
     <LinearLayout
@@ -184,7 +194,9 @@
             android:layout_height="wrap_content"
             android:id="@+id/edit_email"
             android:inputType="textEmailAddress"
-            android:layout_marginRight="20dp" />
+            android:layout_marginRight="20dp"
+            android:textColor="@color/material_blue_grey_900"
+            android:background="@drawable/apptheme_textfield_activated_holo_light"/>/>
     </LinearLayout>
 
     <LinearLayout
@@ -205,7 +217,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/edit_promo_code"
-            android:layout_marginRight="20dp" />
+            android:layout_marginRight="20dp"
+            android:textColor="@color/material_blue_grey_900"
+            android:background="@drawable/apptheme_textfield_activated_holo_light"/>/>
     </LinearLayout>
 
     <LinearLayout

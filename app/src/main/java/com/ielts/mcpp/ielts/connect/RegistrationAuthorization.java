@@ -4,35 +4,23 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.widget.Toast;
 
-import com.google.common.io.ByteStreams;
 import com.ielts.mcpp.ielts.MainActivity;
 import com.ielts.mcpp.ielts.dao.SecurityDAO;
 import com.ielts.mcpp.ielts.dao.SecurityDaoImpl;
 import com.ielts.mcpp.ielts.model.ParseKeys;
 import com.ielts.mcpp.ielts.model.RegistrationForm;
-import com.ielts.mcpp.ielts.registration.WelcomeActivity;
 import com.parse.FindCallback;
-import com.parse.GetDataCallback;
 import com.parse.LogInCallback;
-import com.parse.Parse;
-import com.parse.ParseACL;
-import com.parse.ParseCrashReporting;
 import com.parse.ParseException;
-import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.RequestPasswordResetCallback;
-import com.parse.SaveCallback;
 import com.parse.SignUpCallback;
 
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * Created by Jack on 4/17/2015.
@@ -40,11 +28,12 @@ import java.util.Objects;
 public class RegistrationAuthorization {
     ProgressDialog progressDialog;
 
-    public void regisrate(final RegistrationForm registrationForm, final Context myContext, final Activity activity) {
+    public void regisrate(final RegistrationForm registrationForm, final Context myContext,
+                          final Activity activity, boolean yesCheckBox) {
         final Context context = myContext;
         ParseUser parseUser = ParseKeys.parseUser;
         parseUser.put(ParseKeys.firstName, registrationForm.getFirstName());
-        parseUser.put("username", registrationForm.getEmail());
+        parseUser.put("username", registrationForm.getEmail().toLowerCase());
         parseUser.put("password", registrationForm.getPassword());
         parseUser.put(ParseKeys.lastName, registrationForm.getLastName());
         parseUser.put(ParseKeys.email, registrationForm.getEmail());
@@ -52,6 +41,15 @@ public class RegistrationAuthorization {
         parseUser.put("couponNumber", registrationForm.getPromoCode());
         parseUser.put("nationality", registrationForm.getNationality());
         parseUser.put("whatsYourJob", registrationForm.getProffesion());
+        parseUser.put("scoreYouWant", registrationForm.getScoreDoYouNeed());
+        if (yesCheckBox) {
+            parseUser.put("numOfTestTaken",registrationForm.getHowManyTries());
+            parseUser.put("takenTestBefore", registrationForm.isTakenTestBefore());
+            parseUser.put("whatWasYourScore", registrationForm.getLastScore());
+        }
+        if (!yesCheckBox){
+            parseUser.put("yourLevel", registrationForm.getEnglishLevel());
+        }
         progressDialog = ProgressDialog.show(context, "Sign Up", "Please wait", true);
         parseUser.signUpInBackground(new SignUpCallback() {
             @Override
@@ -99,7 +97,7 @@ public class RegistrationAuthorization {
     }
 
     public void restorePasswrod(String email, final Context myContext){
-        ParseUser.requestPasswordResetInBackground(email, new RequestPasswordResetCallback() {
+        ParseUser.requestPasswordResetInBackground(email.toLowerCase(), new RequestPasswordResetCallback() {
             @Override
             public void done(ParseException e) {
                 if (e == null) {
