@@ -34,6 +34,7 @@ public class UsefulStuffFragment extends Fragment implements View.OnClickListene
         ButtonRectangle sample = (ButtonRectangle) view.findViewById(R.id.sampleTasks);
         ButtonRectangle examiners = (ButtonRectangle) view.findViewById(R.id.theExaminers);
         fragmentTransaction = getFragmentManager().beginTransaction();
+        fragmentTransaction.addToBackStack("");
         stayCalm.setOnClickListener(this);
         testFacts.setOnClickListener(this);
         examRules.setOnClickListener(this);
@@ -49,30 +50,37 @@ public class UsefulStuffFragment extends Fragment implements View.OnClickListene
         switch (v.getId()) {
             case R.id.stayCalm:
                 fragmentTransaction.replace(R.id.container_stuff, new StayCalmFragment());
+                fragmentTransaction.addToBackStack("");
                 fragmentTransaction.commit();
                 break;
             case R.id.testFacts:
                 fragmentTransaction.replace(R.id.container_stuff, new TestFactsFragment());
+                fragmentTransaction.addToBackStack("");
                 fragmentTransaction.commit();
                 break;
             case R.id.examRules:
                 fragmentTransaction.replace(R.id.container_stuff, new ExamRulesFragment());
+                fragmentTransaction.addToBackStack("");
                 fragmentTransaction.commit();
                 break;
             case R.id.dos:
                 fragmentTransaction.replace(R.id.container_stuff, new DosFragment());
+                fragmentTransaction.addToBackStack("");
                 fragmentTransaction.commit();
                 break;
             case R.id.donts:
                 fragmentTransaction.replace(R.id.container_stuff, new DontsFragment());
+                fragmentTransaction.addToBackStack("");
                 fragmentTransaction.commit();
                 break;
             case R.id.sampleTasks:
                 fragmentTransaction.replace(R.id.container_stuff, new SampleTasksFragment());
+                fragmentTransaction.addToBackStack("");
                 fragmentTransaction.commit();
                 break;
             case R.id.theExaminers:
                 fragmentTransaction.replace(R.id.container_stuff, new TheExaminersFragment());
+                fragmentTransaction.addToBackStack("");
                 fragmentTransaction.commit();
                 break;
         }

@@ -54,5 +54,11 @@ public class MainActivity extends MaterialNavigationDrawer {
         this.setTitle(title);
     }
 
+    @Override
+    public void onBackPressed() {
+        getFragmentManager().popBackStack();
+        if (getFragmentManager().getBackStackEntryCount() == 0)
+            super.onBackPressed();
+    }
 
 }
