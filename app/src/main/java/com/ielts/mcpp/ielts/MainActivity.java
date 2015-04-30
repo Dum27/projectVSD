@@ -3,7 +3,9 @@ package com.ielts.mcpp.ielts;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.view.View;
 
+import com.gc.materialdesign.widgets.Dialog;
 import com.ielts.mcpp.ielts.fragments.LayerAboutFrament;
 import com.ielts.mcpp.ielts.fragments.LayerStaffFragment;
 import com.ielts.mcpp.ielts.fragments.LayerTestTaskFragment;
@@ -60,9 +62,29 @@ public class MainActivity extends MaterialNavigationDrawer {
     @Override
     public void onBackPressed() {
         getFragmentManager().popBackStack();
-        if (getFragmentManager().getBackStackEntryCount() == 0)
-            super.onBackPressed();
+        if (getFragmentManager().getBackStackEntryCount() == 0) {
+            final Dialog dialog = new Dialog(this, "Confirm", "You really want to exit?\n\n");
+            // Set accept click listenner
+            dialog.addCancelButton("BACK");
+
+            dialog.setOnAcceptButtonClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    MainActivity.super.onBackPressed();
+                }
+            });
+            dialog.setOnCancelButtonClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialog.dismiss();
+                }
+            });
+            dialog.show();
+        }
+//            Toast.makeText(this,"PressBack again",Toast.LENGTH_SHORT).show();
+////            super.onBackPressed();
     }
+
 
     @Override
     protected void attachBaseContext(Context newBase) {

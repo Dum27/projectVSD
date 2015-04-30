@@ -20,12 +20,14 @@ import com.ielts.mcpp.ielts.R;
 
 import java.io.File;
 
+//import com.github.lassana.recorder.AudioRecorder;
+
 /**
  * Created by taras on 27.04.2015.
  */
 public class ThirdTestFragment extends Fragment implements View.OnClickListener {
     int numberTest = 1;
-//    private AudioRecorder mAudioRecorder;
+    //    private AudioRecorder mAudioRecorder;
     ButtonFloatSmall mMicBtn;
     ButtonFloat mStopBtn;
 
@@ -38,7 +40,7 @@ public class ThirdTestFragment extends Fragment implements View.OnClickListener 
     String currentFileName;
     Handler handler;
     Runnable runnable;
-    boolean isRecording=false;
+    boolean isRecording = false;
     TextView mTimer;
 
     @Override
@@ -67,9 +69,9 @@ public class ThirdTestFragment extends Fragment implements View.OnClickListener 
         new CountDownTimer(300000, 1000) {
 
             public void onTick(long millisUntilFinished) {
-                String v = String.format("%02d", millisUntilFinished/60000);
-                int va = (int)( (millisUntilFinished%60000)/1000);
-                mTimer.setText(v+":"+String.format("%02d",va));
+                String v = String.format("%02d", millisUntilFinished / 60000);
+                int va = (int) ((millisUntilFinished % 60000) / 1000);
+                mTimer.setText(v + ":" + String.format("%02d", va));
             }
 
             public void onFinish() {
@@ -78,37 +80,41 @@ public class ThirdTestFragment extends Fragment implements View.OnClickListener 
         }.start();
         return view;
     }
-    private void changeColor(){
-        if(isRecording) {
+
+    private void changeColor() {
+        if (isRecording) {
             mMicBtn.setBackgroundColor(0xFFFF3500);
             isRecording = false;
-        }
-        else {
+        } else {
             mMicBtn.setBackgroundColor(0xafc4c4c4);
             isRecording = true;
         }
 
     }
-    private void test1(){
+
+    private void test1() {
 
     }
-    private void playQuestion(String fileName){
+
+    private void playQuestion(String fileName) {
 
         File file = new File(fileName);
-        if ( file.exists() ) {
+        if (file.exists()) {
             Intent intent = new Intent();
             intent.setAction(android.content.Intent.ACTION_VIEW);
             intent.setDataAndType(Uri.fromFile(file), "audio/*");
             startActivity(intent);
         }
     }
-    private void recordAnswer(long duration){
+
+    private void recordAnswer(long duration) {
 
 
     }
+
     private String getNextFileName() {
         return Environment.getExternalStorageDirectory()
-                + File.separator+"Test1.mp4";
+                + File.separator + "Test1.mp4";
     }
 
     @Override
