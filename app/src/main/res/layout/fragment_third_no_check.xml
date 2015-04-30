@@ -24,6 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/edit_no_score_need"
+            android:inputType="number"
             android:textColor="@color/material_blue_grey_900"
             android:background="@drawable/apptheme_textfield_activated_holo_light"/>/>
     </LinearLayout>
@@ -67,7 +68,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/edit_no_additional_screen_language"
             android:textColor="@color/material_blue_grey_900"
-            android:background="@drawable/apptheme_textfield_activated_holo_light"/>/>
+            android:background="@drawable/apptheme_textfield_activated_holo_light"/>
+        />
     </LinearLayout>
 
 
