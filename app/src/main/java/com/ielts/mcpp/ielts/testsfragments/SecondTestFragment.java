@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Environment;
 import android.os.Handler;
-import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +16,6 @@ import android.widget.TextView;
 
 import com.gc.materialdesign.views.ButtonFloat;
 import com.gc.materialdesign.views.ButtonFloatSmall;
-import com.github.lassana.recorder.AudioRecorder;
 import com.ielts.mcpp.ielts.MainActivity;
 import com.ielts.mcpp.ielts.R;
 
@@ -28,7 +26,7 @@ import java.io.File;
  */
 public class SecondTestFragment extends Fragment implements View.OnClickListener {
     int numberTest = 1;
-    private AudioRecorder mAudioRecorder;
+//    private AudioRecorder mAudioRecorder;
     ButtonFloatSmall mMicBtn;
     ButtonFloat mStopBtn;
 
@@ -50,7 +48,7 @@ public class SecondTestFragment extends Fragment implements View.OnClickListener
                              Bundle savedInstanceState) {
         View view;
         view = inflater.inflate(R.layout.fragment_second_test, container, false);
-        mAudioRecorder = AudioRecorder.build(getActivity(), getNextFileName());
+//        mAudioRecorder = AudioRecorder.build(getActivity(), getNextFileName());
         mMicBtn = (ButtonFloatSmall) view.findViewById(R.id.buttonFloatSmall2);
         mStopBtn = (ButtonFloat) view.findViewById(R.id.buttonFloat2);
         mTimer = (TextView) view.findViewById(R.id.timer2);

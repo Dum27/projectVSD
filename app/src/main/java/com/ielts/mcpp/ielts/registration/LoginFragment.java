@@ -8,7 +8,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -94,6 +93,7 @@ public class LoginFragment extends Fragment {
         public void onClick(View v) {
             startActivity(new Intent(getActivity(), MainActivity.class));
             getActivity().finish();
+
 //            String sss = "sdcard/Download/12.mp3";
 //            new AudioSend().sendAudio(getActivity(), sss,sss,"sdcard/Download/11.mp4");
         }
@@ -108,5 +108,6 @@ public class LoginFragment extends Fragment {
             }
         }
     };
+
 
 }

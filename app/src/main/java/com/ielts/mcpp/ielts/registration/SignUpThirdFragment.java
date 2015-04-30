@@ -4,6 +4,7 @@ package com.ielts.mcpp.ielts.registration;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,6 +41,7 @@ public class SignUpThirdFragment extends Fragment {
     View.OnClickListener nextButtonListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+            Log.d("Jack", "!!!!!!   " + yesCheckBox.isChecked() + noCheckBox.isChecked());
             if (yesCheckBox.isChecked()) {
                 EditText howManyTries = (EditText) view.findViewById(R.id.edit_yes_number_of_try);
                 EditText scoreDoYouNeed = (EditText) view.findViewById(R.id.edit_yes_score_need);
@@ -50,7 +52,8 @@ public class SignUpThirdFragment extends Fragment {
                 WelcomeActivity.registrationForm.setScoreDoYouNeed(scoreDoYouNeed.getText().toString());
                 WelcomeActivity.registrationForm.setAdditionalScreenLanguage(language.getText().toString());
                 WelcomeActivity.registrationForm.setTakenTestBefore("Yes");
-            } else {
+            }
+            if (noCheckBox.isChecked()){
                 EditText scoreDoYouNeed2 = (EditText) view.findViewById(R.id.edit_no_score_need);
                 EditText englishLevel = (EditText) view.findViewById(R.id.edit_no_english_level);
                 EditText language2 = (EditText) view.findViewById(R.id.edit_no_additional_screen_language);
@@ -58,8 +61,10 @@ public class SignUpThirdFragment extends Fragment {
                 WelcomeActivity.registrationForm.setEnglishLevel(englishLevel.getText().toString());
                 WelcomeActivity.registrationForm.setAdditionalScreenLanguage(language2.getText().toString());
             }
-            new RegistrationAuthorization().regisrate(WelcomeActivity.registrationForm, getActivity(),
-                    getActivity(), yesCheckBox.isChecked());
+            if (yesCheckBox.isChecked() || noCheckBox.isChecked()) {
+                new RegistrationAuthorization().regisrate(WelcomeActivity.registrationForm, getActivity(),
+                        getActivity(), yesCheckBox.isChecked());
+            }
         }
     };
 

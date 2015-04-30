@@ -1,8 +1,5 @@
 package com.ielts.mcpp.ielts.registration;
 
-import android.app.DatePickerDialog;
-import android.app.Dialog;
-import android.app.DialogFragment;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.graphics.Color;
@@ -11,13 +8,13 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.DatePicker;
 import android.widget.EditText;
 
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.gc.materialdesign.views.ButtonRectangle;
 import com.ielts.mcpp.ielts.R;
+import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
 import java.util.Calendar;
 
@@ -44,11 +41,15 @@ public class SignUpFirstFragment extends Fragment {
         dateOfBirth.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
+                Calendar now = Calendar.getInstance();
                 if (v == dateOfBirth && event.getAction() == MotionEvent.ACTION_DOWN)
-                    new DatePickerFragment().show(getFragmentManager(), "datePicker");
+                    DatePickerDialog.newInstance(datePickerListener, now.get(Calendar.YEAR),
+                            now.get(Calendar.MONTH), now.get(Calendar.DAY_OF_MONTH))
+                            .show(getFragmentManager(), "Datepickerdialog");;
                 return false;
             }
         });
+
         mAwesomeValidation = new AwesomeValidation(ValidationStyle.COLORATION);
         mAwesomeValidation.setColor(Color.BLUE);
         mAwesomeValidation.addValidation(usernameEditText, getResources().getString(R.string.email_regex),
@@ -91,27 +92,13 @@ public class SignUpFirstFragment extends Fragment {
         }
     };
 
-
-
-    public static class DatePickerFragment extends DialogFragment
-            implements DatePickerDialog.OnDateSetListener {
-
+    DatePickerDialog.OnDateSetListener datePickerListener =  new DatePickerDialog.OnDateSetListener() {
         @Override
-        public Dialog onCreateDialog(Bundle savedInstanceState) {
-            // Use the current date as the default date in the picker
-            final Calendar c = Calendar.getInstance();
-            int year = c.get(Calendar.YEAR);
-            int month = c.get(Calendar.MONTH);
-            int day = c.get(Calendar.DAY_OF_MONTH);
-
-            // Create a new instance of DatePickerDialog and return it
-            return new DatePickerDialog(getActivity(), this, year, month, day);
-        }
-
-        @Override
-        public void onDateSet(DatePicker view, int year, int month, int day) {
+        public void onDateSet(DatePickerDialog datePickerDialog, int year, int month, int day) {
             EditText dateText = (EditText) getActivity().findViewById(R.id.edit_date_of_birth);
             dateText.setText(day + "/" + month + "/" + year);
         }
-    }
+    };
+
+
 }

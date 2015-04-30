@@ -4,23 +4,18 @@ import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.RippleDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Environment;
 import android.os.Handler;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Chronometer;
 import android.widget.TextView;
 
 import com.gc.materialdesign.views.ButtonFloat;
 import com.gc.materialdesign.views.ButtonFloatSmall;
-import com.github.lassana.recorder.AudioRecorder;
 import com.ielts.mcpp.ielts.MainActivity;
 import com.ielts.mcpp.ielts.R;
 
@@ -29,7 +24,7 @@ import java.io.File;
 
 public class FirstTestFragment extends Fragment implements View.OnClickListener {
     int numberTest = 1;
-    private AudioRecorder mAudioRecorder;
+//    private AudioRecorder mAudioRecorder;
     ButtonFloatSmall mMicBtn;
     ButtonFloat mStopBtn;
 
@@ -53,7 +48,7 @@ public class FirstTestFragment extends Fragment implements View.OnClickListener 
                              Bundle savedInstanceState) {
         View view;
         view = inflater.inflate(R.layout.fragment_test_task, container, false);
-        mAudioRecorder = AudioRecorder.build(getActivity(), getNextFileName());
+//        mAudioRecorder = AudioRecorder.build(getActivity(), getNextFileName());
         mMicBtn = (ButtonFloatSmall) view.findViewById(R.id.buttonFloatSmall);
         mStopBtn = (ButtonFloat) view.findViewById(R.id.buttonFloat);
         mTimer = (TextView) view.findViewById(R.id.timer);
