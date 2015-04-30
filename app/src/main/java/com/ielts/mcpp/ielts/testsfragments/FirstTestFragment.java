@@ -94,7 +94,15 @@ public class FirstTestFragment extends Fragment implements View.OnClickListener 
 
     }
 
-    private void test1() {
+    private void during_the_test() {
+
+    }
+
+    private void during_the_intro() {
+
+    }
+
+    private void intriductory_frame() {
 
     }
 
