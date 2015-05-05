@@ -70,14 +70,16 @@
                 android:layout_height="wrap_content"
                 android:text="Yes"
                 android:layout_marginRight="10dp"
-                android:id="@+id/checkBox_yes"/>
+                android:id="@+id/checkBox_yes"
+                android:textColor="@color/material_blue_grey_900"/>
 
             <CheckBox
                 android:layout_gravity="center_horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="No"
-                android:id="@+id/checkBox_no"/>
+                android:id="@+id/checkBox_no"
+                android:textColor="@color/material_blue_grey_900"/>
         </LinearLayout>
 
 

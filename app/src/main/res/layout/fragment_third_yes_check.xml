@@ -11,86 +11,98 @@
         android:orientation="horizontal"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:weightSum="2">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textSize="20sp"
             android:text="How many times?"
-            android:id="@+id/textView34" />
+            android:id="@+id/textView34"
+            android:layout_weight="1"/>
 
         <EditText
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:id="@+id/edit_yes_number_of_try"
             android:inputType="number"
             android:textColor="@color/material_blue_grey_900"
-            android:background="@drawable/apptheme_textfield_activated_holo_light"/>/>
+            android:background="@drawable/apptheme_textfield_activated_holo_light"
+            android:layout_weight="1"/>
     </LinearLayout>
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:weightSum="2">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textSize="20sp"
             android:text="What was your score?"
-            android:id="@+id/textView67" />
+            android:id="@+id/textView67"
+            android:layout_weight="1"/>
 
         <EditText
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:id="@+id/edit_yes_previous_score"
             android:inputType="number"
             android:textColor="@color/material_blue_grey_900"
-            android:background="@drawable/apptheme_textfield_activated_holo_light"/>/>
+            android:background="@drawable/apptheme_textfield_activated_holo_light"
+            android:layout_weight="1"/>
     </LinearLayout>
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
-        android:layout_weight="1" >
+        android:layout_weight="1"
+        android:weightSum="2">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textSize="20sp"
             android:text="What score do you need?"
-            android:id="@+id/textView68" />
+            android:id="@+id/textView68"
+            android:layout_weight="1"/>
 
         <EditText
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:id="@+id/edit_yes_score_need"
             android:inputType="number"
             android:textColor="@color/material_blue_grey_900"
-            android:background="@drawable/apptheme_textfield_activated_holo_light"/>/>
+            android:background="@drawable/apptheme_textfield_activated_holo_light"
+            android:layout_weight="1"/>
     </LinearLayout>
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:weightSum="2">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textSize="20sp"
             android:text="Additional screen language?"
-            android:id="@+id/textView69" />
+            android:id="@+id/textView69"
+            android:layout_weight="1"/>
 
         <EditText
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:id="@+id/edit_yes_additional_screen_language"
             android:textColor="@color/material_blue_grey_900"
-            android:background="@drawable/apptheme_textfield_activated_holo_light"/>/>
+            android:background="@drawable/apptheme_textfield_activated_holo_light"
+            android:layout_weight="1"/>
     </LinearLayout>
 </LinearLayout>

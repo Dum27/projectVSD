@@ -2,6 +2,7 @@ package com.ielts.mcpp.ielts;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 
@@ -32,12 +33,13 @@ public class MainActivity extends MaterialNavigationDrawer {
                         .build()
         );
         // set the header image
+        this.setDrawerBackgroundColor(Color.LTGRAY);
         this.setDrawerHeaderImage(R.mipmap.logo_rectangle);
-
         // create sections
         testSection = newSection(getString(R.string.nav_drawer_test), new LayerTestTaskFragment());
         this.addSection(testSection);
         this.addSection(newSection(getString(R.string.nav_drawer_tests), new MyTestsFragment()));
+        this.addDivisor();
         this.addSection(newSection(getString(R.string.nav_drawer_vocabulary), new VocabularyFragment()));
         this.addSection(newSection(getString(R.string.nav_drawer_useful_staff), new LayerStaffFragment()));
         this.addSection(newSection(getString(R.string.nav_drawer_settings), new SettingsFragment()));

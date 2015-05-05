@@ -101,25 +101,29 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="working"
-                android:id="@+id/radioButtonWorking" />
+                android:id="@+id/radioButtonWorking"
+                android:textColor="@color/material_blue_grey_900"/>
 
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="a student"
-                android:id="@+id/radioButtonStudent" />
+                android:id="@+id/radioButtonStudent"
+                android:textColor="@color/material_blue_grey_900"/>
 
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="both"
-                android:id="@+id/radioButtonBoth" />
+                android:id="@+id/radioButtonBoth"
+                android:textColor="@color/material_blue_grey_900"/>
 
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="neither"
-                android:id="@+id/radioButtonNeither" />
+                android:id="@+id/radioButtonNeither"
+                android:textColor="@color/material_blue_grey_900"/>
         </RadioGroup>
 
         <LinearLayout

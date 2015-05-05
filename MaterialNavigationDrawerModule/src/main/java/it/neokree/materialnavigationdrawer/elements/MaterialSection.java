@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.Point;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
@@ -139,7 +140,8 @@ public class MaterialSection<Fragment> implements View.OnTouchListener, View.OnC
             colorSelected = values.getColor(R.styleable.MaterialSection_sectionBackgroundColorSelected,0x0A000000);
 
             iconColor = values.getColor(R.styleable.MaterialSection_sectionColorIcon,0x000);
-            textColor = values.getColor(R.styleable.MaterialSection_sectionColorText,0x000);
+//            textColor = values.getColor(R.styleable.MaterialSection_sectionColorText,0x000);
+            textColor = Color.WHITE;
             notificationColor = values.getColor(R.styleable.MaterialSection_sectionColorNotification,0x000);
 
             // set text color into the view
