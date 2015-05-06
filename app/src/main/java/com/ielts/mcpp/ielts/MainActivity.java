@@ -36,11 +36,11 @@ public class MainActivity extends MaterialNavigationDrawer {
         this.setDrawerBackgroundColor(Color.parseColor("#FF616261"));
         this.setDrawerHeaderImage(R.mipmap.logo_rectangle);
         // create sections
-        this.addSection(newSection(getString(R.string.nav_drawer_test), new LayerTestTaskFragment()));
-        this.addSection(newSection(getString(R.string.nav_drawer_tests), new MyTestsFragment()));
-        this.addSection(newSection(getString(R.string.nav_drawer_vocabulary), new VocabularyFragment()));
-        this.addSection(newSection(getString(R.string.nav_drawer_useful_staff), new LayerStaffFragment()));
-        this.addSection(newSection(getString(R.string.nav_drawer_settings), new SettingsFragment()));
+        this.addSection(newSection(getString(R.string.nav_drawer_test), getResources().getDrawable(R.drawable.icon_test1png), new LayerTestTaskFragment()));
+        this.addSection(newSection(getString(R.string.nav_drawer_tests), getResources().getDrawable(R.drawable.icon_test1png), new MyTestsFragment()));
+        this.addSection(newSection(getString(R.string.nav_drawer_vocabulary), getResources().getDrawable(R.drawable.icon_vocab1), new VocabularyFragment()));
+        this.addSection(newSection(getString(R.string.nav_drawer_useful_staff), getResources().getDrawable(R.drawable.icon_useful_stuff1), new LayerStaffFragment()));
+        this.addSection(newSection(getString(R.string.nav_drawer_settings), getResources().getDrawable(R.drawable.icon_settings1), new SettingsFragment()));
         this.addBottomSection(newSection(getString(R.string.nav_drawer_about), new LayerAboutFrament()));
 
 //        this.addBottomSection(newSection(getResources().getString(R.string.about), new AboutFragment()));

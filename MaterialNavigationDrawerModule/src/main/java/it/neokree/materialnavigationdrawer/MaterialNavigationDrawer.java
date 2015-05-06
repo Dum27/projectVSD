@@ -23,6 +23,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.Display;
 import android.view.Menu;
@@ -34,6 +35,7 @@ import android.view.ViewTreeObserver;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.DecelerateInterpolator;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -380,7 +382,12 @@ public abstract class MaterialNavigationDrawer<Fragment> extends ActionBarActivi
             super.setContentView(R.layout.activity_material_navigation_drawer);
         else
             super.setContentView(R.layout.activity_material_navigation_drawer_customheader);
-
+        MaterialDrawerLayout.LayoutParams paramsDD = new MaterialDrawerLayout.LayoutParams(MaterialDrawerLayout.
+                LayoutParams.WRAP_CONTENT, MaterialDrawerLayout.LayoutParams.WRAP_CONTENT);
+        paramsDD.setMargins(0,100,0,0);
+//        RelativeLayout relativeLayouttt = (RelativeLayout) findViewById(R.id.drawer);
+//        Log.d("Jack", "!!!!!!!!!!!!!!! " + relativeLayouttt);
+//        relativeLayouttt.setLayoutParams(paramsDD);
         // init Typeface
         fontManager = new TypefaceManager(this.getAssets());
 
@@ -390,6 +397,8 @@ public abstract class MaterialNavigationDrawer<Fragment> extends ActionBarActivi
 
         // init drawer components
         layout = (MaterialDrawerLayout) this.findViewById(R.id.drawer_layout);
+//        layout.measure(View.MeasureSpec.EXACTLY, View.MeasureSpec.EXACTLY);
+//        layout.setLayoutParams(paramsDD);
         content = (RelativeLayout) this.findViewById(R.id.content);
         drawer = (RelativeLayout) this.findViewById(R.id.drawer);
         if(drawerHeaderType == DRAWERHEADER_ACCOUNTS) {
@@ -512,7 +521,7 @@ public abstract class MaterialNavigationDrawer<Fragment> extends ActionBarActivi
             // se il multipane e' attivo, si e' in landscape e si e' un tablet allora si passa in multipane mode
             layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_OPEN,drawer);
             DrawerLayout.LayoutParams params = new DrawerLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-            params.setMargins((int) (320 * density),0,0,0);
+            params.setMargins((int) (320 * density),20,0,0);
             content.setLayoutParams(params);
             layout.setScrimColor(Color.TRANSPARENT);
             layout.openDrawer(drawer);
@@ -643,6 +652,7 @@ public abstract class MaterialNavigationDrawer<Fragment> extends ActionBarActivi
 
                     for (MaterialSection section : bottomSectionList) {
                         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, (int) (48 * density));
+                        params.setMargins(0, 20, 0, 0);
                         sections.addView(section.getView(), params);
                     }
                 }
@@ -653,6 +663,7 @@ public abstract class MaterialNavigationDrawer<Fragment> extends ActionBarActivi
 
                     for (MaterialSection section : bottomSectionList) {
                         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, (int) (48 * density));
+                        params.setMargins(0, 20, 0, 0);
                         bottomSections.addView(section.getView(), params);
                     }
                 }
@@ -1142,11 +1153,14 @@ public abstract class MaterialNavigationDrawer<Fragment> extends ActionBarActivi
             float finalScale = 1.6f;
 
             final int statusBarHeight;
-            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT || (Build.VERSION.SDK_INT == Build.VERSION_CODES.KITKAT && !kitkatTraslucentStatusbar)) {
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT ||
+                    (Build.VERSION.SDK_INT == Build.VERSION_CODES.KITKAT && !kitkatTraslucentStatusbar) ||
+                     Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 statusBarHeight = (int) (25 * density);
             } else {
                 statusBarHeight = 0;
             }
+            Log.d("Jack", "!!!!!!  " + statusBarHeight + "  " + offsetHover.y);
 
             // si tiene traccia della foto cliccata
             ImageView photoClicked;
@@ -1435,8 +1449,8 @@ public abstract class MaterialNavigationDrawer<Fragment> extends ActionBarActivi
         }
 
         this.getToolbar().setBackgroundColor(sectionPrimaryColor);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT)
-            this.statusBar.setImageDrawable(new ColorDrawable(sectionPrimaryColorDark));
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT)
+//            this.statusBar.setImageDrawable(new ColorDrawable(sectionPrimaryColorDark));
     }
 
     public void changeToolbarColor(int primaryColor, int primaryDarkColor) {
@@ -1465,6 +1479,7 @@ public abstract class MaterialNavigationDrawer<Fragment> extends ActionBarActivi
             throw new RuntimeException("Your header is not setted to Custom, check in your styles.xml");
 
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        params.setMargins(0, 20, 0, 0);
         customDrawerHeader.addView(view,params);
     }
 
@@ -1476,6 +1491,7 @@ public abstract class MaterialNavigationDrawer<Fragment> extends ActionBarActivi
             case DRAWERHEADER_IMAGE:
                 ImageView image = new ImageView(this);
                 LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+                params.setMargins(0, 20, 0, 0);
                 image.setScaleType(ImageView.ScaleType.FIT_XY);
                 image.setImageBitmap(background);
 
@@ -1496,6 +1512,7 @@ public abstract class MaterialNavigationDrawer<Fragment> extends ActionBarActivi
             case DRAWERHEADER_IMAGE:
                 ImageView image = new ImageView(this);
                 LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+                params.setMargins(0, 20, 0, 0);
                 image.setScaleType(ImageView.ScaleType.FIT_XY);
                 image.setImageDrawable(background);
 
@@ -1574,6 +1591,7 @@ public abstract class MaterialNavigationDrawer<Fragment> extends ActionBarActivi
     public void addSection(MaterialSection section) {
 //        section.setPosition(sectionList.size());
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,(int)(48 * density));
+        params.setMargins(0, 20, 0, 0);
         section.setTypeface(fontManager.getRobotoMedium());
         sectionList.add(section);
 

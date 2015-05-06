@@ -81,21 +81,21 @@ public class MaterialSection<Fragment> implements View.OnTouchListener, View.OnC
         if(rippleAnimationSupport()) {
             // section with ripple effect
 
-            switch(iconType) {
-                case ICON_NO_ICON:
-                    view = LayoutInflater.from(ctx).inflate(R.layout.layout_material_section_ripple, null);
-                    break;
-                case ICON_24DP:
-                    view = LayoutInflater.from(ctx).inflate(R.layout.layout_material_section_icon_ripple, null);
-
-                    icon = (ImageView) view.findViewById(R.id.section_icon);
-                    break;
-                case ICON_40DP:
+//            switch(iconType) {
+//                case ICON_NO_ICON:
+//                    view = LayoutInflater.from(ctx).inflate(R.layout.layout_material_section_ripple, null);
+//                    break;
+//                case ICON_24DP:
+//                    view = LayoutInflater.from(ctx).inflate(R.layout.layout_material_section_icon_ripple, null);
+//
+//                    icon = (ImageView) view.findViewById(R.id.section_icon);
+//                    break;
+//                case ICON_40DP:
                     view = LayoutInflater.from(ctx).inflate(R.layout.layout_material_section_icon_large_ripple, null);
 
                     icon = (ImageView) view.findViewById(R.id.section_icon);
-                    break;
-            }
+//                    break;
+//            }
 
             text = (TextView) view.findViewById(R.id.section_text);
             notifications = (TextView) view.findViewById(R.id.section_notification);
@@ -105,28 +105,28 @@ public class MaterialSection<Fragment> implements View.OnTouchListener, View.OnC
         else {
             // section with normal background
 
-            switch (iconType) {
-                case ICON_NO_ICON:
-                    view = LayoutInflater.from(ctx).inflate(R.layout.layout_material_section, null);
-
-                    text = (TextView) view.findViewById(R.id.section_text);
-                    notifications = (TextView) view.findViewById(R.id.section_notification);
-                    break;
-                case ICON_24DP:
-                    view = LayoutInflater.from(ctx).inflate(R.layout.layout_material_section_icon, null);
-
-                    text = (TextView) view.findViewById(R.id.section_text);
-                    icon = (ImageView) view.findViewById(R.id.section_icon);
-                    notifications = (TextView) view.findViewById(R.id.section_notification);
-                    break;
-                case ICON_40DP:
+//            switch (iconType) {
+//                case ICON_NO_ICON:
+//                    view = LayoutInflater.from(ctx).inflate(R.layout.layout_material_section, null);
+//
+//                    text = (TextView) view.findViewById(R.id.section_text);
+//                    notifications = (TextView) view.findViewById(R.id.section_notification);
+//                    break;
+//                case ICON_24DP:
+//                    view = LayoutInflater.from(ctx).inflate(R.layout.layout_material_section_icon, null);
+//
+//                    text = (TextView) view.findViewById(R.id.section_text);
+//                    icon = (ImageView) view.findViewById(R.id.section_icon);
+//                    notifications = (TextView) view.findViewById(R.id.section_notification);
+//                    break;
+//                case ICON_40DP:
                     view = LayoutInflater.from(ctx).inflate(R.layout.layout_material_section_icon_large, null);
 
                     text = (TextView) view.findViewById(R.id.section_text);
                     icon = (ImageView) view.findViewById(R.id.section_icon);
                     notifications = (TextView) view.findViewById(R.id.section_notification);
-                    break;
-            }
+//                    break;
+//            }
         }
 
         // resolve attributes from current theme
@@ -139,7 +139,8 @@ public class MaterialSection<Fragment> implements View.OnTouchListener, View.OnC
             colorUnpressed = values.getColor(R.styleable.MaterialSection_sectionBackgroundColor,0x00FFFFFF);
             colorSelected = values.getColor(R.styleable.MaterialSection_sectionBackgroundColorSelected,0x0A000000);
 
-            iconColor = values.getColor(R.styleable.MaterialSection_sectionColorIcon,0x000);
+//            iconColor = values.getColor(R.styleable.MaterialSection_sectionColorIcon,0x000);
+            iconColor = Color.WHITE;
 //            textColor = values.getColor(R.styleable.MaterialSection_sectionColorText,0x000);
             textColor = Color.WHITE;
             notificationColor = values.getColor(R.styleable.MaterialSection_sectionColorNotification,0x000);
@@ -339,14 +340,14 @@ public class MaterialSection<Fragment> implements View.OnTouchListener, View.OnC
 
     public void setIcon(Drawable icon) {
         this.icon.setImageDrawable(icon);
-        if(!realColor)
-            this.icon.setColorFilter(iconColor);
+//        if(!realColor)
+//            this.icon.setColorFilter(iconColor);
     }
 
     public void setIcon(Bitmap icon) {
         this.icon.setImageBitmap(icon);
-        if(!realColor)
-            this.icon.setColorFilter(iconColor);
+//        if(!realColor)
+//            this.icon.setColorFilter(iconColor);
     }
     
     public void setTarget(Fragment target) {
