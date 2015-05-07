@@ -4,8 +4,8 @@
     android:layout_height="48dp">
 
     <ImageView
-        android:layout_width="24dp"
-        android:layout_height="24dp"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
         android:id="@+id/section_icon"
         android:alpha="0.54"
         android:layout_marginLeft="16dp"

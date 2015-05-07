@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.gc.materialdesign.views.ButtonRectangle;
 import com.ielts.mcpp.ielts.R;
+import com.ielts.mcpp.ielts.connect.DownloadAudio;
 
 
 public class AboutFragment extends Fragment {
@@ -23,6 +24,7 @@ public class AboutFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        new DownloadAudio().downloadAudio();
     }
 
     @Override
