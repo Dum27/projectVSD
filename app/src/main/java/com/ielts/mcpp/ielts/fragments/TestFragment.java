@@ -1,12 +1,12 @@
 package com.ielts.mcpp.ielts.fragments;
 
 
+import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +15,7 @@ import android.view.ViewGroup;
 import com.gc.materialdesign.views.ButtonRectangle;
 import com.google.common.io.ByteStreams;
 import com.ielts.mcpp.ielts.R;
-import com.ielts.mcpp.ielts.testsfragments.FirstTestFragment;
+import com.ielts.mcpp.ielts.testsfragments.IntroFragment;
 import com.parse.GetDataCallback;
 import com.parse.ParseException;
 import com.parse.ParseFile;
@@ -50,7 +50,8 @@ public class TestFragment extends Fragment {
         @Override
         public void onClick(View v) {
             FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.container, new FirstTestFragment());
+//            fragmentTransaction.replace(R.id.container, new FirstTestFragment());
+            fragmentTransaction.replace(R.id.container, new IntroFragment());
             fragmentTransaction.commit();
 
         }
@@ -60,7 +61,7 @@ public class TestFragment extends Fragment {
         @Override
         public void onClick(View v) {
             Drawable drawable = getResources().getDrawable(R.drawable.ic_launcher);
-            Bitmap bitmap = ((BitmapDrawable)drawable).getBitmap();
+            Bitmap bitmap = ((BitmapDrawable) drawable).getBitmap();
             // IMAGE!!!
 //            ByteArrayOutputStream stream = new ByteArrayOutputStream();
 //            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
@@ -86,7 +87,7 @@ public class TestFragment extends Fragment {
             jobApplication.saveInBackground();
 
 //Retrieve
-            ParseFile applicantResume = (ParseFile)jobApplication.get("mediaurl");
+            ParseFile applicantResume = (ParseFile) jobApplication.get("mediaurl");
             applicantResume.getDataInBackground(new GetDataCallback() {
                 public void done(byte[] data, ParseException e) {
                     if (e == null) {
