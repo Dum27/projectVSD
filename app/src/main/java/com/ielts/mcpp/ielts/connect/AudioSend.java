@@ -49,7 +49,7 @@ public class AudioSend {
         for (int i = 0; i < 3; i++) {
             try {
                 data = ByteStreams.toByteArray(new FileInputStream(
-//                        Environment.getExternalStorageDirectory() + audioFilesPath[i]));     on Release
+//                        Environment.getExternalStorageDirectory() + "/" + audioFilesPath[i]));     on Release
                           audioFilesPath[i]));
                 file = new ParseFile(dateNow + "_part" + i + ".mp4", data);
                 file.saveInBackground();

@@ -1,5 +1,8 @@
 package com.ielts.mcpp.ielts.connect;
 
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.os.Environment;
 import android.util.Log;
 
 import com.google.common.io.Files;
@@ -18,36 +21,51 @@ import java.util.List;
  * Created by Jack on 06.05.2015.
  */
 public class DownloadAudio {
+    ProgressDialog progressDialog;
+    int sizeOfList;
 
-    public void downloadAudio() {
+    public void downloadAudio(Context context) {
         ParseQuery<ParseObject> query = ParseQuery.getQuery("QuestionsAudio");
+        query.setLimit(1000);
 //        query.whereEqualTo("objectId","U8mCwTHOaC");
+        progressDialog = new ProgressDialog(context);
+        progressDialog.setTitle("Files download");
+        progressDialog.show();
         query.findInBackground(new FindCallback<ParseObject>() {
+            @Override
             public void done(List<ParseObject> objects, ParseException e) {
+                sizeOfList = objects.size();
+                int i = 0;
                 if (e == null) {
-                    for (ParseObject parseObject : objects)
-                        saveDownloadedFiles((ParseFile) parseObject.get("audio"));
+                    for (ParseObject parseObject : objects) {
+                        i++;
+                        saveDownloadedFiles((ParseFile) parseObject.get("audio"), i);
+                    }
                 } else {
                 }
             }
         });
     }
 
-    public void saveDownloadedFiles(final ParseFile parseFile) {
+    public void saveDownloadedFiles(final ParseFile parseFile, final int counter) {
         parseFile.getDataInBackground(new GetDataCallback() {
+            @Override
             public void done(byte[] data, ParseException e) {
-                if (e == null) {
-                    Log.d("Jack", parseFile.getName() + "\n" + parseFile.getUrl() );
-                    File fileToWriteTo = new File("sdcard/Download/ielts/" + parseFile.getName() + ".mp4");
-
-                    try {
+                try {
+                    if (e == null) {
+                        File folder        = new File(Environment.getExternalStorageDirectory() + "/questions");
+                        File fileToWriteTo = new File(Environment.getExternalStorageDirectory() + "/questions/"
+                                + parseFile.getName().substring(42));
+                        if (!folder.exists())
+                            folder.mkdir();
                         Files.write(data, fileToWriteTo);
-                    } catch (IOException e1) {
-                        e1.printStackTrace();
-                    }
 
-                } else {
-                    // something went wrong
+                        if (counter == sizeOfList)
+                            progressDialog.dismiss();
+                    } else {
+                    }
+                } catch (IOException e1) {
+                    e1.printStackTrace();
                 }
             }
         });
