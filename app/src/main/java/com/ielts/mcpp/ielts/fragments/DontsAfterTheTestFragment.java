@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 
 import com.ielts.mcpp.ielts.MainActivity;
 import com.ielts.mcpp.ielts.R;
+import com.ielts.mcpp.ielts.utils.LoadAds;
 
 public class DontsAfterTheTestFragment extends Fragment {
 
@@ -23,6 +24,7 @@ public class DontsAfterTheTestFragment extends Fragment {
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_donts_after_the_test, container, false);
         ((MainActivity) this.getActivity()).setPageTitle("Dont's");
+        new LoadAds(view, R.id.adViewDontsAfterTheTest);
         return view;
     }
 

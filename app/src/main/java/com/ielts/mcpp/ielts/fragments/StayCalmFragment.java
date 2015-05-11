@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import com.gc.materialdesign.views.ButtonRectangle;
 import com.ielts.mcpp.ielts.MainActivity;
 import com.ielts.mcpp.ielts.R;
+import com.ielts.mcpp.ielts.utils.LoadAds;
 
 public class StayCalmFragment extends Fragment implements View.OnClickListener{
 
@@ -31,6 +32,7 @@ public class StayCalmFragment extends Fragment implements View.OnClickListener{
         progressive.setOnClickListener(this);
         ((MainActivity) this.getActivity()).setPageTitle("Stay Calm");
         fragmentTransaction = getFragmentManager().beginTransaction();
+//        new LoadAds(view, R.id.adViewStayCalm);
         return view;
     }
 

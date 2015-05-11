@@ -10,6 +10,7 @@ import android.widget.Button;
 
 import com.gc.materialdesign.views.ButtonRectangle;
 import com.ielts.mcpp.ielts.R;
+import com.ielts.mcpp.ielts.utils.LoadAds;
 
 
 public class UsefulStuffFragment extends Fragment implements View.OnClickListener {
@@ -42,6 +43,7 @@ public class UsefulStuffFragment extends Fragment implements View.OnClickListene
         donts.setOnClickListener(this);
         sample.setOnClickListener(this);
         examiners.setOnClickListener(this);
+        new LoadAds(view, R.id.adViewAbout);
         return view;
     }
 

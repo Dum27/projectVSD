@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 
 import com.ielts.mcpp.ielts.MainActivity;
 import com.ielts.mcpp.ielts.R;
+import com.ielts.mcpp.ielts.utils.LoadAds;
 
 public class DosDuringTheTestFragment extends Fragment {
 
@@ -23,6 +24,7 @@ public class DosDuringTheTestFragment extends Fragment {
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_during_the_test, container, false);
         ((MainActivity) this.getActivity()).setPageTitle("Do's");
+        new LoadAds(view, R.id.adViewDosDuringTheTest);
         return view;
     }
 

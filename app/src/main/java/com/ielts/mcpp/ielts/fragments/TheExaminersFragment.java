@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 
 import com.ielts.mcpp.ielts.MainActivity;
 import com.ielts.mcpp.ielts.R;
+import com.ielts.mcpp.ielts.utils.LoadAds;
 
 public class TheExaminersFragment extends Fragment {
 
@@ -23,6 +24,7 @@ public class TheExaminersFragment extends Fragment {
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_the_examiners, container, false);
         ((MainActivity) this.getActivity()).setPageTitle("The Examiners");
+//        new LoadAds(view, R.id.adViewExaminers);
         return view;
     }
 

@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 
 import com.gc.materialdesign.views.ButtonRectangle;
 import com.ielts.mcpp.ielts.R;
+import com.ielts.mcpp.ielts.utils.LoadAds;
 
 /**
  * Created by taras on 20.04.2015.
@@ -55,6 +56,7 @@ public class FeaturesFragment extends Fragment {
 
             }
         });
+        new LoadAds(v, R.id.adViewFeatures);
         return v;
     }
 }

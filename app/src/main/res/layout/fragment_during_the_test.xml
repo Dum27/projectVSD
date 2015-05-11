@@ -1,84 +1,109 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.ielts.mcpp.ielts.fragments.DosDuringTheTestFragment">
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_gravity="center">
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:weightSum="10">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="During the Test"
-        android:id="@+id/textView15"
-        android:layout_gravity="left|top"
-        android:background="#ffff4df1"
-        android:paddingLeft="10dp"
-        android:textColor="#ffffffff"
-        android:textSize="20dp" />
-
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView46"
-            android:text="• LISTEN to what the examiner is saying carefully."
-            android:paddingLeft="10dp"
-            android:paddingTop="10dp"
-            android:paddingRight="10dp"
-            android:textSize="15dp" />
+            android:layout_height="0dp"
+            android:layout_weight="9"
+            android:orientation="vertical">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="• ALWAYS bring your identification card or passport into the exam."
-            android:id="@+id/textView47"
-            android:paddingLeft="10dp"
-            android:paddingTop="10dp"
-            android:paddingRight="10dp"
-            android:textSize="15dp" />
+            <TextView
+                android:id="@+id/textView15"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left|top"
+                android:background="#ffff4df1"
+                android:paddingLeft="10dp"
+                android:text="During the Test"
+                android:textColor="#ffffffff"
+                android:textSize="20dp" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="• Always be friendly but not too friendly. The examiner is there to test your language skills not to be your best friend."
-            android:id="@+id/textView48"
-            android:paddingLeft="10dp"
-            android:paddingTop="10dp"
-            android:paddingRight="10dp"
-            android:textSize="15dp" />
+            <TextView
+                android:id="@+id/textView46"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="10dp"
+                android:text="• LISTEN to what the examiner is saying carefully."
+                android:textSize="15dp" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="• Use a normal English name that is not from the planet ZOG! Devil or Wolf is inappropriate!"
-            android:id="@+id/textView49"
-            android:paddingLeft="10dp"
-            android:paddingTop="10dp"
-            android:paddingRight="10dp"
-            android:textSize="15dp" />
+            <TextView
+                android:id="@+id/textView47"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="10dp"
+                android:text="• ALWAYS bring your identification card or passport into the exam."
+                android:textSize="15dp" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="• Always write notes for the long, Part 2. Use a spidegram or a similar method to plan it out."
-            android:id="@+id/textView50"
-            android:paddingLeft="10dp"
-            android:paddingTop="10dp"
-            android:paddingRight="10dp"
-            android:textSize="15dp" />
+            <TextView
+                android:id="@+id/textView48"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="10dp"
+                android:text="• Always be friendly but not too friendly. The examiner is there to test your language skills not to be your best friend."
+                android:textSize="15dp" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="• When writing the notes for Part 2 write in English as you will be speaking English!"
-            android:id="@+id/textView51"
-            android:paddingLeft="10dp"
-            android:paddingTop="10dp"
-            android:paddingRight="10dp"
-            android:textSize="15dp" />
+            <TextView
+                android:id="@+id/textView49"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="10dp"
+                android:text="• Use a normal English name that is not from the planet ZOG! Devil or Wolf is inappropriate!"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/textView50"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="10dp"
+                android:text="• Always write notes for the long, Part 2. Use a spidegram or a similar method to plan it out."
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/textView51"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="10dp"
+                android:text="• When writing the notes for Part 2 write in English as you will be speaking English!"
+                android:textSize="15dp" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center_horizontal">
+
+            <com.google.android.gms.ads.AdView
+                android:id="@+id/adViewDosDuringTheTest"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                ads:adSize="BANNER"
+                ads:adUnitId="@string/banner_ad_unit_id">
+            </com.google.android.gms.ads.AdView>
+        </LinearLayout>
 
     </LinearLayout>
 

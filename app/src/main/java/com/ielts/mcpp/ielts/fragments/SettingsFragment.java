@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.ielts.mcpp.ielts.R;
+import com.ielts.mcpp.ielts.utils.LoadAds;
 
 
 public class SettingsFragment extends Fragment {
@@ -26,6 +27,7 @@ public class SettingsFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         return inflater.inflate(R.layout.fragment_settings, container, false);
+//        new LoadAds(view, R.id.adViewSettings);
     }
 
 

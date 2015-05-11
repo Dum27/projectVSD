@@ -25,7 +25,7 @@ public class Dao {
     }
 
     public void saveAudio(){
-        new DownloadAudio().downloadAudio(context);
+        new DownloadAudio(context).downloadAudio(context);
     }
 
     public void setChecker(){

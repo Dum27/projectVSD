@@ -1,33 +1,56 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.ielts.mcpp.ielts.fragments.BreathingFragment">
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_gravity="center">
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Breathing"
-        android:id="@+id/textView15"
-        android:layout_gravity="left|top"
-        android:background="#ffff4df1"
-        android:paddingLeft="10dp"
-        android:textColor="#ffffffff"
-        android:textSize="20dp" />
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:weightSum="10">
 
         <TextView
+            android:id="@+id/textView15"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="You can do breathing exercises at any time, before, during and after the test. Breathing helps you to stay emotionally grounded and rids your body of excess tension.\n\nIf you can, close your eyes. Inhale through your nose deeply and slowly. Exhale slowly through your mouth. Repeat 2 or 3 times or whenever you feel anxiety building up.\n\nThis is a simple and effective exercise to do before the test!"
-            android:id="@+id/textView53"
-            android:textSize="15dp"
-            android:padding="10dp" />
+            android:layout_gravity="left|top"
+            android:background="#ffff4df1"
+            android:paddingLeft="10dp"
+            android:text="Breathing"
+            android:textColor="#ffffffff"
+            android:textSize="20dp" />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="9">
+
+            <TextView
+                android:id="@+id/textView53"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="You can do breathing exercises at any time, before, during and after the test. Breathing helps you to stay emotionally grounded and rids your body of excess tension.\n\nIf you can, close your eyes. Inhale through your nose deeply and slowly. Exhale slowly through your mouth. Repeat 2 or 3 times or whenever you feel anxiety building up.\n\nThis is a simple and effective exercise to do before the test!"
+                android:textSize="15dp" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center_horizontal">
+
+            <com.google.android.gms.ads.AdView
+                android:id="@+id/adViewBreathing"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                ads:adSize="BANNER"
+                ads:adUnitId="@string/banner_ad_unit_id">
+            </com.google.android.gms.ads.AdView>
+        </LinearLayout>
 
     </LinearLayout>
 

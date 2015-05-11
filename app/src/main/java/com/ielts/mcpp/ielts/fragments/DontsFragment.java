@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import com.gc.materialdesign.views.ButtonRectangle;
 import com.ielts.mcpp.ielts.MainActivity;
 import com.ielts.mcpp.ielts.R;
+import com.ielts.mcpp.ielts.utils.LoadAds;
 
 import it.neokree.materialnavigationdrawer.elements.MaterialSection;
 
@@ -36,6 +37,7 @@ public class DontsFragment extends Fragment implements View.OnClickListener{
         after.setOnClickListener(this);
         fragmentTransaction = getFragmentManager().beginTransaction();
         ((MainActivity) this.getActivity()).setPageTitle("Dont's");
+        new LoadAds(view, R.id.adViewDontsTheTest);
         return view;
     }
 

@@ -12,8 +12,11 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.gc.materialdesign.views.ButtonRectangle;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.ielts.mcpp.ielts.R;
 import com.ielts.mcpp.ielts.connect.DownloadAudio;
+import com.ielts.mcpp.ielts.utils.LoadAds;
 
 
 public class AboutFragment extends Fragment {
@@ -67,7 +70,7 @@ public class AboutFragment extends Fragment {
                 fragmentTransaction.commit();
             }
         });
-
+        new LoadAds(v, R.id.adViewAbout);
         return v;
     }
 

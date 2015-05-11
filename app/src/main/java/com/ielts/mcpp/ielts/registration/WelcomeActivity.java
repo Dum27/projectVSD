@@ -30,11 +30,8 @@ public class WelcomeActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        traverse(new File(Environment.getExternalStorageDirectory() + "/questions"));
-        Dao dao = new Dao(this);
-        getFragmentManager();
-        if (dao.checkAudioExist() == null)
-            dao.saveAudio();
+//        traverse(new File(Environment.getExternalStorageDirectory() + "/questions"));
+
         CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
                         .setDefaultFontPath("fonts/blue.ttf")
                         .setFontAttrId(R.attr.fontPath)
@@ -49,6 +46,9 @@ public class WelcomeActivity extends ActionBarActivity {
         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
         fragmentTransaction.add(R.id.welcome_activity_container, new LoginFragment());
         fragmentTransaction.commit();
+        Dao dao = new Dao(this);
+        if (dao.checkAudioExist() == null)
+            dao.saveAudio();
     }
 
     @Override
@@ -66,17 +66,17 @@ public class WelcomeActivity extends ActionBarActivity {
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
-    public void traverse (File dir) {
-        if (dir.exists()) {
-            File[] files = dir.listFiles();
-            for (int i = 0; i < files.length; ++i) {
-                File file = files[i];
-                if (file.isDirectory()) {
-                    traverse(file);
-                } else {
-                    Log.d("Jack", file.getName());
-                }
-            }
-        }
-    }
+//    public void traverse (File dir) {
+//        if (dir.exists()) {
+//            File[] files = dir.listFiles();
+//            for (int i = 0; i < files.length; ++i) {
+//                File file = files[i];
+//                if (file.isDirectory()) {
+//                    traverse(file);
+//                } else {
+//                    Log.d("Jack", file.getName());
+//                }
+//            }
+//        }
+//    }
 }

@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 
 import com.ielts.mcpp.ielts.MainActivity;
 import com.ielts.mcpp.ielts.R;
+import com.ielts.mcpp.ielts.utils.LoadAds;
 
 public class DontsDuringTheTest extends Fragment {
 
@@ -23,6 +24,7 @@ public class DontsDuringTheTest extends Fragment {
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_donts_during_the_test, container, false);
         ((MainActivity) this.getActivity()).setPageTitle("Dont's");
+        new LoadAds(view, R.id.adViewDontsDuringTheTest);
         return view;
     }
 

@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 
 import com.ielts.mcpp.ielts.MainActivity;
 import com.ielts.mcpp.ielts.R;
+import com.ielts.mcpp.ielts.utils.LoadAds;
 
 public class BreathingFragment extends Fragment {
 
@@ -23,6 +24,7 @@ public class BreathingFragment extends Fragment {
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_breathing, container, false);
         ((MainActivity) this.getActivity()).setPageTitle("Stay Calm");
+        new LoadAds(view, R.id.adViewBreathing);
         return view;
     }
 

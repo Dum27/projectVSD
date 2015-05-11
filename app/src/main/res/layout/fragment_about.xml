@@ -1,16 +1,16 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
     tools:context="com.ielts.mcpp.ielts.fragments.AboutFragment"
     android:id="@+id/about_cont">
-
-    <!-- TODO: Update blank fragment layout -->
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:weightSum="10">
+        android:weightSum="11">
 
         <LinearLayout
             android:orientation="vertical"
@@ -61,9 +61,8 @@
             android:orientation="vertical"
             android:layout_width="fill_parent"
             android:layout_height="0dp"
-            android:layout_weight="1.5"
-            android:gravity="center_horizontal"
-            android:paddingTop="25dp">
+            android:layout_weight="1"
+            android:gravity="center_horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -71,6 +70,21 @@
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="Terms &amp; Privacy"
                 android:id="@+id/textView15" />
+        </LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center_horizontal">
+
+        <com.google.android.gms.ads.AdView
+            android:id="@+id/adViewAbout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            ads:adSize="BANNER"
+            ads:adUnitId="@string/banner_ad_unit_id">
+        </com.google.android.gms.ads.AdView>
         </LinearLayout>
     </LinearLayout>
 

@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 
 import com.ielts.mcpp.ielts.MainActivity;
 import com.ielts.mcpp.ielts.R;
+import com.ielts.mcpp.ielts.utils.LoadAds;
 
 public class ExamRulesFragment extends Fragment {
 
@@ -23,6 +24,7 @@ public class ExamRulesFragment extends Fragment {
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_exam_rules, container, false);
         ((MainActivity) this.getActivity()).setPageTitle("Do's");
+        new LoadAds(view, R.id.adViewExamRules);
         return view;
     }
 

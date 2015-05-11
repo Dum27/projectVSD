@@ -4,7 +4,7 @@
     <!-- Drawer Header Image -->
     <style name="ImageHeaderLight" parent="MaterialNavigationDrawerTheme.Light.DarkActionBar">
         <item name="colorPrimary">#8bc34a</item>
-        <item name="colorPrimaryDark">#558b2f</item>
+        <item name="colorPrimaryDark">#0A1466</item>
         <!--<item name="colorAccent">#000000</item>-->
         <item name="color">#558b2f</item>
         <item name="android:textColorPrimary">#558b2f</item>

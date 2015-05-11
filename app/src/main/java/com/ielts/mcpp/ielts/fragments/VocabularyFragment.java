@@ -19,6 +19,7 @@ import android.widget.TextView;
 import android.view.ViewGroup.LayoutParams;
 
 import com.ielts.mcpp.ielts.R;
+import com.ielts.mcpp.ielts.utils.LoadAds;
 
 
 public class VocabularyFragment extends Fragment {
@@ -80,6 +81,7 @@ public class VocabularyFragment extends Fragment {
                 popupWindow.showAtLocation(listView, Gravity.CENTER, 0, 0);
             }
         });
+        new LoadAds(v, R.id.adViewVocabulary);
         return v;
     }
 

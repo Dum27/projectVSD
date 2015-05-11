@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import com.gc.materialdesign.views.ButtonRectangle;
 import com.ielts.mcpp.ielts.MainActivity;
 import com.ielts.mcpp.ielts.R;
+import com.ielts.mcpp.ielts.utils.LoadAds;
 
 public class DosFragment extends Fragment implements View.OnClickListener{
 
@@ -34,6 +35,7 @@ public class DosFragment extends Fragment implements View.OnClickListener{
         fragmentTransaction = getFragmentManager().beginTransaction();
         fragmentTransaction.addToBackStack("");
         ((MainActivity) this.getActivity()).setPageTitle("Do's");
+        new LoadAds(view, R.id.adViewDosTheTest);
         return view;
     }
 
