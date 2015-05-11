@@ -1,6 +1,7 @@
 package com.ielts.mcpp.ielts.fragments;
 
 
+import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
@@ -17,6 +18,7 @@ import com.google.common.io.ByteStreams;
 import com.ielts.mcpp.ielts.R;
 import com.ielts.mcpp.ielts.testsfragments.FirstTestFragment;
 import com.ielts.mcpp.ielts.utils.LoadAds;
+import com.ielts.mcpp.ielts.testsfragments.IntroFragment;
 import com.parse.GetDataCallback;
 import com.parse.ParseException;
 import com.parse.ParseFile;

@@ -30,12 +30,6 @@
                 android:gravity="center_vertical|right"
                 android:padding="20dp">
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/imageView3"
-                    android:layout_gravity="left|center_vertical" />
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -78,6 +72,7 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:gravity="center_vertical|right">
+
                 <com.gc.materialdesign.views.ButtonFloatSmall
                     android:id="@+id/buttonFloatSmall"
                     android:layout_width="wrap_content"
@@ -86,9 +81,9 @@
                     android:layout_alignParentBottom="true"
                     android:layout_marginRight="10dp"
                     android:background="#afc4c4c4"
-                    materialdesign:iconDrawable="@drawable/ic_microphone"/>
+                    materialdesign:iconDrawable="@drawable/ic_microphone" />
 
-                </LinearLayout>
+            </LinearLayout>
 
             <LinearLayout
                 android:orientation="vertical"
@@ -96,6 +91,7 @@
                 android:layout_height="0dp"
                 android:layout_weight="2"
                 android:gravity="center_vertical|right">
+
                 <com.gc.materialdesign.views.ButtonFloat
                     android:id="@+id/buttonFloat"
                     android:layout_width="wrap_content"
@@ -104,8 +100,8 @@
                     android:layout_alignParentBottom="true"
                     android:layout_marginRight="10dp"
                     android:background="#1E88E5"
-                    materialdesign:iconDrawable="@drawable/text_skip"/>
-                </LinearLayout>
+                    materialdesign:iconDrawable="@drawable/text_skip" />
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout

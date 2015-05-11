@@ -3,7 +3,6 @@ package com.ielts.mcpp.ielts.testsfragments;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.Intent;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -58,7 +57,6 @@ public class FirstTestFragment extends Fragment implements View.OnClickListener 
         mStopBtn.setRippleColor(0xF8D16F37);
         mStopBtn.setOnClickListener(this);
         ((MainActivity) this.getActivity()).setPageTitle("Part 1");
-        ((MainActivity) this.getActivity()).setPageColor(0xFFF36C3B, Color.BLACK);
         runnable = new Runnable() {
             @Override
             public void run() {
@@ -102,7 +100,7 @@ public class FirstTestFragment extends Fragment implements View.OnClickListener 
 
     }
 
-    private void intriductory_frame() {
+    private void introductory_frame() {
 
     }
 
