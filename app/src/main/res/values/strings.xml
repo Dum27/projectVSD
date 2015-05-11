@@ -19,5 +19,6 @@
     <string name="validation_username_length">Not valid length</string>
     <string name="error_wrong_email">You input wrong email address</string>
     <string name="error_wrong_password">You input wrong password</string>
+    <string name="check_download_audio">check_download_audio</string>
     <string name="email_regex">^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$</string>
 </resources>
