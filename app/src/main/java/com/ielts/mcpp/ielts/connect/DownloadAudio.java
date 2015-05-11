@@ -92,6 +92,7 @@ public class DownloadAudio {
         @Override
         protected void onPostExecute(String result) {
             progressDialog.dismiss();
+            new Dao(context).setChecker();
         }
 
         @Override
@@ -127,7 +128,7 @@ public class DownloadAudio {
 
         if (counter == sizeOfList) {
 //            progressDialog.dismiss();
-            new Dao(context).setChecker();
+//            new Dao(context).setChecker();
 
         }
     }

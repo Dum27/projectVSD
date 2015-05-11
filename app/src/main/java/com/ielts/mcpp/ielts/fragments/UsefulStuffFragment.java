@@ -43,7 +43,7 @@ public class UsefulStuffFragment extends Fragment implements View.OnClickListene
         donts.setOnClickListener(this);
         sample.setOnClickListener(this);
         examiners.setOnClickListener(this);
-        new LoadAds(view, R.id.adViewAbout);
+        new LoadAds(view, R.id.adViewUsefulStuff);
         return view;
     }
 

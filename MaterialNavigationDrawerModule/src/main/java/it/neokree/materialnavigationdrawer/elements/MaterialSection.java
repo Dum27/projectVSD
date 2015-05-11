@@ -291,12 +291,12 @@ public class MaterialSection<Fragment> implements View.OnTouchListener, View.OnC
             ripple.setRippleBackground(colorSelected);
 
         if(hasSectionColor) {
-            text.setTextColor(sectionColor);
+//            text.setTextColor(sectionColor);
 
-            if(icon != null && !realColor) {
-                icon.setColorFilter(sectionColor);
-                Utils.setAlpha(icon, 1f);
-            }
+//            if(icon != null && !realColor) {
+//                icon.setColorFilter(sectionColor);
+//                Utils.setAlpha(icon, 1f);
+//            }
         }
     }
 
@@ -312,10 +312,10 @@ public class MaterialSection<Fragment> implements View.OnTouchListener, View.OnC
         if (hasSectionColor) {
             text.setTextColor(textColor);
 
-            if (icon != null && !realColor) {
-                icon.setColorFilter(iconColor);
-                Utils.setAlpha(icon, 0.54f);
-            }
+//            if (icon != null && !realColor) {
+//                icon.setColorFilter(iconColor);
+//                Utils.setAlpha(icon, 0.54f);
+//            }
         }
     }
 
@@ -463,12 +463,12 @@ public class MaterialSection<Fragment> implements View.OnTouchListener, View.OnC
         isSelected = true;
 
         if (hasSectionColor) {
-            text.setTextColor(sectionColor);
+//            text.setTextColor(sectionColor);
 
-            if (icon != null && !realColor) {
-                icon.setColorFilter(sectionColor);
-                Utils.setAlpha(icon, 1f);
-            }
+//            if (icon != null && !realColor) {
+//                icon.setColorFilter(sectionColor);
+//                Utils.setAlpha(icon, 1f);
+//            }
         }
 
         if (listener != null)
