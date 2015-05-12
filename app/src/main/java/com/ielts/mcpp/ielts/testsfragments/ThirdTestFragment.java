@@ -17,6 +17,7 @@ import com.gc.materialdesign.views.ButtonFloat;
 import com.gc.materialdesign.views.ButtonFloatSmall;
 import com.ielts.mcpp.ielts.MainActivity;
 import com.ielts.mcpp.ielts.R;
+import com.ielts.mcpp.ielts.utils.LoadAds;
 
 import java.io.File;
 
@@ -78,6 +79,7 @@ public class ThirdTestFragment extends Fragment implements View.OnClickListener 
                 mTimer.setText("00:00");
             }
         }.start();
+        new LoadAds(view, R.id.adViewThirdTest);
         return view;
     }
 

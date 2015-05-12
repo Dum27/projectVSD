@@ -21,5 +21,6 @@
     <string name="error_wrong_password">You input wrong password</string>
     <string name="check_download_audio">check_download_audio</string>
     <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="banner_interstitial_ad">ca-app-pub-3940256099942544/1033173712</string>
     <string name="email_regex">^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$</string>
 </resources>

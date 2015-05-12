@@ -15,8 +15,12 @@ import android.widget.TextView;
 
 import com.gc.materialdesign.views.ButtonFloat;
 import com.gc.materialdesign.views.ButtonFloatSmall;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
 import com.ielts.mcpp.ielts.MainActivity;
 import com.ielts.mcpp.ielts.R;
+import com.ielts.mcpp.ielts.utils.LoadAds;
+import com.ielts.mcpp.ielts.utils.LoadInterstitialAds;
 
 import java.io.File;
 
@@ -28,13 +32,14 @@ public class FirstTestFragment extends Fragment implements View.OnClickListener 
     //    private AudioRecorder mAudioRecorder;
     ButtonFloatSmall mMicBtn;
     ButtonFloat mStopBtn;
-
+    LoadInterstitialAds interstitialAds;
     public FirstTestFragment() {
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        interstitialAds = new LoadInterstitialAds(getActivity());
     }
 
 
@@ -78,6 +83,7 @@ public class FirstTestFragment extends Fragment implements View.OnClickListener 
                 mTimer.setText("00:00");
             }
         }.start();
+        new LoadAds(view, R.id.adViewFirstTest);
         return view;
     }
 
@@ -132,6 +138,7 @@ public class FirstTestFragment extends Fragment implements View.OnClickListener 
                 FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.container, new SecondTestFragment());
                 fragmentTransaction.commit();
+                interstitialAds.show();
                 break;
             default:
                 break;
