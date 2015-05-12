@@ -54,7 +54,7 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:text="Topic"
-                    android:id="@+id/textView70"
+                    android:id="@+id/topic_test1"
                     android:textStyle="bold"
                     android:background="#FFF36C3B"
                     android:textSize="28sp" />
@@ -63,7 +63,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Weather"
-                    android:id="@+id/textView71"
+                    android:id="@+id/text_test1"
                     android:layout_marginTop="10dp" />
             </LinearLayout>
 
