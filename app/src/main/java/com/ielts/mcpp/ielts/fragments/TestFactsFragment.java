@@ -24,7 +24,7 @@ public class TestFactsFragment extends Fragment {
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_test_facts, container, false);
         ((MainActivity) this.getActivity()).setPageTitle("Test Facts");
-//        new LoadAds(view, R.id.adViewTestFacts);
+        new LoadAds(view, R.id.adViewTestFacts);
         return view;
     }
 

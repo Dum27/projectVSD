@@ -24,7 +24,7 @@ public class SampleTasksFragment extends Fragment {
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_sample_tasks, container, false);
         ((MainActivity) this.getActivity()).setPageTitle("Sample Task");
-//        new LoadAds(view, R.id.adViewSampleTasks);
+        new LoadAds(view, R.id.adViewSampleTasks);
         return view;
     }
 

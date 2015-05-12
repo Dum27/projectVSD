@@ -114,22 +114,16 @@ public class DownloadAudio {
     }
 
     public void saveDownloadedFiles(final ParseFile parseFile, final int counter) {
-        File folder = new File(Environment.getExternalStorageDirectory() + "/questions");
-        final File fileToWriteTo = new File(Environment.getExternalStorageDirectory() + "/questions/"
-                + parseFile.getName().substring(42));
-        if (!folder.exists())
-            folder.mkdir();
         try {
-            Log.d("Jack", parseFile.getName());
+            File folder = new File(Environment.getExternalStorageDirectory() + "/questions");
+            final File fileToWriteTo = new File(Environment.getExternalStorageDirectory() + "/questions/"
+                    + parseFile.getName().substring(42));
+            if (!folder.exists())
+                folder.mkdir();
+
             Files.write(parseFile.getData(), fileToWriteTo);
         } catch (Exception e) {
             Log.d("Jack", e.getMessage());
-        }
-
-        if (counter == sizeOfList) {
-//            progressDialog.dismiss();
-//            new Dao(context).setChecker();
-
         }
     }
 //    public void saveDownloadedFiles(final ParseFile parseFile, final int counter) {

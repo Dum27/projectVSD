@@ -32,7 +32,7 @@ public class StayCalmFragment extends Fragment implements View.OnClickListener{
         progressive.setOnClickListener(this);
         ((MainActivity) this.getActivity()).setPageTitle("Stay Calm");
         fragmentTransaction = getFragmentManager().beginTransaction();
-//        new LoadAds(view, R.id.adViewStayCalm);
+        new LoadAds(view, R.id.adViewStayCalm);
         return view;
     }
 

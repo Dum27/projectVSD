@@ -45,7 +45,7 @@ public class TestFragment extends Fragment {
         ButtonRectangle button = (ButtonRectangle) mainView.findViewById(R.id.btn_test_me);
 //        button.setOnClickListener(buttonListener);
         button.setOnClickListener(testMeListener);
-//        new LoadAds(mainView, R.id.adViewTestFragment);
+        new LoadAds(mainView, R.id.adViewTestFragment);
 
         return mainView;
     }

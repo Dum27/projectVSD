@@ -16,7 +16,7 @@ public class TestScoreFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_test_score, null);
-//        new LoadAds(v, R.id.adViewTestScore);
+        new LoadAds(v, R.id.adViewTestScore);
         return v;
     }
 }

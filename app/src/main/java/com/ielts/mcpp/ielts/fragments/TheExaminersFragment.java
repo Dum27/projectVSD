@@ -24,7 +24,7 @@ public class TheExaminersFragment extends Fragment {
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_the_examiners, container, false);
         ((MainActivity) this.getActivity()).setPageTitle("The Examiners");
-//        new LoadAds(view, R.id.adViewExaminers);
+        new LoadAds(view, R.id.adViewExaminers);
         return view;
     }
 

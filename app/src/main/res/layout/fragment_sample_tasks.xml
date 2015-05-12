@@ -1,22 +1,47 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.ielts.mcpp.ielts.fragments.SampleTasksFragment">
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_gravity="center">
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:weightSum="10">
 
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="In the Speaking test, you have a discussion with an IELTS Examiner. It is interactive and as close to a real-life situation as a test can get.\n\nThere are three parts to the test and each folfils a specific function it terms of interaction pattern, task input and candidate output.\n\nThe Speaking test is the same for Academic and General Training."
-            android:id="@+id/textView65"
-            android:layout_gravity="center_horizontal"
-            android:textSize="15dp"
-            android:padding="10dp" />
+            android:layout_height="0dp"
+            android:layout_weight="9"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView65"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:padding="10dp"
+                android:text="In the Speaking test, you have a discussion with an IELTS Examiner. It is interactive and as close to a real-life situation as a test can get.\n\nThere are three parts to the test and each folfils a specific function it terms of interaction pattern, task input and candidate output.\n\nThe Speaking test is the same for Academic and General Training."
+                android:textSize="15dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <com.google.android.gms.ads.AdView
+                android:id="@+id/adViewSampleTasks"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                ads:adSize="BANNER"
+                ads:adUnitId="@string/banner_ad_unit_id"></com.google.android.gms.ads.AdView>
+        </LinearLayout>
 
     </LinearLayout>
 
