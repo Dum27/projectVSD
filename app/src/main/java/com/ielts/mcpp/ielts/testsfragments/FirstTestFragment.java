@@ -252,7 +252,7 @@ public class FirstTestFragment extends Fragment implements View.OnClickListener 
                 //question 6 seconds
                 if (92000 < millisUntilFinished && millisUntilFinished < 93000) {
                     recordStop();
-                    frame_2();
+                    frame_3();
                     setBtnRecordingOff();
                     playQuestion(mQuestionsPath + "part1-frame4-intro.mp4");
                     listOfAudio.add(mTestFolderPath + "part1-frame4-intro.mp4");
