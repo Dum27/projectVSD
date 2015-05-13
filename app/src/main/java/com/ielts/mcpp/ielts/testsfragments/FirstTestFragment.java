@@ -2,11 +2,14 @@ package com.ielts.mcpp.ielts.testsfragments;
 
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.media.MediaPlayer;
+import android.media.MediaRecorder;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Environment;
-import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,52 +18,45 @@ import android.widget.TextView;
 
 import com.gc.materialdesign.views.ButtonFloat;
 import com.gc.materialdesign.views.ButtonFloatSmall;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.InterstitialAd;
+import com.github.lassana.recorder.Mp4ParserWrapper;
 import com.ielts.mcpp.ielts.MainActivity;
 import com.ielts.mcpp.ielts.R;
-import com.ielts.mcpp.ielts.utils.LoadAds;
-import com.ielts.mcpp.ielts.utils.LoadInterstitialAds;
 
 import java.io.File;
-
-//import com.github.lassana.recorder.AudioRecorder;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.List;
 
 
 public class FirstTestFragment extends Fragment implements View.OnClickListener {
-    int numberTest = 1;
-    //    private AudioRecorder mAudioRecorder;
+
     private ButtonFloatSmall mMicBtn;
     private ButtonFloat mStopBtn;
     private MediaPlayer mediaPlayer;
-    
-    LoadInterstitialAds interstitialAds;
-    public FirstTestFragment() {
-    }
+    private MediaRecorder mediaRecorder;
+    private String mTestFolderName = "ielts_tests";
+    private String mTestFolderPath;
+    private String mQuestionsPath;
+    private String mCurFileName;
 
+    private TextView mTimer;
+    private TextView mTopic;
+    private TextView mBigText;
 
+    ArrayList<String> listOfAudio;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        interstitialAds = new LoadInterstitialAds(getActivity());
     }
-
-
-    String currentFileName;
-    Handler handler;
-    Runnable runnable;
-    boolean isRecording = false;
-    TextView mTimer;
-    TextView mTopic;
-    TextView mBigText;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view;
         view = inflater.inflate(R.layout.fragment_test_task, container, false);
-//        mAudioRecorder = AudioRecorder.build(getActivity(), getNextFileName());
         mMicBtn = (ButtonFloatSmall) view.findViewById(R.id.buttonFloatSmall);
         mStopBtn = (ButtonFloat) view.findViewById(R.id.buttonFloat);
         mTimer = (TextView) view.findViewById(R.id.timer);
@@ -71,54 +67,73 @@ public class FirstTestFragment extends Fragment implements View.OnClickListener 
         mStopBtn.setRippleColor(0xF8D16F37);
         mStopBtn.setOnClickListener(this);
 
+        mCurFileName = getNextFileName();
+
+        mQuestionsPath = Environment.getExternalStorageDirectory()
+                + File.separator
+                + "questions"
+                + File.separator;
+        mTestFolderPath = Environment.getExternalStorageDirectory()
+                + File.separator + mTestFolderName
+                + File.separator;
+
+        listOfAudio = new ArrayList<>();
+
         new CountDownTimer(300000, 1000) {
 
             public void onTick(long millisUntilFinished) {
-                Log.d("taras", "millis :" + millisUntilFinished + " | " + ((int) millisUntilFinished));
 
                 //audio 5 seconds
                 if (299000 < millisUntilFinished) {
                     setBtnRecordingOff();
-                    playQuestion(Environment.getExternalStorageDirectory() + File.separator + "questions" + File.separator + "intro-frame-good-morning.mp4");
+                    playQuestion(mQuestionsPath + "intro-frame-good-morning.mp4");
+                    listOfAudio.add(mQuestionsPath + "intro-frame-good-morning.mp4");
                 }
                 if (298000 < millisUntilFinished && millisUntilFinished < 299000) {
                     setBtnRecordingOff();
-                    playQuestion(Environment.getExternalStorageDirectory() + File.separator +
-                            "questions" + File.separator + "intro-frame-q1.mp4");
+                    playQuestion(mQuestionsPath + "intro-frame-q1.mp4");
+                    listOfAudio.add(mQuestionsPath + "intro-frame-q1.mp4");
                 }
                 //answer 6 seconds
                 if (294000 < millisUntilFinished && millisUntilFinished < 295000) {
+                    recordStart(mTestFolderPath + "intro-frame-answ1.mp4");
                     setBtnRecordingOn();
-                    recordAnswer(6000);
+                    listOfAudio.add(mTestFolderPath + "intro-frame-answ1.mp4");
                 }
                 //audio 3 seconds
                 if (289000 < millisUntilFinished && millisUntilFinished < 290000) {
+                    recordStop();
                     setBtnRecordingOff();
-                    playQuestion(Environment.getExternalStorageDirectory() + File.separator +
-                            "questions" + File.separator + "intro-frame-q2.mp4");
+                    playQuestion(mQuestionsPath + "intro-frame-q2.mp4");
+                    listOfAudio.add(mQuestionsPath + "intro-frame-q2.mp4");
                 }
                 //answer 6 seconds
                 if (286000 < millisUntilFinished && millisUntilFinished < 287000) {
                     setBtnRecordingOn();
-                    recordAnswer(6000);
+                    recordStart(mTestFolderPath + "intro-frame-answ2.mp4");
+                    listOfAudio.add(mTestFolderPath + "intro-frame-answ2.mp4");
                 }
                 //audio 3 seconds
                 if (280000 < millisUntilFinished && millisUntilFinished < 281000) {
+                    recordStop();
                     setBtnRecordingOff();
-                    playQuestion(Environment.getExternalStorageDirectory() + File.separator +
-                            "questions" + File.separator + "intro-frame-q3.mp4");
+                    playQuestion(mQuestionsPath + "intro-frame-q3.mp4");
+                    listOfAudio.add(mQuestionsPath + "intro-frame-q3.mp4");
                 }
                 //answer 6 seconds
                 if (277000 < millisUntilFinished && millisUntilFinished < 278000) {
                     setBtnRecordingOn();
-                    recordAnswer(6000);
+                    recordStart(mTestFolderPath + "intro-frame-answ3.mp4");
+                    listOfAudio.add(mTestFolderPath + "intro-frame-answ3.mp4");
                 }
                 //audio 10 seconds
-                if (271000 < millisUntilFinished && millisUntilFinished < 262000) {
+                if (271000 < millisUntilFinished && millisUntilFinished < 272000) {
+                    recordStop();
                     setBtnRecordingOff();
-                    playQuestion(Environment.getExternalStorageDirectory() + File.separator +
-                            "questions" + File.separator + "intro-frame-s1.mp4");
+//                    playQuestion(mQuestionsPath + "intro-frame-s1.mp4");
+                    new MergeTask(getActivity()).execute(listOfAudio);
                 }
+
                 String v = String.format("%02d", millisUntilFinished / 60000);
                 int va = (int) ((millisUntilFinished % 60000) / 1000);
                 mTimer.setText(v + ":" + String.format("%02d", va));
@@ -131,7 +146,6 @@ public class FirstTestFragment extends Fragment implements View.OnClickListener 
 
         introductoryFrame();
 
-        new LoadAds(view, R.id.adViewFirstTest);
         return view;
     }
 
@@ -146,9 +160,11 @@ public class FirstTestFragment extends Fragment implements View.OnClickListener 
     private void introductoryFrame() {
         ((MainActivity) this.getActivity()).setPageTitle("Introductory frame");
         mTopic.setVisibility(View.GONE);
-        mBigText.setText("• Listen whilst the examiner introduces the test\n" +
+        mBigText.setText(
+                "• Listen whilst the examiner introduces the test\n" +
                 "• The clock on the right will start to countdown when the test starts");
     }
+    //
 
     private void frame_1() {
 
@@ -173,22 +189,59 @@ public class FirstTestFragment extends Fragment implements View.OnClickListener 
             e.printStackTrace();
         }
     }
-
-    private void recordAnswer(long duration) {
-
-
-    }
-
     private String getNextFileName() {
+        //create directory with test if it does not exist
+        File fileDir = new File(Environment.getExternalStorageDirectory()
+                + File.separator + mTestFolderName
+                + File.separator);
+        if (!fileDir.exists()) {
+            fileDir.mkdirs();
+        }
+        //build filename
+        GregorianCalendar gregorianCalendar = new GregorianCalendar();
+        gregorianCalendar.setTime(new Date(System.currentTimeMillis()));
+        String date = new SimpleDateFormat("dd-MM-yy_HH-mm").format(gregorianCalendar.getTime());
         return Environment.getExternalStorageDirectory()
-                + File.separator + "Test1.mp4";
+                + File.separator + mTestFolderName
+                + File.separator + date
+                + ".mp4";
     }
 
-    private void releasePlayer() {
-        if (mediaPlayer != null) {
-            mediaPlayer.release();
-            mediaPlayer = null;
+    private class MergeTask extends AsyncTask<List<String>, Void, Void> {
+
+        ProgressDialog progressDialog;
+        Context context;
+
+        private MergeTask(Context context) {
+            this.context = context;
         }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progressDialog = new ProgressDialog(context);
+            progressDialog.show();
+        }
+
+        @Override
+        protected Void doInBackground(List<String>... lists) {
+            ArrayList<String> list = (ArrayList<String>) lists[0];
+            for (String fileName : list) {
+                Log.d("taras", "merge :" + mCurFileName + "+" + fileName);
+                appendToFile(mCurFileName, fileName);
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            progressDialog.dismiss();
+        }
+    }
+
+    private void appendToFile(final String targetFileName, final String newFileName) {
+        Mp4ParserWrapper.append(targetFileName, newFileName);
     }
     @Override
     public void onClick(View v) {
@@ -197,10 +250,54 @@ public class FirstTestFragment extends Fragment implements View.OnClickListener 
                 FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.container, new SecondTestFragment());
                 fragmentTransaction.commit();
-                interstitialAds.show();
                 break;
             default:
                 break;
+        }
+    }
+
+    private void releasePlayer() {
+        if (mediaPlayer != null) {
+            mediaPlayer.release();
+            mediaPlayer = null;
+        }
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        releasePlayer();
+        releaseRecorder();
+    }
+
+    private void releaseRecorder() {
+        if (mediaRecorder != null) {
+            mediaRecorder.release();
+            mediaRecorder = null;
+        }
+    }
+
+    public void recordStart(String fileName) {
+        try {
+            releaseRecorder();
+            mediaRecorder = new MediaRecorder();
+            mediaRecorder.setAudioEncodingBitRate(64 * 1024);
+            mediaRecorder.setAudioSamplingRate(22050);
+            mediaRecorder.setAudioChannels(2);
+            mediaRecorder.setAudioSource(MediaRecorder.AudioSource.DEFAULT);
+            mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);
+            mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);
+            mediaRecorder.setOutputFile(fileName);
+            mediaRecorder.prepare();
+            mediaRecorder.start();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void recordStop() {
+        if (mediaRecorder != null) {
+            mediaRecorder.stop();
         }
     }
 }
