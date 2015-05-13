@@ -30,7 +30,6 @@ public class IntroFragment extends Fragment implements View.OnClickListener {
 //        AdView mAdView = (AdView) view.findViewById(R.id.adView);
 //        AdRequest adRequest = new AdRequest.Builder().build();
 //        mAdView.loadAd(adRequest);
-
         mTitle = (TextView) view.findViewById(R.id.intro_title);
         mBigText = (TextView) view.findViewById(R.id.intro_text);
         mNextBtn = (ButtonFloat) view.findViewById(R.id.buttonFloat_intro);
