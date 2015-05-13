@@ -38,6 +38,7 @@ dependencies {
     compile project(':MaterialNavigationDrawerModule')
     compile project(':materialText')
     compile project(':awesomeValidation')
+    compile project(':recorder')
     compile 'com.android.support:appcompat-v7:22.1.1'
     compile 'com.octo.android.robospice:robospice:1.4.14'
     compile 'com.android.support:support-v4:21.0.+'
