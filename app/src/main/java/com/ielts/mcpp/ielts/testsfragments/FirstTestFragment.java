@@ -89,51 +89,221 @@ public class FirstTestFragment extends Fragment implements View.OnClickListener 
                     playQuestion(mQuestionsPath + "intro-frame-good-morning.mp4");
                     listOfAudio.add(mQuestionsPath + "intro-frame-good-morning.mp4");
                 }
-                if (298000 < millisUntilFinished && millisUntilFinished < 299000) {
+                if (297000 < millisUntilFinished && millisUntilFinished < 298000) {
+                    setBtnRecordingOff();
+                    playQuestion(mQuestionsPath + "intro-frame-s1.mp4");
+                    listOfAudio.add(mQuestionsPath + "intro-frame-s1.mp4");
+                }
+                if (295000 < millisUntilFinished && millisUntilFinished < 296000) {
                     setBtnRecordingOff();
                     playQuestion(mQuestionsPath + "intro-frame-q1.mp4");
                     listOfAudio.add(mQuestionsPath + "intro-frame-q1.mp4");
                 }
                 //answer 6 seconds
-                if (294000 < millisUntilFinished && millisUntilFinished < 295000) {
+                if (291000 < millisUntilFinished && millisUntilFinished < 292000) {
                     recordStart(mTestFolderPath + "intro-frame-answ1.mp4");
                     setBtnRecordingOn();
                     listOfAudio.add(mTestFolderPath + "intro-frame-answ1.mp4");
                 }
                 //audio 3 seconds
-                if (289000 < millisUntilFinished && millisUntilFinished < 290000) {
+                if (285000 < millisUntilFinished && millisUntilFinished < 286000) {
                     recordStop();
                     setBtnRecordingOff();
                     playQuestion(mQuestionsPath + "intro-frame-q2.mp4");
                     listOfAudio.add(mQuestionsPath + "intro-frame-q2.mp4");
                 }
                 //answer 6 seconds
-                if (286000 < millisUntilFinished && millisUntilFinished < 287000) {
+                if (282000 < millisUntilFinished && millisUntilFinished < 283000) {
                     setBtnRecordingOn();
                     recordStart(mTestFolderPath + "intro-frame-answ2.mp4");
                     listOfAudio.add(mTestFolderPath + "intro-frame-answ2.mp4");
                 }
                 //audio 3 seconds
-                if (280000 < millisUntilFinished && millisUntilFinished < 281000) {
+                if (276000 < millisUntilFinished && millisUntilFinished < 277000) {
                     recordStop();
                     setBtnRecordingOff();
                     playQuestion(mQuestionsPath + "intro-frame-q3.mp4");
                     listOfAudio.add(mQuestionsPath + "intro-frame-q3.mp4");
                 }
                 //answer 6 seconds
-                if (277000 < millisUntilFinished && millisUntilFinished < 278000) {
+                if (272000 < millisUntilFinished && millisUntilFinished < 273000) {
                     setBtnRecordingOn();
                     recordStart(mTestFolderPath + "intro-frame-answ3.mp4");
                     listOfAudio.add(mTestFolderPath + "intro-frame-answ3.mp4");
                 }
                 //audio 10 seconds
-                if (271000 < millisUntilFinished && millisUntilFinished < 272000) {
+                if (266000 < millisUntilFinished && millisUntilFinished < 267000) {
                     recordStop();
                     setBtnRecordingOff();
-//                    playQuestion(mQuestionsPath + "intro-frame-s1.mp4");
-                    new MergeTask(getActivity()).execute(listOfAudio);
+                    playQuestion(mQuestionsPath + "intro-frame-q4.mp4");
+                }
+                if (262000 < millisUntilFinished && millisUntilFinished < 263000) {
+                    setBtnRecordingOff();
+                    playQuestion(mQuestionsPath + "intro-frame-s2.mp4");
+                    listOfAudio.add(mTestFolderPath + "intro-frame-s2.mp4");
+                }
+//////////////////////////////////////////////////////////////////////////
+//                FRAME 1
+//////////////////////////////////////////////////////////////////////////
+                //question 3 seconds
+                if (255000 < millisUntilFinished && millisUntilFinished < 256000) {
+                    Log.d("taras", "FRAME 1!!");
+                    frame_1();
+                    setBtnRecordingOff();
+                    playQuestion(mQuestionsPath + "part1-frame1-intro-home-1.mp4");
+                    listOfAudio.add(mTestFolderPath + "part1-frame1-intro-home-1.mp4");
+                }
+                //question 3 seconds
+                if (251000 < millisUntilFinished && millisUntilFinished < 252000) {
+                    setBtnRecordingOff();
+                    playQuestion(mQuestionsPath + "part1-home-q1.mp4");
+                    listOfAudio.add(mTestFolderPath + "part1-home-q1.mp4");
+                }
+                //answer 18 seconds
+                if (248000 < millisUntilFinished && millisUntilFinished < 249000) {
+
+                    setBtnRecordingOn();
+                    recordStart(mTestFolderPath + "part1-home-answ1.mp4");
+                    listOfAudio.add(mTestFolderPath + "part1-home-answ1.mp4");
+                }
+                //question 5 seconds
+                if (228000 < millisUntilFinished && millisUntilFinished < 229000) {
+                    recordStop();
+                    setBtnRecordingOff();
+                    playQuestion(mQuestionsPath + "part1-home-q2.mp4");
+                    listOfAudio.add(mTestFolderPath + "part1-home-q2.mp4");
+                }
+                //answer 18 seconds
+                if (222000 < millisUntilFinished && millisUntilFinished < 223000) {
+                    setBtnRecordingOn();
+                    recordStart(mTestFolderPath + "part1-home-answ2.mp4");
+                    listOfAudio.add(mTestFolderPath + "part1-home-answ2.mp4");
+                }
+                //question 6 seconds
+                if (203000 < millisUntilFinished && millisUntilFinished < 204000) {
+                    recordStop();
+                    setBtnRecordingOff();
+                    playQuestion(mQuestionsPath + "part1-home-q3.mp4");
+                    listOfAudio.add(mTestFolderPath + "part1-home-q3.mp4");
+                }
+                //answer 18 seconds
+                if (196000 < millisUntilFinished && millisUntilFinished < 197000) {
+                    setBtnRecordingOn();
+                    recordStart(mTestFolderPath + "part1-home-answ3.mp4");
+                    listOfAudio.add(mTestFolderPath + "part1-home-answ3.mp4");
+                }
+//////////////////////////////////////////////////////////////////////////
+//                FRAME 2
+//////////////////////////////////////////////////////////////////////////
+                //question 6 seconds
+                if (177000 < millisUntilFinished && millisUntilFinished < 178000) {
+                    recordStop();
+                    frame_2();
+                    setBtnRecordingOff();
+                    playQuestion(mQuestionsPath + "part1-frame8-intro.mp4");
+                    listOfAudio.add(mTestFolderPath + "part1-frame8-intro.mp4");
+                }
+                //question 6 seconds
+                if (170000 < millisUntilFinished && millisUntilFinished < 171000) {
+                    setBtnRecordingOff();
+                    playQuestion(mQuestionsPath + "part1-museums-fr8-q1.mp4");
+                    listOfAudio.add(mTestFolderPath + "part1-museums-fr8-q1.mp4");
+                }
+                //answer 18 seconds
+                if (163000 < millisUntilFinished && millisUntilFinished < 164000) {
+                    Log.d("taras", "answer1");
+                    setBtnRecordingOn();
+                    recordStart(mTestFolderPath + "part1-museums-fr8-answ1.mp4");
+                    listOfAudio.add(mTestFolderPath + "part1-museums-fr8-answ1.mp4");
+                }
+                //question 6 seconds
+                if (144000 < millisUntilFinished && millisUntilFinished < 145000) {
+                    recordStop();
+                    setBtnRecordingOff();
+                    playQuestion(mQuestionsPath + "part1-museums-fr8-q2.mp4");
+                    listOfAudio.add(mTestFolderPath + "part1-museums-fr8-q2.mp4");
+                }
+                //answer 18 seconds
+                if (137000 < millisUntilFinished && millisUntilFinished < 138000) {
+                    Log.d("taras", "answer3");
+                    setBtnRecordingOn();
+                    recordStart(mTestFolderPath + "part1-museums-fr8-answ2.mp4");
+                    listOfAudio.add(mTestFolderPath + "part1-museums-fr8-answ2.mp4");
+                }
+                //question 6 seconds
+                if (118000 < millisUntilFinished && millisUntilFinished < 119000) {
+                    recordStop();
+                    setBtnRecordingOff();
+                    playQuestion(mQuestionsPath + "part1-museums-fr8-q3.mp4");
+                    listOfAudio.add(mTestFolderPath + "part1-museums-fr8-q3.mp4");
+                }
+                //answer 18 seconds
+                if (110000 < millisUntilFinished && millisUntilFinished < 111000) {
+                    Log.d("taras", "answer3");
+                    setBtnRecordingOn();
+                    recordStart(mTestFolderPath + "part1-museums-fr8-answ3.mp4");
+                    listOfAudio.add(mTestFolderPath + "part1-museums-fr8-answ3.mp4");
                 }
 
+
+//////////////////////////////////////////////////////////////////////////
+//                FRAME 3
+//////////////////////////////////////////////////////////////////////////
+                //question 6 seconds
+                if (92000 < millisUntilFinished && millisUntilFinished < 93000) {
+                    recordStop();
+                    frame_2();
+                    setBtnRecordingOff();
+                    playQuestion(mQuestionsPath + "part1-frame4-intro.mp4");
+                    listOfAudio.add(mTestFolderPath + "part1-frame4-intro.mp4");
+                }
+                //question 6 seconds
+                if (85000 < millisUntilFinished && millisUntilFinished < 86000) {
+                    setBtnRecordingOff();
+                    playQuestion(mQuestionsPath + "part1-weather-fr4-q1.mp4");
+                    listOfAudio.add(mTestFolderPath + "part1-weather-fr4-q1.mp4");
+                }
+                //answer 18 seconds
+                if (78000 < millisUntilFinished && millisUntilFinished < 79000) {
+                    Log.d("taras", "answer1");
+                    setBtnRecordingOn();
+                    recordStart(mTestFolderPath + "part1-weather-fr4-answ1.mp4");
+                    listOfAudio.add(mTestFolderPath + "part1-weather-fr4-answ1.mp4");
+                }
+                //question 6 seconds
+                if (59000 < millisUntilFinished && millisUntilFinished < 60000) {
+                    recordStop();
+                    setBtnRecordingOff();
+                    playQuestion(mQuestionsPath + "part1-weather-fr4-q2.mp4");
+                    listOfAudio.add(mTestFolderPath + "part1-weather-fr4-q2.mp4");
+                }
+                //answer 18 seconds
+                if (52000 < millisUntilFinished && millisUntilFinished < 53000) {
+                    Log.d("taras", "answer3");
+                    setBtnRecordingOn();
+                    recordStart(mTestFolderPath + "part1-weather-fr4-answ2.mp4");
+                    listOfAudio.add(mTestFolderPath + "part1-weather-fr4-answ2.mp4");
+                }
+                //question 6 seconds
+                if (33000 < millisUntilFinished && millisUntilFinished < 34000) {
+                    recordStop();
+                    setBtnRecordingOff();
+                    playQuestion(mQuestionsPath + "part1-weather-fr4-q3.mp4");
+                    listOfAudio.add(mTestFolderPath + "part1-weather-fr4-q3.mp4");
+                }
+                //answer 18 seconds
+                if (26000 < millisUntilFinished && millisUntilFinished < 27000) {
+                    Log.d("taras", "answer3");
+                    setBtnRecordingOn();
+                    recordStart(mTestFolderPath + "part1-weather-fr4-answ3.mp4");
+                    listOfAudio.add(mTestFolderPath + "part1-weather-fr4-answ3.mp4");
+                }
+                if (7000 < millisUntilFinished && millisUntilFinished < 8000) {
+
+                    setBtnRecordingOff();
+                    recordStop();
+                    new MergeTask(getActivity()).execute(listOfAudio);
+                }
                 String v = String.format("%02d", millisUntilFinished / 60000);
                 int va = (int) ((millisUntilFinished % 60000) / 1000);
                 mTimer.setText(v + ":" + String.format("%02d", va));
@@ -164,18 +334,27 @@ public class FirstTestFragment extends Fragment implements View.OnClickListener 
                 "• Listen whilst the examiner introduces the test\n" +
                 "• The clock on the right will start to countdown when the test starts");
     }
-    //
+
 
     private void frame_1() {
-
+        ((MainActivity) this.getActivity()).setPageTitle("Part1 - Frame 1");
+        mTopic.setVisibility(View.VISIBLE);
+        mTopic.setText("Topic");
+        mBigText.setText("Home");
     }
 
     private void frame_2() {
-
+        ((MainActivity) this.getActivity()).setPageTitle("Part1 - Frame 2");
+        mTopic.setVisibility(View.VISIBLE);
+        mTopic.setText("Topic");
+        mBigText.setText("Museums");
     }
 
     private void frame_3() {
-
+        ((MainActivity) this.getActivity()).setPageTitle("Part1 - Frame 3");
+        mTopic.setVisibility(View.VISIBLE);
+        mTopic.setText("Topic");
+        mBigText.setText("Weather");
     }
 
     private void playQuestion(String fileName) {
