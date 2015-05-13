@@ -2,13 +2,19 @@ package com.ielts.mcpp.ielts.testsfragments;
 
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.media.MediaPlayer;
+import android.media.MediaRecorder;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Environment;
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,8 +24,15 @@ import com.gc.materialdesign.views.ButtonFloat;
 import com.gc.materialdesign.views.ButtonFloatSmall;
 import com.ielts.mcpp.ielts.MainActivity;
 import com.ielts.mcpp.ielts.R;
+import com.ielts.mcpp.ielts.utils.LoadAds;
+import com.ielts.mcpp.ielts.utils.LoadInterstitialAds;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.List;
 
 //import com.github.lassana.recorder.AudioRecorder;
 
@@ -31,11 +44,24 @@ public class SecondTestFragment extends Fragment implements View.OnClickListener
     //    private AudioRecorder mAudioRecorder;
     ButtonFloatSmall mMicBtn;
     ButtonFloat mStopBtn;
+    LoadInterstitialAds interstitialAds;
+    private MediaPlayer mediaPlayer;
+    private MediaRecorder mediaRecorder;
+    private String mTestFolderName = "ielts_tests";
+    private String mTestFolderPath;
+    private String mQuestionsPath;
+    private String mCurFileName;
+
+    private TextView mTimer;
+    private TextView mTopic;
+    private TextView mBigText;
+
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        interstitialAds = new LoadInterstitialAds(getActivity());
     }
 
 
@@ -80,6 +106,7 @@ public class SecondTestFragment extends Fragment implements View.OnClickListener
                 mTimer.setText("00:00");
             }
         }.start();
+        new LoadAds(view, R.id.adViewSecondTest);
         return view;
     }
 
@@ -98,25 +125,9 @@ public class SecondTestFragment extends Fragment implements View.OnClickListener
 
     }
 
-    private void playQuestion(String fileName) {
-
-        File file = new File(fileName);
-        if (file.exists()) {
-            Intent intent = new Intent();
-            intent.setAction(android.content.Intent.ACTION_VIEW);
-            intent.setDataAndType(Uri.fromFile(file), "audio/*");
-            startActivity(intent);
-        }
-    }
-
     private void recordAnswer(long duration) {
 
 
-    }
-
-    private String getNextFileName() {
-        return Environment.getExternalStorageDirectory()
-                + File.separator + "Test1.mp4";
     }
 
     @Override
@@ -126,9 +137,149 @@ public class SecondTestFragment extends Fragment implements View.OnClickListener
                 FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.container, new ThirdTestFragment());
                 fragmentTransaction.commit();
+                interstitialAds.show();
                 break;
             default:
                 break;
+        }
+    }
+
+    private void setBtnRecordingOn() {
+        mMicBtn.setBackgroundColor(0xFFFF3500);
+    }
+
+    private void setBtnRecordingOff() {
+        mMicBtn.setBackgroundColor(0xafc4c4c4);
+    }
+
+    private void introductoryFrame() {
+        ((MainActivity) this.getActivity()).setPageTitle("Introductory frame");
+        mTopic.setVisibility(View.GONE);
+        mBigText.setText(
+                "• Listen whilst the examiner introduces the test\n" +
+                        "• The clock on the right will start to countdown when the test starts");
+    }
+    //
+
+    private void frame_1() {
+
+    }
+
+    private void frame_2() {
+
+    }
+
+    private void frame_3() {
+
+    }
+
+    private void playQuestion(String fileName) {
+        try {
+            releasePlayer();
+            mediaPlayer = new MediaPlayer();
+            mediaPlayer.setDataSource(fileName);
+            mediaPlayer.prepare();
+            mediaPlayer.start();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    private String getNextFileName() {
+        //create directory with test if it does not exist
+        File fileDir = new File(Environment.getExternalStorageDirectory()
+                + File.separator + mTestFolderName
+                + File.separator);
+        if (!fileDir.exists()) {
+            fileDir.mkdirs();
+        }
+        //build filename
+        GregorianCalendar gregorianCalendar = new GregorianCalendar();
+        gregorianCalendar.setTime(new Date(System.currentTimeMillis()));
+        String date = new SimpleDateFormat("dd-MM-yy_HH-mm").format(gregorianCalendar.getTime());
+        return Environment.getExternalStorageDirectory()
+                + File.separator + mTestFolderName
+                + File.separator + date
+                + ".mp4";
+    }
+
+    private class MergeTask extends AsyncTask<List<String>, Void, Void> {
+
+        ProgressDialog progressDialog;
+        Context context;
+
+        private MergeTask(Context context) {
+            this.context = context;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progressDialog = new ProgressDialog(context);
+            progressDialog.show();
+        }
+
+        @Override
+        protected Void doInBackground(List<String>... lists) {
+            ArrayList<String> list = (ArrayList<String>) lists[0];
+            for (String fileName : list) {
+                Log.d("taras", "merge :" + mCurFileName + "+" + fileName);
+                appendToFile(mCurFileName, fileName);
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            progressDialog.dismiss();
+        }
+    }
+
+    private void appendToFile(final String targetFileName, final String newFileName) {
+        Mp4ParserWrapper.append(targetFileName, newFileName);
+    }
+    private void releasePlayer() {
+        if (mediaPlayer != null) {
+            mediaPlayer.release();
+            mediaPlayer = null;
+        }
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        releasePlayer();
+        releaseRecorder();
+    }
+
+    private void releaseRecorder() {
+        if (mediaRecorder != null) {
+            mediaRecorder.release();
+            mediaRecorder = null;
+        }
+    }
+
+    public void recordStart(String fileName) {
+        try {
+            releaseRecorder();
+            mediaRecorder = new MediaRecorder();
+            mediaRecorder.setAudioEncodingBitRate(64 * 1024);
+            mediaRecorder.setAudioSamplingRate(22050);
+            mediaRecorder.setAudioChannels(2);
+            mediaRecorder.setAudioSource(MediaRecorder.AudioSource.DEFAULT);
+            mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);
+            mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);
+            mediaRecorder.setOutputFile(fileName);
+            mediaRecorder.prepare();
+            mediaRecorder.start();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void recordStop() {
+        if (mediaRecorder != null) {
+            mediaRecorder.stop();
         }
     }
 }
