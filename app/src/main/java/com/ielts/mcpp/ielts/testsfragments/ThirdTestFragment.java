@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.gc.materialdesign.views.ButtonFloat;
 import com.gc.materialdesign.views.ButtonFloatSmall;
@@ -39,7 +40,9 @@ public class ThirdTestFragment extends Fragment implements View.OnClickListener 
     //    private AudioRecorder mAudioRecorder;
     ButtonFloatSmall mMicBtn;
     ButtonFloat mStopBtn;
-    private String mBigTextFrame;
+    private String mBigTextFrame1;
+    private String mBigTextFrame2;
+    private String mBigTextFrame3;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -61,6 +64,11 @@ public class ThirdTestFragment extends Fragment implements View.OnClickListener 
 
     ArrayList<String> listOfAudio;
 
+    private String[] mPart1;
+    private String[] mPart2;
+    private String[] mPart3;
+
+    int delta = 45000;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -91,117 +99,112 @@ public class ThirdTestFragment extends Fragment implements View.OnClickListener 
 
         listOfAudio = new ArrayList<>();
 
-        new CountDownTimer(300000, 1000) {
+        new CountDownTimer(300000 + delta, 1000) {
+
 
             public void onTick(long millisUntilFinished) {
                 //audio 14 seconds
                 if (299000 < millisUntilFinished) {
                     setBtnRecordingOff();
-                    playQuestion(mQuestionsPath + "P3-task 605-intro-to-consumer-products.mp4");
-                    listOfAudio.add(mQuestionsPath + "P3-task 605-intro-to-consumer-products.mp4");
+                    playQuestion(mQuestionsPath + mPart1[0]);
+                    listOfAudio.add(mQuestionsPath + mPart1[0]);
                 }
 
 //////////////////////////////////////////////////////////////////////////
 //                FRAME 1
 //////////////////////////////////////////////////////////////////////////
-                //question 4 seconds
-                if (255000 < millisUntilFinished && millisUntilFinished < 256000) {
+                //question 6 seconds
+                if (284000 + delta < millisUntilFinished && millisUntilFinished < 285000 + delta) {
                     Log.d("taras", "FRAME 1!!");
                     part_1();
                     setBtnRecordingOff();
-                    playQuestion(mQuestionsPath + "part1-frame1-intro-home-1.mp4");
-                    listOfAudio.add(mTestFolderPath + "part1-frame1-intro-home-1.mp4");
-                }
-                //question 6 seconds
-                if (251000 < millisUntilFinished && millisUntilFinished < 252000) {
-                    setBtnRecordingOff();
-                    playQuestion(mQuestionsPath + "part1-home-q1.mp4");
-                    listOfAudio.add(mTestFolderPath + "part1-home-q1.mp4");
+                    playQuestion(mQuestionsPath + mPart1[1]);
+                    listOfAudio.add(mTestFolderPath + mPart1[1]);
                 }
                 //answer 25 seconds
-                if (248000 < millisUntilFinished && millisUntilFinished < 249000) {
+                if (277000 + delta < millisUntilFinished && millisUntilFinished < 278000 + delta) {
 
                     setBtnRecordingOn();
-                    recordStart(mTestFolderPath + "part1-home-answ1.mp4");
-                    listOfAudio.add(mTestFolderPath + "part1-home-answ1.mp4");
+                    recordStart(mTestFolderPath + "part3-home-answ1.mp4");
+                    listOfAudio.add(mTestFolderPath + "part3-home-answ1.mp4");
                 }
                 //question 6 seconds
-                if (228000 < millisUntilFinished && millisUntilFinished < 229000) {
+                if (251000 + delta < millisUntilFinished && millisUntilFinished < 252000 + delta) {
                     recordStop();
                     setBtnRecordingOff();
-                    playQuestion(mQuestionsPath + "part1-home-q2.mp4");
-                    listOfAudio.add(mTestFolderPath + "part1-home-q2.mp4");
+                    playQuestion(mQuestionsPath + mPart1[2]);
+                    listOfAudio.add(mTestFolderPath + mPart1[2]);
                 }
                 //answer 25 seconds
-                if (222000 < millisUntilFinished && millisUntilFinished < 223000) {
+                if (244000 + delta < millisUntilFinished && millisUntilFinished < 245000 + delta) {
                     setBtnRecordingOn();
-                    recordStart(mTestFolderPath + "part1-home-answ2.mp4");
-                    listOfAudio.add(mTestFolderPath + "part1-home-answ2.mp4");
+                    recordStart(mTestFolderPath + "part3-home-answ2.mp4");
+                    listOfAudio.add(mTestFolderPath + "part3-home-answ2.mp4");
                 }
                 //question 6 seconds
-                if (203000 < millisUntilFinished && millisUntilFinished < 204000) {
+                if (218000 + delta < millisUntilFinished && millisUntilFinished < 219000 + delta) {
                     recordStop();
                     setBtnRecordingOff();
-                    playQuestion(mQuestionsPath + "part1-home-q3.mp4");
-                    listOfAudio.add(mTestFolderPath + "part1-home-q3.mp4");
+                    playQuestion(mQuestionsPath + mPart1[3]);
+                    listOfAudio.add(mTestFolderPath + mPart1[3]);
                 }
                 //answer 25 seconds
-                if (196000 < millisUntilFinished && millisUntilFinished < 197000) {
+                if (211000 + delta < millisUntilFinished && millisUntilFinished < 212000 + delta) {
                     setBtnRecordingOn();
-                    recordStart(mTestFolderPath + "part1-home-answ3.mp4");
-                    listOfAudio.add(mTestFolderPath + "part1-home-answ3.mp4");
+                    recordStart(mTestFolderPath + "part3-home-answ3.mp4");
+                    listOfAudio.add(mTestFolderPath + "part3-home-answ3.mp4");
                 }
 //////////////////////////////////////////////////////////////////////////
 //                FRAME 2
 //////////////////////////////////////////////////////////////////////////
                 //question 6 seconds
-                if (177000 < millisUntilFinished && millisUntilFinished < 178000) {
+                if (185000 + delta < millisUntilFinished && millisUntilFinished < 186000 + delta) {
                     recordStop();
                     part_2();
                     setBtnRecordingOff();
-                    playQuestion(mQuestionsPath + "part1-frame8-intro.mp4");
-                    listOfAudio.add(mTestFolderPath + "part1-frame8-intro.mp4");
+                    playQuestion(mQuestionsPath + mPart2[0]);
+                    listOfAudio.add(mTestFolderPath + mPart2[0]);
                 }
                 //question 6 seconds
-                if (170000 < millisUntilFinished && millisUntilFinished < 171000) {
+                if (185000 + delta - 6000 < millisUntilFinished && millisUntilFinished < 186000 + delta - 6000) {
                     setBtnRecordingOff();
-                    playQuestion(mQuestionsPath + "part1-museums-fr8-q1.mp4");
-                    listOfAudio.add(mTestFolderPath + "part1-museums-fr8-q1.mp4");
+                    playQuestion(mQuestionsPath + mPart2[1]);
+                    listOfAudio.add(mTestFolderPath + mPart2[1]);
                 }
                 //answer 25 seconds
-                if (163000 < millisUntilFinished && millisUntilFinished < 164000) {
+                if (178000 + delta - 6000 < millisUntilFinished && millisUntilFinished < 179000 + delta - 6000) {
                     Log.d("taras", "answer1");
                     setBtnRecordingOn();
-                    recordStart(mTestFolderPath + "part1-museums-fr8-answ1.mp4");
-                    listOfAudio.add(mTestFolderPath + "part1-museums-fr8-answ1.mp4");
+                    recordStart(mTestFolderPath + "part3-museums-fr8-answ1.mp4");
+                    listOfAudio.add(mTestFolderPath + "part3-museums-fr8-answ1.mp4");
                 }
                 //question 6 seconds
-                if (144000 < millisUntilFinished && millisUntilFinished < 145000) {
+                if (152000 + delta - 6000 < millisUntilFinished && millisUntilFinished < 153000 + delta - 6000) {
                     recordStop();
                     setBtnRecordingOff();
-                    playQuestion(mQuestionsPath + "part1-museums-fr8-q2.mp4");
-                    listOfAudio.add(mTestFolderPath + "part1-museums-fr8-q2.mp4");
+                    playQuestion(mQuestionsPath + mPart2[2]);
+                    listOfAudio.add(mTestFolderPath + mPart2[2]);
                 }
                 //answer 25 seconds
-                if (137000 < millisUntilFinished && millisUntilFinished < 138000) {
+                if (145000 + delta - 6000 < millisUntilFinished && millisUntilFinished < 146000 + delta - 6000) {
                     Log.d("taras", "answer3");
                     setBtnRecordingOn();
-                    recordStart(mTestFolderPath + "part1-museums-fr8-answ2.mp4");
-                    listOfAudio.add(mTestFolderPath + "part1-museums-fr8-answ2.mp4");
+                    recordStart(mTestFolderPath + "part3-museums-fr8-answ2.mp4");
+                    listOfAudio.add(mTestFolderPath + "part3-museums-fr8-answ2.mp4");
                 }
                 //question 6 seconds
-                if (118000 < millisUntilFinished && millisUntilFinished < 119000) {
+                if (119000 + delta - 6000 < millisUntilFinished && millisUntilFinished < 120000 + delta - 6000) {
                     recordStop();
                     setBtnRecordingOff();
-                    playQuestion(mQuestionsPath + "part1-museums-fr8-q3.mp4");
-                    listOfAudio.add(mTestFolderPath + "part1-museums-fr8-q3.mp4");
+                    playQuestion(mQuestionsPath + mPart2[3]);
+                    listOfAudio.add(mTestFolderPath + mPart2[3]);
                 }
                 //answer 25 seconds
-                if (110000 < millisUntilFinished && millisUntilFinished < 111000) {
+                if (112000 + delta - 6000 < millisUntilFinished && millisUntilFinished < 113000 + delta - 6000) {
                     Log.d("taras", "answer3");
                     setBtnRecordingOn();
-                    recordStart(mTestFolderPath + "part1-museums-fr8-answ3.mp4");
-                    listOfAudio.add(mTestFolderPath + "part1-museums-fr8-answ3.mp4");
+                    recordStart(mTestFolderPath + "part3-museums-fr8-answ3.mp4");
+                    listOfAudio.add(mTestFolderPath + "part3-museums-fr8-answ3.mp4");
                 }
 
 
@@ -209,57 +212,61 @@ public class ThirdTestFragment extends Fragment implements View.OnClickListener 
 //                FRAME 3
 //////////////////////////////////////////////////////////////////////////
                 //question 6 seconds
-                if (92000 < millisUntilFinished && millisUntilFinished < 93000) {
+                if (86000 + delta - 6000 < millisUntilFinished && millisUntilFinished < 87000 + delta - 6000) {
                     recordStop();
                     part_3();
                     setBtnRecordingOff();
-                    playQuestion(mQuestionsPath + "part1-frame4-intro.mp4");
-                    listOfAudio.add(mTestFolderPath + "part1-frame4-intro.mp4");
+                    playQuestion(mQuestionsPath + mPart3[0]);
+                    listOfAudio.add(mTestFolderPath + mPart3[0]);
                 }
-                //question 6 seconds
-                if (85000 < millisUntilFinished && millisUntilFinished < 86000) {
+                if (86000 + delta - 12000 < millisUntilFinished && millisUntilFinished < 87000 + delta - 12000) {
                     setBtnRecordingOff();
-                    playQuestion(mQuestionsPath + "part1-weather-fr4-q1.mp4");
-                    listOfAudio.add(mTestFolderPath + "part1-weather-fr4-q1.mp4");
+                    playQuestion(mQuestionsPath + mPart3[1]);
+                    listOfAudio.add(mTestFolderPath + mPart3[1]);
                 }
                 //answer 25 seconds
-                if (78000 < millisUntilFinished && millisUntilFinished < 79000) {
+                if (79000 + delta - 12000 < millisUntilFinished && millisUntilFinished < 80000 + delta - 12000) {
                     Log.d("taras", "answer1");
                     setBtnRecordingOn();
-                    recordStart(mTestFolderPath + "part1-weather-fr4-answ1.mp4");
-                    listOfAudio.add(mTestFolderPath + "part1-weather-fr4-answ1.mp4");
+                    recordStart(mTestFolderPath + "part3-weather-fr4-answ1.mp4");
+                    listOfAudio.add(mTestFolderPath + "part3-weather-fr4-answ1.mp4");
                 }
                 //question 6 seconds
-                if (59000 < millisUntilFinished && millisUntilFinished < 60000) {
+                if (53000 + delta - 12000 < millisUntilFinished && millisUntilFinished < 54000 + delta - 12000) {
                     recordStop();
                     setBtnRecordingOff();
-                    playQuestion(mQuestionsPath + "part1-weather-fr4-q2.mp4");
-                    listOfAudio.add(mTestFolderPath + "part1-weather-fr4-q2.mp4");
+                    playQuestion(mQuestionsPath + mPart3[2]);
+                    listOfAudio.add(mTestFolderPath + mPart3[2]);
                 }
                 //answer 25 seconds
-                if (52000 < millisUntilFinished && millisUntilFinished < 53000) {
+                if (45000 + delta - 12000 < millisUntilFinished && millisUntilFinished < 46000 + delta - 12000) {
                     Log.d("taras", "answer3");
                     setBtnRecordingOn();
-                    recordStart(mTestFolderPath + "part1-weather-fr4-answ2.mp4");
-                    listOfAudio.add(mTestFolderPath + "part1-weather-fr4-answ2.mp4");
+                    recordStart(mTestFolderPath + "part3-weather-fr4-answ2.mp4");
+                    listOfAudio.add(mTestFolderPath + "part3-weather-fr4-answ2.mp4");
                 }
                 //question 6 seconds
-                if (33000 < millisUntilFinished && millisUntilFinished < 34000) {
+                if (19000 + delta - 12000 < millisUntilFinished && millisUntilFinished < 20000 + delta - 12000) {
                     recordStop();
                     setBtnRecordingOff();
-                    playQuestion(mQuestionsPath + "part1-weather-fr4-q3.mp4");
-                    listOfAudio.add(mTestFolderPath + "part1-weather-fr4-q3.mp4");
+                    playQuestion(mQuestionsPath + mPart3[3]);
+                    listOfAudio.add(mTestFolderPath + mPart3[3]);
                 }
                 //answer 25 seconds
-                if (26000 < millisUntilFinished && millisUntilFinished < 27000) {
+                if (12000 + delta - 12000 < millisUntilFinished && millisUntilFinished < 13000 + delta - 12000) {
                     Log.d("taras", "answer3");
                     setBtnRecordingOn();
-                    recordStart(mTestFolderPath + "part1-weather-fr4-answ3.mp4");
-                    listOfAudio.add(mTestFolderPath + "part1-weather-fr4-answ3.mp4");
+                    recordStart(mTestFolderPath + "part3-weather-fr4-answ3.mp4");
+                    listOfAudio.add(mTestFolderPath + "part3-weather-fr4-answ3.mp4");
                 }
-                if (7000 < millisUntilFinished && millisUntilFinished < 8000) {
+                // thanks 12 seconds
+                if (-13000 + delta - 12000 < millisUntilFinished && millisUntilFinished < -12000 + delta - 12000) {
                     setBtnRecordingOff();
                     recordStop();
+                    playQuestion(mQuestionsPath + Constants.part3EndOfTestFolder[0]);
+                    listOfAudio.add(mTestFolderPath + Constants.part3EndOfTestFolder[0]);
+                }
+                if (-26000 + delta < millisUntilFinished && millisUntilFinished < -25000 + delta) {
                     new MergeTask(getActivity()).execute(listOfAudio);
                 }
                 String v = String.format("%02d", millisUntilFinished / 60000);
@@ -268,7 +275,7 @@ public class ThirdTestFragment extends Fragment implements View.OnClickListener 
             }
 
             public void onFinish() {
-                mTimer.setText("00:00");
+                Toast.makeText(getActivity(), "Test finished! Thank you!", Toast.LENGTH_LONG);
             }
         }.start();
         new LoadAds(view, R.id.adViewThirdTest);
@@ -287,21 +294,21 @@ public class ThirdTestFragment extends Fragment implements View.OnClickListener 
         ((MainActivity) this.getActivity()).setPageTitle("Part3 - Frame 1");
         mTopic.setVisibility(View.VISIBLE);
         mTopic.setText("Topic");
-        mBigText.setText(mBigTextFrame);
+        mBigText.setText(mBigTextFrame1);
     }
 
     private void part_2() {
         ((MainActivity) this.getActivity()).setPageTitle("Part3 - Frame 2");
         mTopic.setVisibility(View.VISIBLE);
         mTopic.setText("Topic");
-        mBigText.setText(mBigTextFrame);
+        mBigText.setText(mBigTextFrame1);
     }
 
     private void part_3() {
         ((MainActivity) this.getActivity()).setPageTitle("Part3 - Frame 3");
         mTopic.setVisibility(View.VISIBLE);
         mTopic.setText("Topic");
-        mBigText.setText(mBigTextFrame);
+        mBigText.setText(mBigTextFrame1);
     }
 
     private void playQuestion(String fileName) {
@@ -424,41 +431,77 @@ public class ThirdTestFragment extends Fragment implements View.OnClickListener 
         Log.d("taras", "rand :" + rand);
         switch (rand) {
             case 605:
-                result = Constants.part1Frame1Home;
-                mBigTextFrame = "Home";
+                mPart1 = Constants.part3Task605_1;
+                mPart2 = Constants.part3Task605_2;
+                mPart3 = Constants.part3Task605_3;
+                mBigTextFrame1 = "Consumer products";
+                mBigTextFrame2 = "Online shopping";
+                mBigTextFrame3 = "Consumerism and the environment";
                 break;
             case 606:
-                result = Constants.part1Frame1Home2;
-                mBigTextFrame = "Home";
+                mPart1 = Constants.part3Task606_1;
+                mPart2 = Constants.part3Task606_2;
+                mPart3 = Constants.part3Task606_3;
+                mBigTextFrame1 = "Family decisions";
+                mBigTextFrame2 = "Ways of making decisions";
+                mBigTextFrame3 = "International coop";
                 break;
             case 607:
-                result = Constants.part1Frame2Study;
-                mBigTextFrame = "Study";
+                mPart1 = Constants.part3Task607_1;
+                mPart2 = Constants.part3Task607_2;
+                mPart3 = Constants.part3Task607_3;
+                mBigTextFrame1 = "Day to day";
+                mBigTextFrame2 = "Planning career";
+                mBigTextFrame3 = "Gov planning";
                 break;
             case 608:
-                result = Constants.part1Frame2Study2;
-                mBigTextFrame = "Study";
+                mPart1 = Constants.part3Task608_1;
+                mPart2 = Constants.part3Task608_2;
+                mPart3 = Constants.part3Task608_3;
+                mBigTextFrame1 = "Communication skills";
+                mBigTextFrame2 = "Learning to speak";
+                mBigTextFrame3 = "Language species";
                 break;
             case 609:
-                result = Constants.part1Frame2Work;
-                mBigTextFrame = "Work";
+                mPart1 = Constants.part3Task609_1;
+                mPart2 = Constants.part3Task609_2;
+                mPart3 = Constants.part3Task609_3;
+                mBigTextFrame1 = "Films real events";
+                mBigTextFrame2 = "Film actors";
+                mBigTextFrame3 = "Film influence";
                 break;
             case 610:
-                result = Constants.part1Frame2Work2;
-                mBigTextFrame = "Work";
+                mPart1 = Constants.part3Task610_1;
+                mPart2 = Constants.part3Task610_2;
+                mPart3 = Constants.part3Task610_3;
+                mBigTextFrame1 = "Cars and society";
+                mBigTextFrame2 = "Public transport";
+                mBigTextFrame3 = "Road network";
                 break;
             case 611:
-                result = Constants.part1Frame2Work2;
-                mBigTextFrame = "Work";
+                mPart1 = Constants.part3Task611_1;
+                mPart2 = Constants.part3Task611_2;
+                mPart3 = Constants.part3Task611_3;
+                mBigTextFrame1 = "Parents help";
+                mBigTextFrame2 = "Families influence";
+                mBigTextFrame3 = "Learning old people";
                 break;
             case 612:
-                result = Constants.part1Frame2Work2;
-                mBigTextFrame = "Work";
+                mPart1 = Constants.part3Task612_1;
+                mPart2 = Constants.part3Task612_2;
+                mPart3 = Constants.part3Task612_3;
+                mBigTextFrame1 = "Gifts for children";
+                mBigTextFrame2 = "Attitudes to gifts";
+                mBigTextFrame3 = "Commercial aspects of gift giving";
                 break;
             default:
                 Log.d("taras", "default");
-                result = Constants.part1Frame1Home;
-                mBigTextFrame = "Home";
+                mPart1 = Constants.part3Task612_1;
+                mPart2 = Constants.part3Task612_2;
+                mPart3 = Constants.part3Task612_3;
+                mBigTextFrame1 = "Gifts for children";
+                mBigTextFrame2 = "Attitudes to gifts";
+                mBigTextFrame3 = "Commercial aspects of gift giving";
                 break;
         }
     }

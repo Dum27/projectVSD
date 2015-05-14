@@ -46,7 +46,7 @@ public class IntroThirdTestFragment extends Fragment implements View.OnClickList
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.buttonFloat_intro:
+            case R.id.buttonFloat_intro_test3:
                 if (during_the_test) {
                     duringTheIntro();
                     during_the_test = false;
