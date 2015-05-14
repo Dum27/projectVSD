@@ -53,7 +53,7 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:text="Topic"
-                    android:id="@+id/textView702"
+                    android:id="@+id/topic_test2"
                     android:textStyle="bold"
                     android:background="#FFA4C904"
                     android:textSize="28sp" />
@@ -62,7 +62,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Describe a person"
-                    android:id="@+id/textView712"
+                    android:id="@+id/text_test2"
                     android:layout_marginTop="10dp" />
             </LinearLayout>
 

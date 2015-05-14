@@ -17,7 +17,7 @@
     <string name="validation_username">You must enter valid email</string>
     <string name="validation_username_length">Not valid length</string>
     <string name="error_wrong_email">You input wrong email address</string>
-    <string name="error_wrong_password">You input wrong password</string>
+    <string name="error_wrong_password">Password length must be 6 or more. Must contain symbols and numeric</string>
     <string name="check_download_audio">check_download_audio</string>
     <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
     <string name="banner_interstitial_ad">ca-app-pub-3940256099942544/1033173712</string>

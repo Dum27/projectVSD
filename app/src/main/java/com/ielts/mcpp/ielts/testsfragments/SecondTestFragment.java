@@ -22,6 +22,7 @@ import android.widget.TextView;
 
 import com.gc.materialdesign.views.ButtonFloat;
 import com.gc.materialdesign.views.ButtonFloatSmall;
+import com.github.lassana.recorder.Mp4ParserWrapper;
 import com.ielts.mcpp.ielts.MainActivity;
 import com.ielts.mcpp.ielts.R;
 import com.ielts.mcpp.ielts.utils.LoadAds;
@@ -48,13 +49,19 @@ public class SecondTestFragment extends Fragment implements View.OnClickListener
     private MediaPlayer mediaPlayer;
     private MediaRecorder mediaRecorder;
     private String mTestFolderName = "ielts_tests";
-    private String mTestFolderPath;
-    private String mQuestionsPath;
+    private String mTestFolderPath = Environment.getExternalStorageDirectory() + "/ielts_tests";
+    private String mQuestionsPath = Environment.getExternalStorageDirectory() + "/questions/";
     private String mCurFileName;
 
     private TextView mTimer;
     private TextView mTopic;
     private TextView mBigText;
+
+    String currentFileName;
+    Handler handler;
+    Runnable runnable;
+    boolean isRecording = false;
+    ArrayList<String> listOfAudio;
 
 
 
@@ -63,13 +70,6 @@ public class SecondTestFragment extends Fragment implements View.OnClickListener
         super.onCreate(savedInstanceState);
         interstitialAds = new LoadInterstitialAds(getActivity());
     }
-
-
-    String currentFileName;
-    Handler handler;
-    Runnable runnable;
-    boolean isRecording = false;
-    TextView mTimer;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -80,23 +80,104 @@ public class SecondTestFragment extends Fragment implements View.OnClickListener
         mMicBtn = (ButtonFloatSmall) view.findViewById(R.id.buttonFloatSmall2);
         mStopBtn = (ButtonFloat) view.findViewById(R.id.buttonFloat2);
         mTimer = (TextView) view.findViewById(R.id.timer2);
+        mTopic = (TextView) view.findViewById(R.id.topic_test2);
+        mBigText = (TextView) view.findViewById(R.id.text_test2);
         mStopBtn.setBackgroundColor(0xFFA4C904);
         mStopBtn.setRippleColor(0xFF98B606);
         mStopBtn.setOnClickListener(this);
+        mCurFileName = getNextFileName();
         ((MainActivity) this.getActivity()).setPageTitle("Part 2");
         ((MainActivity) this.getActivity()).setPageColor(0xFFA4C904, Color.BLACK);
-        runnable = new Runnable() {
-            @Override
-            public void run() {
-                changeColor();
-                handler.postDelayed(this, 2000);
-            }
-        };
+        listOfAudio = new ArrayList<>();
         handler = new Handler();
         handler.postDelayed(runnable, 100);
-        new CountDownTimer(300000, 1000) {
+        final int timeToTest = 300000;
+        final int delta = 1000;
+        new CountDownTimer(timeToTest, 1000) {
+            int timeDelta = timeToTest;
 
             public void onTick(long millisUntilFinished) {
+                //Intro 1   14 seconds
+                if (timeToTest - 1000 < millisUntilFinished) {
+                    Log.d("Jack", String.valueOf(timeDelta));
+                    setBtnRecordingOff();
+                    playQuestion(mQuestionsPath + "part2-intro.mp4");
+                    listOfAudio.add(mQuestionsPath + "part2-intro.mp4");
+                }
+                //Intro 2   8 seconds
+                if (timeToTest - 16000 < millisUntilFinished && millisUntilFinished < timeToTest - 15000) {
+                    timeDelta -= 16000;
+                    setBtnRecordingOff();
+                    playQuestion(mQuestionsPath + "part2-intro-2.mp4");
+                    listOfAudio.add(mQuestionsPath + "part2-intro-2.mp4");
+                    Log.d("Jack", String.valueOf(timeDelta));
+                }
+                //Speaking now Answer 13 seconds
+                if (timeToTest - 16000 - 9000 < millisUntilFinished && millisUntilFinished < timeToTest - 16000 - 8000) {
+                    timeDelta -= 9000;
+                    setBtnRecordingOff();
+                    playQuestion(mQuestionsPath + "part2-longturn-start.mp4");
+                    listOfAudio.add(mQuestionsPath + "part2-longturn-start.mp4");
+                }
+
+                // Candidate long turn 120 seconds
+                if (timeToTest - 16000 - 9000 - 14000 < millisUntilFinished && millisUntilFinished  < timeToTest - 16000 - 9000 - 13000) {
+                    timeDelta -= 13000;
+                    recordStart(mTestFolderPath + "part2-answ1.mp4");
+                    setBtnRecordingOn();
+                    listOfAudio.add(mTestFolderPath + "part2-answ1.mp4");
+                }
+                //Thanks you  5 seconds
+                if (timeToTest - 16000 - 9000 - 14000 - 121000 < millisUntilFinished && millisUntilFinished < timeToTest - 16000 - 9000 - 14000 - 120000) {
+                    timeDelta -= 121000;
+                    recordStop();
+                    setBtnRecordingOn();
+                    setBtnRecordingOff();
+                    playQuestion(mQuestionsPath + "part2-thanks-after-fuqs.mp4");
+                    listOfAudio.add(mQuestionsPath + "part2-thanks-after-fuqs.mp4");
+                }
+                //Question 1  3 seconds
+                if (timeToTest - 16000 - 9000 - 14000 - 121000 - 6000 < millisUntilFinished && millisUntilFinished <
+                        timeToTest - 16000 - 9000 - 14000 - 121000 - 5000) {
+                    timeDelta -= 6000;
+                    setBtnRecordingOff();
+                    playQuestion(mQuestionsPath + "part2-task 605-fuq1.mp4");
+                    listOfAudio.add(mQuestionsPath + "part2-task 605-fuq1.mp4");
+                }
+                //Answer 2 5 seconds
+                if (timeToTest - 16000 - 9000 - 14000 - 121000 - 6000 - 4000 <
+                        millisUntilFinished && millisUntilFinished < timeToTest - 16000 - 9000 - 14000 - 121000 - 6000 - 3000) {
+                    timeDelta -= 4000;
+                    recordStart(mTestFolderPath + "part2-answ2.mp4");
+                    setBtnRecordingOn();
+                    listOfAudio.add(mTestFolderPath+ "part2-answ2.mp4");
+                }
+                //Question 2   3 seconds
+                if (timeToTest - 16000 - 9000 - 14000 - 121000 - 6000 - 4000 - 6000 < millisUntilFinished && millisUntilFinished <
+                        timeToTest - 16000 - 9000 - 14000 - 121000 - 6000 - 4000 - 5000) {
+                    timeDelta -= 6000;
+                    recordStop();
+                    setBtnRecordingOff();
+                    playQuestion(mQuestionsPath + "part2-task 605-fuq2.mp4");
+                    listOfAudio.add(mQuestionsPath + "part2-task 605-fuq2.mp4");
+                }
+                //Answer 3 5 seconds
+                if (timeToTest - 16000 - 9000 - 14000 - 121000 - 6000 - 4000 - 6000 - 4000 < millisUntilFinished && millisUntilFinished <
+                        timeToTest - 16000 - 9000 - 14000 - 121000 - 6000 - 4000 - 6000 - 3000) {
+                    timeDelta -= 4000;
+                    recordStart(mTestFolderPath + "part2-answ3.mp4");
+                    setBtnRecordingOn();
+                    listOfAudio.add(mTestFolderPath + "part2-answ3.mp4");
+                }
+
+                //End
+                if (timeToTest - 16000 - 9000 - 14000 - 121000 - 6000 - 4000 - 6000 - 4000 - 6000 < millisUntilFinished && millisUntilFinished <
+                        timeToTest - 16000 - 9000 - 14000 - 121000 - 6000 - 4000 - 6000 - 4000 - 5000) {
+                    recordStop();
+                    setBtnRecordingOff();
+//                    playQuestion(mQuestionsPath + "intro-frame-s1.mp4");
+                    new MergeTask(getActivity()).execute(listOfAudio);
+                }
                 String v = String.format("%02d", millisUntilFinished / 60000);
                 int va = (int) ((millisUntilFinished % 60000) / 1000);
                 mTimer.setText(v + ":" + String.format("%02d", va));
@@ -106,6 +187,8 @@ public class SecondTestFragment extends Fragment implements View.OnClickListener
                 mTimer.setText("00:00");
             }
         }.start();
+
+        introductoryFrame();
         new LoadAds(view, R.id.adViewSecondTest);
         return view;
     }
