@@ -2,10 +2,13 @@ package com.ielts.mcpp.ielts.adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.ielts.mcpp.ielts.R;
 
@@ -17,6 +20,8 @@ import java.util.List;
 public class MyTestsRecyclerAdapter extends RecyclerView.Adapter<MyTestsRecyclerAdapter.ViewHolder> {
     private List<String> mDataset;
     Context context;
+    //    private final View.OnClickListener mOnClickListener = new MyOnClickListener();
+    RecyclerView mRecyclerView;
 
     // Provide a reference to the views for each data item
 // Complex data items may need more than one view per item, and
@@ -24,6 +29,7 @@ public class MyTestsRecyclerAdapter extends RecyclerView.Adapter<MyTestsRecycler
     public static class ViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
         public TextView mTextView;
+
         public ViewHolder(View v) {
             super(v);
             mTextView = (TextView) v.findViewById(R.id.text_test);
@@ -38,11 +44,9 @@ public class MyTestsRecyclerAdapter extends RecyclerView.Adapter<MyTestsRecycler
 
     // Create new views (invoked by the layout manager)
     @Override
-    public MyTestsRecyclerAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,   int viewType) {
-// create a new view
+    public MyTestsRecyclerAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(context).inflate(R.layout.recycler_list_item_my_tests, parent, false);
-// set the view's size, margins, paddings and layout parameters
-
+        mRecyclerView = (RecyclerView) v.findViewById(R.id.my_recycler_view);
         ViewHolder vh = new ViewHolder(v);
         return vh;
 
@@ -62,4 +66,14 @@ public class MyTestsRecyclerAdapter extends RecyclerView.Adapter<MyTestsRecycler
     public int getItemCount() {
         return mDataset.size();
     }
+
+    //    View.OnClickListener MyOnClickListener = new View.OnClickListener() {
+//        @Override
+//        public void onClick(View v) {
+//            int itemPosition = mRecyclerView.getChildPosition(v);
+//            String item = mDataset.get(itemPosition);
+//            Toast.makeText(context, item, Toast.LENGTH_LONG).show();
+//        }
+//    };
+
 }
