@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.media.RingtoneManager;
 import android.net.Uri;
+import android.os.Environment;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
@@ -49,8 +50,8 @@ public class AudioSend {
         for (int i = 0; i < 3; i++) {
             try {
                 data = ByteStreams.toByteArray(new FileInputStream(
-//                        Environment.getExternalStorageDirectory() + "/" + audioFilesPath[i]));     on Release
-                          audioFilesPath[i]));
+                       audioFilesPath[i]));     //on Release
+//                          audioFilesPath[i]));
                 file = new ParseFile(dateNow + "_part" + i + ".mp4", data);
                 file.saveInBackground();
                 jobApplication.put(audioFields[i], file);
