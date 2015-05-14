@@ -158,6 +158,7 @@ public static String[] part2Intro = {
 public static String[] part3EndOfTestFolder = {
         "part3-end-of-test-outro-and-promo.mp4",
             "test-intro-3-examiner-number.mp4"};
+
     public static String[] part3Task605_1 = {
             "P3-task 605-intro-to-consumer-products.mp4",
             "part3-task 605.1-q1.mp4",
@@ -173,6 +174,8 @@ public static String[] part3EndOfTestFolder = {
             "part3-task 605.3-q1.mp4",
             "part3-task 605.3-q2.mp4",
             "part3-task 605.3-q3.mp4"};
+
+
     public static String[] part3Task606_1 = {
             "P3-task 606-intro-family-decisions.mp4",
             "part3-task 606.1-q1.mp4",
@@ -188,6 +191,8 @@ public static String[] part3EndOfTestFolder = {
             "part3-task 606.3-q1.mp4",
             "part3-task 606.3-q2.mp4",
             "part3-task 606.3-q3.mp4"};
+
+
     public static String[] part3Task607_1 = {
             "P3-task 607-intro-day-to-day-planning.mp4",
             "part3-task 607.1-q1.mp4",
@@ -203,6 +208,8 @@ public static String[] part3EndOfTestFolder = {
             "part3-task 607.3-q1.mp4",
             "part3-task 607.3-q2.mp4",
             "part3-task 607.3-q3.mp4"};
+
+
     public static String[] part3Task608_1 = {
             "P3-task 608-intro-s-com-skills.mp4",
             "part3-task 608.1-q1.mp4",
@@ -218,6 +225,8 @@ public static String[] part3EndOfTestFolder = {
             "part3-task 608.3-q1.mp4",
             "part3-task 608.3-q2.mp4",
             "part3-task 608.3-q3.mp4"};
+
+
     public static String[] part3Task609_1 = {
             "P3-task 609-intro-films-real-people.mp4",
             "part3-task 609.1-q1.mp4",
@@ -233,6 +242,8 @@ public static String[] part3EndOfTestFolder = {
             "part3-task 609.3-q1.mp4",
             "part3-task 609.3-q2.mp4",
             "part3-task 609.3-q3.mp4"};
+
+
     public static String[] part3Task610_1 = {
             "P3-task 610-intro-cars-and-society.mp4",
             "part3-task 610.1-q1.mp4",
@@ -248,6 +259,8 @@ public static String[] part3EndOfTestFolder = {
             "part3-task 610.3-q1.mp4",
             "part3-task 610.3-q2.mp4",
             "part3-task 610.3-q3.mp4"};
+
+
     public static String[] part3Task611_1 = {
             "P3-task 611-intro-parents-help.mp4",
             "part3-task 611.1-q1.mp4",
@@ -263,6 +276,8 @@ public static String[] part3EndOfTestFolder = {
             "part3-task 611.3-q1.mp4",
             "part3-task 611.3-q2.mp4",
             "part3-task 611.3-q3.mp4"};
+
+
     public static String[] part3Task612_1 = {
             "P3-task 612-intro-gifts-for-children.mp4",
             "part3-task 612.1-q1.mp4",
