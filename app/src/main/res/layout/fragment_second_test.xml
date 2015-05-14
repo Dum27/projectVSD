@@ -28,8 +28,32 @@
                 android:layout_width="fill_parent"
                 android:layout_height="0dp"
                 android:layout_weight="3"
-                android:gravity="center_vertical|right"
-                android:padding="20dp">
+                android:gravity="right"
+                android:paddingRight="20dp"
+                android:paddingTop="5dp"
+                android:paddingLeft="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="Topic"
+                    android:id="@+id/topic_test2"
+                    android:textStyle="bold"
+                    android:background="#FFA4C904"
+                    android:textSize="28sp"
+                    android:layout_gravity="left" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="New Text"
+                    android:id="@+id/topic_text"
+                    android:layout_gravity="left"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="70dp"
+                    android:textColor="#ff000000"
+                    android:background="#4e717171" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -47,16 +71,6 @@
                 android:layout_weight="4"
                 android:gravity="left"
                 android:padding="20dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="Topic"
-                    android:id="@+id/topic_test2"
-                    android:textStyle="bold"
-                    android:background="#FFA4C904"
-                    android:textSize="28sp" />
 
                 <TextView
                     android:layout_width="wrap_content"

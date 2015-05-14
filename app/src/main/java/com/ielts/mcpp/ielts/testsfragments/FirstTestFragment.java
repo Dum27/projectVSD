@@ -400,7 +400,7 @@ public class FirstTestFragment extends Fragment implements View.OnClickListener 
         String date = new SimpleDateFormat("dd-MM-yy_HH-mm").format(gregorianCalendar.getTime());
         return Environment.getExternalStorageDirectory()
                 + File.separator + mTestFolderName
-                + File.separator + date
+                + File.separator + "merge_T1_" + date
                 + ".mp4";
     }
 
@@ -417,6 +417,7 @@ public class FirstTestFragment extends Fragment implements View.OnClickListener 
         protected void onPreExecute() {
             super.onPreExecute();
             progressDialog = new ProgressDialog(context);
+            progressDialog.setCancelable(false);
             progressDialog.show();
         }
 

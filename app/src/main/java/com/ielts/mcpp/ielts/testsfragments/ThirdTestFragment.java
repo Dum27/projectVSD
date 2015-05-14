@@ -415,6 +415,128 @@ public class ThirdTestFragment extends Fragment implements View.OnClickListener 
             mediaRecorder.stop();
         }
     }
+
+    //    private String[] setRandomFrame1() {
+//        String[] result = null;
+//        Random random = new Random();
+//        int rand = random.nextInt(6) + 1;
+//
+//        Log.d("taras", "rand :" + rand);
+//        switch (rand) {
+//            case 1:
+//                Log.d("taras", "case 1");
+//                result = Constants.part1Frame1Home;
+//                mBigTextFrame1 = "Home";
+//                break;
+//            case 2:
+//                Log.d("taras", "case 2");
+//                result = Constants.part1Frame1Home2;
+//                mBigTextFrame1 = "Home";
+//                break;
+//            case 3:
+//                Log.d("taras", "case 3");
+//                result = Constants.part1Frame2Study;
+//                mBigTextFrame1 = "Study";
+//                break;
+//            case 4:
+//                Log.d("taras", "case 4");
+//                result = Constants.part1Frame2Study2;
+//                mBigTextFrame1 = "Study";
+//                break;
+//            case 5:
+//                Log.d("taras", "case 5");
+//                result = Constants.part1Frame2Work;
+//                mBigTextFrame1 = "Work";
+//                break;
+//            case 6:
+//                Log.d("taras", "case 6");
+//                result = Constants.part1Frame2Work2;
+//                mBigTextFrame1 = "Work";
+//                break;
+//            default:
+//                Log.d("taras", "default");
+//                result = Constants.part1Frame1Home;
+//                mBigTextFrame1 = "Home";
+//                break;
+//        }
+//        return result;
+//    }
+//
+//    private String[] setRandomFrame2() {
+//        String[] result = null;
+//        int rand = new Random().nextInt(6) + 1;
+//        switch (rand) {
+//            case 1:
+//                result = Constants.part1Frame3PlacesOfEntertainment;
+//                mBigTextFrame2 = "Places of Entertainment";
+//                break;
+//            case 2:
+//                result = Constants.part1Frame4Weather;
+//                mBigTextFrame2 = "Weather";
+//                break;
+//            case 3:
+//                result = Constants.part1Frame5Internet;
+//                mBigTextFrame2 = "Internet";
+//                break;
+//            case 4:
+//                result = Constants.part1Frame6Cards;
+//                mBigTextFrame2 = "Cards";
+//                break;
+//            case 5:
+//                result = Constants.part1Frame7Cards;
+//                mBigTextFrame2 = "Cards";
+//                break;
+//            case 6:
+//                result = Constants.part1Frame8Museums;
+//                mBigTextFrame2 = "Museums";
+//                break;
+//            default:
+//                result = Constants.part1Frame3PlacesOfEntertainment;
+//                mBigTextFrame2 = "Places of Entertainment";
+//                break;
+//        }
+//        return result;
+//    }
+//
+//    private String[] setRandomFrame3() {
+//        String[] result = null;
+//        int rand = new Random().nextInt(6) + 1;
+//        switch (rand) {
+//            case 1:
+//                result = Constants.part1Frame3PlacesOfEntertainment;
+//                mBigTextFrame3 = "Places of Entertainment";
+//                break;
+//            case 2:
+//                result = Constants.part1Frame4Weather;
+//                mBigTextFrame3 = "Weather";
+//                break;
+//            case 3:
+//                result = Constants.part1Frame5Internet;
+//                mBigTextFrame3 = "Internet";
+//                break;
+//            case 4:
+//                result = Constants.part1Frame6Cards;
+//                mBigTextFrame3 = "Cards";
+//                break;
+//            case 5:
+//                result = Constants.part1Frame7Cards;
+//                mBigTextFrame3 = "Cards";
+//                break;
+//            case 6:
+//                result = Constants.part1Frame8Museums;
+//                mBigTextFrame3 = "Museums";
+//                break;
+//            default:
+//                result = Constants.part1Frame3PlacesOfEntertainment;
+//                mBigTextFrame3 = "Places of Entertainment";
+//                break;
+//        }
+//        // check for not using the same audios as in additional_frame1
+//        if (result[0].equals(mAdditionalFrame2[0])) {
+//            return setRandomFrame1();
+//        }
+//        return result;
+//    }
     @Override
     public void onClick(View v) {
 //        switch(v.getId()){
