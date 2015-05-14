@@ -28,10 +28,7 @@ import com.ielts.mcpp.ielts.utils.LoadAds;
 import com.ielts.mcpp.ielts.utils.LoadInterstitialAds;
 
 import java.io.File;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Random;
 
@@ -273,12 +270,12 @@ public class SecondTestFragment extends Fragment implements View.OnClickListener
             fileDir.mkdirs();
         }
         //build filename
-        GregorianCalendar gregorianCalendar = new GregorianCalendar();
-        gregorianCalendar.setTime(new Date(System.currentTimeMillis()));
-        String date = new SimpleDateFormat("dd-MM-yy_HH-mm").format(gregorianCalendar.getTime());
+//        GregorianCalendar gregorianCalendar = new GregorianCalendar();
+//        gregorianCalendar.setTime(new Date(System.currentTimeMillis()));
+//        String date = new SimpleDateFormat("dd-MM-yy_HH-mm").format(gregorianCalendar.getTime());
         return Environment.getExternalStorageDirectory()
                 + File.separator + mTestFolderName
-                + File.separator + date
+                + File.separator + "merge_T2_" + MainActivity.sTestFileDate
                 + ".mp4";
     }
 

@@ -19,16 +19,15 @@ import android.widget.TextView;
 import com.gc.materialdesign.views.ButtonFloat;
 import com.gc.materialdesign.views.ButtonFloatSmall;
 import com.github.lassana.recorder.Mp4ParserWrapper;
+import com.ielts.mcpp.ielts.Constants;
 import com.ielts.mcpp.ielts.MainActivity;
 import com.ielts.mcpp.ielts.R;
 import com.ielts.mcpp.ielts.utils.LoadAds;
 
 import java.io.File;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.Random;
 
 //import com.github.lassana.recorder.AudioRecorder;
 
@@ -40,6 +39,7 @@ public class ThirdTestFragment extends Fragment implements View.OnClickListener 
     //    private AudioRecorder mAudioRecorder;
     ButtonFloatSmall mMicBtn;
     ButtonFloat mStopBtn;
+    private String mBigTextFrame;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -287,21 +287,21 @@ public class ThirdTestFragment extends Fragment implements View.OnClickListener 
         ((MainActivity) this.getActivity()).setPageTitle("Part3 - Frame 1");
         mTopic.setVisibility(View.VISIBLE);
         mTopic.setText("Topic");
-        mBigText.setText("Consumer products");
+        mBigText.setText(mBigTextFrame);
     }
 
     private void part_2() {
         ((MainActivity) this.getActivity()).setPageTitle("Part3 - Frame 2");
         mTopic.setVisibility(View.VISIBLE);
         mTopic.setText("Topic");
-        mBigText.setText("Online shopping");
+        mBigText.setText(mBigTextFrame);
     }
 
     private void part_3() {
         ((MainActivity) this.getActivity()).setPageTitle("Part3 - Frame 3");
         mTopic.setVisibility(View.VISIBLE);
         mTopic.setText("Topic");
-        mBigText.setText("Consumerism and the environment");
+        mBigText.setText(mBigTextFrame);
     }
 
     private void playQuestion(String fileName) {
@@ -325,12 +325,12 @@ public class ThirdTestFragment extends Fragment implements View.OnClickListener 
             fileDir.mkdirs();
         }
         //build filename
-        GregorianCalendar gregorianCalendar = new GregorianCalendar();
-        gregorianCalendar.setTime(new Date(System.currentTimeMillis()));
-        String date = new SimpleDateFormat("dd-MM-yy_HH-mm").format(gregorianCalendar.getTime());
+//        GregorianCalendar gregorianCalendar = new GregorianCalendar();
+//        gregorianCalendar.setTime(new Date(System.currentTimeMillis()));
+//        String date = new SimpleDateFormat("dd-MM-yy_HH-mm").format(gregorianCalendar.getTime());
         return Environment.getExternalStorageDirectory()
                 + File.separator + mTestFolderName
-                + File.separator + date
+                + File.separator + "merge_T3_" + MainActivity.sTestFileDate
                 + ".mp4";
     }
 
@@ -416,127 +416,53 @@ public class ThirdTestFragment extends Fragment implements View.OnClickListener 
         }
     }
 
-    //    private String[] setRandomFrame1() {
-//        String[] result = null;
-//        Random random = new Random();
-//        int rand = random.nextInt(6) + 1;
-//
-//        Log.d("taras", "rand :" + rand);
-//        switch (rand) {
-//            case 1:
-//                Log.d("taras", "case 1");
-//                result = Constants.part1Frame1Home;
-//                mBigTextFrame1 = "Home";
-//                break;
-//            case 2:
-//                Log.d("taras", "case 2");
-//                result = Constants.part1Frame1Home2;
-//                mBigTextFrame1 = "Home";
-//                break;
-//            case 3:
-//                Log.d("taras", "case 3");
-//                result = Constants.part1Frame2Study;
-//                mBigTextFrame1 = "Study";
-//                break;
-//            case 4:
-//                Log.d("taras", "case 4");
-//                result = Constants.part1Frame2Study2;
-//                mBigTextFrame1 = "Study";
-//                break;
-//            case 5:
-//                Log.d("taras", "case 5");
-//                result = Constants.part1Frame2Work;
-//                mBigTextFrame1 = "Work";
-//                break;
-//            case 6:
-//                Log.d("taras", "case 6");
-//                result = Constants.part1Frame2Work2;
-//                mBigTextFrame1 = "Work";
-//                break;
-//            default:
-//                Log.d("taras", "default");
-//                result = Constants.part1Frame1Home;
-//                mBigTextFrame1 = "Home";
-//                break;
-//        }
-//        return result;
-//    }
-//
-//    private String[] setRandomFrame2() {
-//        String[] result = null;
-//        int rand = new Random().nextInt(6) + 1;
-//        switch (rand) {
-//            case 1:
-//                result = Constants.part1Frame3PlacesOfEntertainment;
-//                mBigTextFrame2 = "Places of Entertainment";
-//                break;
-//            case 2:
-//                result = Constants.part1Frame4Weather;
-//                mBigTextFrame2 = "Weather";
-//                break;
-//            case 3:
-//                result = Constants.part1Frame5Internet;
-//                mBigTextFrame2 = "Internet";
-//                break;
-//            case 4:
-//                result = Constants.part1Frame6Cards;
-//                mBigTextFrame2 = "Cards";
-//                break;
-//            case 5:
-//                result = Constants.part1Frame7Cards;
-//                mBigTextFrame2 = "Cards";
-//                break;
-//            case 6:
-//                result = Constants.part1Frame8Museums;
-//                mBigTextFrame2 = "Museums";
-//                break;
-//            default:
-//                result = Constants.part1Frame3PlacesOfEntertainment;
-//                mBigTextFrame2 = "Places of Entertainment";
-//                break;
-//        }
-//        return result;
-//    }
-//
-//    private String[] setRandomFrame3() {
-//        String[] result = null;
-//        int rand = new Random().nextInt(6) + 1;
-//        switch (rand) {
-//            case 1:
-//                result = Constants.part1Frame3PlacesOfEntertainment;
-//                mBigTextFrame3 = "Places of Entertainment";
-//                break;
-//            case 2:
-//                result = Constants.part1Frame4Weather;
-//                mBigTextFrame3 = "Weather";
-//                break;
-//            case 3:
-//                result = Constants.part1Frame5Internet;
-//                mBigTextFrame3 = "Internet";
-//                break;
-//            case 4:
-//                result = Constants.part1Frame6Cards;
-//                mBigTextFrame3 = "Cards";
-//                break;
-//            case 5:
-//                result = Constants.part1Frame7Cards;
-//                mBigTextFrame3 = "Cards";
-//                break;
-//            case 6:
-//                result = Constants.part1Frame8Museums;
-//                mBigTextFrame3 = "Museums";
-//                break;
-//            default:
-//                result = Constants.part1Frame3PlacesOfEntertainment;
-//                mBigTextFrame3 = "Places of Entertainment";
-//                break;
-//        }
-//        // check for not using the same audios as in additional_frame1
-//        if (result[0].equals(mAdditionalFrame2[0])) {
-//            return setRandomFrame1();
-//        }
-//        return result;
-//    }
+    private void setRandomFrame1() {
+        String[] result = null;
+        Random random = new Random();
+        int rand = MainActivity.sTextTask;
+
+        Log.d("taras", "rand :" + rand);
+        switch (rand) {
+            case 605:
+                result = Constants.part1Frame1Home;
+                mBigTextFrame = "Home";
+                break;
+            case 606:
+                result = Constants.part1Frame1Home2;
+                mBigTextFrame = "Home";
+                break;
+            case 607:
+                result = Constants.part1Frame2Study;
+                mBigTextFrame = "Study";
+                break;
+            case 608:
+                result = Constants.part1Frame2Study2;
+                mBigTextFrame = "Study";
+                break;
+            case 609:
+                result = Constants.part1Frame2Work;
+                mBigTextFrame = "Work";
+                break;
+            case 610:
+                result = Constants.part1Frame2Work2;
+                mBigTextFrame = "Work";
+                break;
+            case 611:
+                result = Constants.part1Frame2Work2;
+                mBigTextFrame = "Work";
+                break;
+            case 612:
+                result = Constants.part1Frame2Work2;
+                mBigTextFrame = "Work";
+                break;
+            default:
+                Log.d("taras", "default");
+                result = Constants.part1Frame1Home;
+                mBigTextFrame = "Home";
+                break;
+        }
+    }
+
     @Override
     public void onClick(View v) {
 //        switch(v.getId()){
