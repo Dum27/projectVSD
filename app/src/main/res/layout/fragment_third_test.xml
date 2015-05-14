@@ -53,7 +53,7 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:text="Topic"
-                    android:id="@+id/textView703"
+                    android:id="@+id/topic_test3"
                     android:textStyle="bold"
                     android:background="#FFDD230D"
                     android:textSize="28sp" />
@@ -62,7 +62,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Spoken communication skills"
-                    android:id="@+id/textView713"
+                    android:id="@+id/big_text_test3"
                     android:layout_marginTop="10dp" />
             </LinearLayout>
 
