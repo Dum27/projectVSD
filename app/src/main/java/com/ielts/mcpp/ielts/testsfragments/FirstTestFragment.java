@@ -19,6 +19,7 @@ import android.widget.TextView;
 import com.gc.materialdesign.views.ButtonFloat;
 import com.gc.materialdesign.views.ButtonFloatSmall;
 import com.github.lassana.recorder.Mp4ParserWrapper;
+import com.ielts.mcpp.ielts.Constants;
 import com.ielts.mcpp.ielts.MainActivity;
 import com.ielts.mcpp.ielts.R;
 
@@ -28,6 +29,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.Random;
 
 
 public class FirstTestFragment extends Fragment implements View.OnClickListener {
@@ -36,6 +38,7 @@ public class FirstTestFragment extends Fragment implements View.OnClickListener 
     private ButtonFloat mStopBtn;
     private MediaPlayer mediaPlayer;
     private MediaRecorder mediaRecorder;
+
     private String mTestFolderName = "ielts_tests";
     private String mTestFolderPath;
     private String mQuestionsPath;
@@ -45,7 +48,17 @@ public class FirstTestFragment extends Fragment implements View.OnClickListener 
     private TextView mTopic;
     private TextView mBigText;
 
+    String[] mCompulsoryFrame;
+    String[] mAdditionalFrame2;
+    String[] mAdditionalFrame3;
+
     ArrayList<String> listOfAudio;
+
+    private String mBigTextFrame1;
+    private String mBigTextFrame2;
+    private String mBigTextFrame3;
+
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -63,11 +76,16 @@ public class FirstTestFragment extends Fragment implements View.OnClickListener 
         mTopic = (TextView) view.findViewById(R.id.topic_test1);
         mBigText = (TextView) view.findViewById(R.id.text_test1);
 
+
         mStopBtn.setBackgroundColor(0xFFF36C3B);
         mStopBtn.setRippleColor(0xF8D16F37);
         mStopBtn.setOnClickListener(this);
 
         mCurFileName = getNextFileName();
+
+        mCompulsoryFrame = setRandomCompulsoryFrame();
+        mAdditionalFrame2 = setRandomAdditionalFrame2();
+        mAdditionalFrame3 = setRandomAdditionalFrame3();
 
         mQuestionsPath = Environment.getExternalStorageDirectory()
                 + File.separator
@@ -150,14 +168,14 @@ public class FirstTestFragment extends Fragment implements View.OnClickListener 
                     Log.d("taras", "FRAME 1!!");
                     frame_1();
                     setBtnRecordingOff();
-                    playQuestion(mQuestionsPath + "part1-frame1-intro-home-1.mp4");
-                    listOfAudio.add(mTestFolderPath + "part1-frame1-intro-home-1.mp4");
+                    playQuestion(mQuestionsPath + mCompulsoryFrame[0]);
+                    listOfAudio.add(mTestFolderPath + mCompulsoryFrame[0]);
                 }
                 //question 3 seconds
                 if (251000 < millisUntilFinished && millisUntilFinished < 252000) {
                     setBtnRecordingOff();
-                    playQuestion(mQuestionsPath + "part1-home-q1.mp4");
-                    listOfAudio.add(mTestFolderPath + "part1-home-q1.mp4");
+                    playQuestion(mQuestionsPath + mCompulsoryFrame[1]);
+                    listOfAudio.add(mTestFolderPath + mCompulsoryFrame[1]);
                 }
                 //answer 18 seconds
                 if (248000 < millisUntilFinished && millisUntilFinished < 249000) {
@@ -170,8 +188,8 @@ public class FirstTestFragment extends Fragment implements View.OnClickListener 
                 if (228000 < millisUntilFinished && millisUntilFinished < 229000) {
                     recordStop();
                     setBtnRecordingOff();
-                    playQuestion(mQuestionsPath + "part1-home-q2.mp4");
-                    listOfAudio.add(mTestFolderPath + "part1-home-q2.mp4");
+                    playQuestion(mQuestionsPath + mCompulsoryFrame[2]);
+                    listOfAudio.add(mTestFolderPath + mCompulsoryFrame[2]);
                 }
                 //answer 18 seconds
                 if (222000 < millisUntilFinished && millisUntilFinished < 223000) {
@@ -183,8 +201,8 @@ public class FirstTestFragment extends Fragment implements View.OnClickListener 
                 if (203000 < millisUntilFinished && millisUntilFinished < 204000) {
                     recordStop();
                     setBtnRecordingOff();
-                    playQuestion(mQuestionsPath + "part1-home-q3.mp4");
-                    listOfAudio.add(mTestFolderPath + "part1-home-q3.mp4");
+                    playQuestion(mQuestionsPath + mCompulsoryFrame[3]);
+                    listOfAudio.add(mTestFolderPath + mCompulsoryFrame[3]);
                 }
                 //answer 18 seconds
                 if (196000 < millisUntilFinished && millisUntilFinished < 197000) {
@@ -200,14 +218,14 @@ public class FirstTestFragment extends Fragment implements View.OnClickListener 
                     recordStop();
                     frame_2();
                     setBtnRecordingOff();
-                    playQuestion(mQuestionsPath + "part1-frame8-intro.mp4");
-                    listOfAudio.add(mTestFolderPath + "part1-frame8-intro.mp4");
+                    playQuestion(mQuestionsPath + mAdditionalFrame2[0]);
+                    listOfAudio.add(mTestFolderPath + mAdditionalFrame2[0]);
                 }
                 //question 6 seconds
                 if (170000 < millisUntilFinished && millisUntilFinished < 171000) {
                     setBtnRecordingOff();
-                    playQuestion(mQuestionsPath + "part1-museums-fr8-q1.mp4");
-                    listOfAudio.add(mTestFolderPath + "part1-museums-fr8-q1.mp4");
+                    playQuestion(mQuestionsPath + mAdditionalFrame2[1]);
+                    listOfAudio.add(mTestFolderPath + mAdditionalFrame2[1]);
                 }
                 //answer 18 seconds
                 if (163000 < millisUntilFinished && millisUntilFinished < 164000) {
@@ -220,8 +238,8 @@ public class FirstTestFragment extends Fragment implements View.OnClickListener 
                 if (144000 < millisUntilFinished && millisUntilFinished < 145000) {
                     recordStop();
                     setBtnRecordingOff();
-                    playQuestion(mQuestionsPath + "part1-museums-fr8-q2.mp4");
-                    listOfAudio.add(mTestFolderPath + "part1-museums-fr8-q2.mp4");
+                    playQuestion(mQuestionsPath + mAdditionalFrame2[2]);
+                    listOfAudio.add(mTestFolderPath + mAdditionalFrame2[2]);
                 }
                 //answer 18 seconds
                 if (137000 < millisUntilFinished && millisUntilFinished < 138000) {
@@ -234,8 +252,8 @@ public class FirstTestFragment extends Fragment implements View.OnClickListener 
                 if (118000 < millisUntilFinished && millisUntilFinished < 119000) {
                     recordStop();
                     setBtnRecordingOff();
-                    playQuestion(mQuestionsPath + "part1-museums-fr8-q3.mp4");
-                    listOfAudio.add(mTestFolderPath + "part1-museums-fr8-q3.mp4");
+                    playQuestion(mQuestionsPath + mAdditionalFrame2[3]);
+                    listOfAudio.add(mTestFolderPath + mAdditionalFrame2[3]);
                 }
                 //answer 18 seconds
                 if (110000 < millisUntilFinished && millisUntilFinished < 111000) {
@@ -254,14 +272,14 @@ public class FirstTestFragment extends Fragment implements View.OnClickListener 
                     recordStop();
                     frame_3();
                     setBtnRecordingOff();
-                    playQuestion(mQuestionsPath + "part1-frame4-intro.mp4");
-                    listOfAudio.add(mTestFolderPath + "part1-frame4-intro.mp4");
+                    playQuestion(mQuestionsPath + mAdditionalFrame3[0]);
+                    listOfAudio.add(mTestFolderPath + mAdditionalFrame3[0]);
                 }
                 //question 6 seconds
                 if (85000 < millisUntilFinished && millisUntilFinished < 86000) {
                     setBtnRecordingOff();
-                    playQuestion(mQuestionsPath + "part1-weather-fr4-q1.mp4");
-                    listOfAudio.add(mTestFolderPath + "part1-weather-fr4-q1.mp4");
+                    playQuestion(mQuestionsPath + mAdditionalFrame3[1]);
+                    listOfAudio.add(mTestFolderPath + mAdditionalFrame3[1]);
                 }
                 //answer 18 seconds
                 if (78000 < millisUntilFinished && millisUntilFinished < 79000) {
@@ -274,8 +292,8 @@ public class FirstTestFragment extends Fragment implements View.OnClickListener 
                 if (59000 < millisUntilFinished && millisUntilFinished < 60000) {
                     recordStop();
                     setBtnRecordingOff();
-                    playQuestion(mQuestionsPath + "part1-weather-fr4-q2.mp4");
-                    listOfAudio.add(mTestFolderPath + "part1-weather-fr4-q2.mp4");
+                    playQuestion(mQuestionsPath + mAdditionalFrame3[2]);
+                    listOfAudio.add(mTestFolderPath + mAdditionalFrame3[2]);
                 }
                 //answer 18 seconds
                 if (52000 < millisUntilFinished && millisUntilFinished < 53000) {
@@ -288,8 +306,8 @@ public class FirstTestFragment extends Fragment implements View.OnClickListener 
                 if (33000 < millisUntilFinished && millisUntilFinished < 34000) {
                     recordStop();
                     setBtnRecordingOff();
-                    playQuestion(mQuestionsPath + "part1-weather-fr4-q3.mp4");
-                    listOfAudio.add(mTestFolderPath + "part1-weather-fr4-q3.mp4");
+                    playQuestion(mQuestionsPath + mAdditionalFrame3[3]);
+                    listOfAudio.add(mTestFolderPath + mAdditionalFrame3[3]);
                 }
                 //answer 18 seconds
                 if (26000 < millisUntilFinished && millisUntilFinished < 27000) {
@@ -340,21 +358,21 @@ public class FirstTestFragment extends Fragment implements View.OnClickListener 
         ((MainActivity) this.getActivity()).setPageTitle("Part1 - Frame 1");
         mTopic.setVisibility(View.VISIBLE);
         mTopic.setText("Topic");
-        mBigText.setText("Home");
+        mBigText.setText(mBigTextFrame1);
     }
 
     private void frame_2() {
         ((MainActivity) this.getActivity()).setPageTitle("Part1 - Frame 2");
         mTopic.setVisibility(View.VISIBLE);
         mTopic.setText("Topic");
-        mBigText.setText("Museums");
+        mBigText.setText(mBigTextFrame2);
     }
 
     private void frame_3() {
         ((MainActivity) this.getActivity()).setPageTitle("Part1 - Frame 3");
         mTopic.setVisibility(View.VISIBLE);
         mTopic.setText("Topic");
-        mBigText.setText("Weather");
+        mBigText.setText(mBigTextFrame3);
     }
 
     private void playQuestion(String fileName) {
@@ -478,5 +496,127 @@ public class FirstTestFragment extends Fragment implements View.OnClickListener 
         if (mediaRecorder != null) {
             mediaRecorder.stop();
         }
+    }
+
+    private String[] setRandomCompulsoryFrame() {
+        String[] result = null;
+        Random random = new Random();
+        int rand = random.nextInt(6) + 1;
+
+        Log.d("taras", "rand :" + rand);
+        switch (rand) {
+            case 1:
+                Log.d("taras", "case 1");
+                result = Constants.part1Frame1Home;
+                mBigTextFrame1 = "Home";
+                break;
+            case 2:
+                Log.d("taras", "case 2");
+                result = Constants.part1Frame1Home2;
+                mBigTextFrame1 = "Home";
+                break;
+            case 3:
+                Log.d("taras", "case 3");
+                result = Constants.part1Frame2Study;
+                mBigTextFrame1 = "Study";
+                break;
+            case 4:
+                Log.d("taras", "case 4");
+                result = Constants.part1Frame2Study2;
+                mBigTextFrame1 = "Study";
+                break;
+            case 5:
+                Log.d("taras", "case 5");
+                result = Constants.part1Frame2Work;
+                mBigTextFrame1 = "Work";
+                break;
+            case 6:
+                Log.d("taras", "case 6");
+                result = Constants.part1Frame2Work2;
+                mBigTextFrame1 = "Work";
+                break;
+            default:
+                Log.d("taras", "default");
+                result = Constants.part1Frame1Home;
+                mBigTextFrame1 = "Home";
+                break;
+        }
+        return result;
+    }
+
+    private String[] setRandomAdditionalFrame2() {
+        String[] result = null;
+        int rand = new Random().nextInt(6) + 1;
+        switch (rand) {
+            case 1:
+                result = Constants.part1Frame3PlacesOfEntertainment;
+                mBigTextFrame2 = "Places of Entertainment";
+                break;
+            case 2:
+                result = Constants.part1Frame4Weather;
+                mBigTextFrame2 = "Weather";
+                break;
+            case 3:
+                result = Constants.part1Frame5Internet;
+                mBigTextFrame2 = "Internet";
+                break;
+            case 4:
+                result = Constants.part1Frame6Cards;
+                mBigTextFrame2 = "Cards";
+                break;
+            case 5:
+                result = Constants.part1Frame7Cards;
+                mBigTextFrame2 = "Cards";
+                break;
+            case 6:
+                result = Constants.part1Frame8Museums;
+                mBigTextFrame2 = "Museums";
+                break;
+            default:
+                result = Constants.part1Frame3PlacesOfEntertainment;
+                mBigTextFrame2 = "Places of Entertainment";
+                break;
+        }
+        return result;
+    }
+
+    private String[] setRandomAdditionalFrame3() {
+        String[] result = null;
+        int rand = new Random().nextInt(6) + 1;
+        switch (rand) {
+            case 1:
+                result = Constants.part1Frame3PlacesOfEntertainment;
+                mBigTextFrame3 = "Places of Entertainment";
+                break;
+            case 2:
+                result = Constants.part1Frame4Weather;
+                mBigTextFrame3 = "Weather";
+                break;
+            case 3:
+                result = Constants.part1Frame5Internet;
+                mBigTextFrame3 = "Internet";
+                break;
+            case 4:
+                result = Constants.part1Frame6Cards;
+                mBigTextFrame3 = "Cards";
+                break;
+            case 5:
+                result = Constants.part1Frame7Cards;
+                mBigTextFrame3 = "Cards";
+                break;
+            case 6:
+                result = Constants.part1Frame8Museums;
+                mBigTextFrame3 = "Museums";
+                break;
+            default:
+                result = Constants.part1Frame3PlacesOfEntertainment;
+                mBigTextFrame3 = "Places of Entertainment";
+                break;
+        }
+        // check for not using the same audios as in additional_frame1
+        if (result[0].equals(mAdditionalFrame2[0])) {
+            return setRandomCompulsoryFrame();
+        }
+        return result;
     }
 }
