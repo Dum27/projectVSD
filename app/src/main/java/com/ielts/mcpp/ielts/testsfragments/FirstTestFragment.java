@@ -22,6 +22,8 @@ import com.github.lassana.recorder.Mp4ParserWrapper;
 import com.ielts.mcpp.ielts.Constants;
 import com.ielts.mcpp.ielts.MainActivity;
 import com.ielts.mcpp.ielts.R;
+import com.ielts.mcpp.ielts.utils.LoadAds;
+import com.ielts.mcpp.ielts.utils.LoadInterstitialAds;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -30,7 +32,6 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Random;
-
 
 public class FirstTestFragment extends Fragment implements View.OnClickListener {
 
@@ -50,6 +51,7 @@ public class FirstTestFragment extends Fragment implements View.OnClickListener 
 
     String[] mCompulsoryFrame;
     String[] mAdditionalFrame2;
+    LoadInterstitialAds interstitialAds;
     String[] mAdditionalFrame3;
 
     ArrayList<String> listOfAudio;
@@ -63,6 +65,7 @@ public class FirstTestFragment extends Fragment implements View.OnClickListener 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        interstitialAds = new LoadInterstitialAds(getActivity());
     }
 
     @Override
@@ -335,6 +338,7 @@ public class FirstTestFragment extends Fragment implements View.OnClickListener 
         countDownTimer.start();
 
         introductoryFrame();
+        new LoadAds(view, R.id.adViewFirstTest);
 
         return view;
     }
@@ -352,7 +356,7 @@ public class FirstTestFragment extends Fragment implements View.OnClickListener 
         mTopic.setVisibility(View.GONE);
         mBigText.setText(
                 "• Listen whilst the examiner introduces the test\n" +
-                "• The clock on the right will start to countdown when the test starts");
+                        "• The clock on the right will start to countdown when the test starts");
     }
 
 
@@ -438,6 +442,9 @@ public class FirstTestFragment extends Fragment implements View.OnClickListener 
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
             progressDialog.dismiss();
+            FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.container, new SecondTestFragment());
+            fragmentTransaction.commit();
         }
     }
 
@@ -454,7 +461,7 @@ public class FirstTestFragment extends Fragment implements View.OnClickListener 
                 FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.container, new SecondTestFragment());
                 fragmentTransaction.commit();
-
+                interstitialAds.show();
                 break;
             default:
                 break;

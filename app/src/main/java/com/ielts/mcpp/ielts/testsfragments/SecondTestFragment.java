@@ -1,5 +1,6 @@
 package com.ielts.mcpp.ielts.testsfragments;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
@@ -20,6 +21,7 @@ import android.widget.TextView;
 
 import com.gc.materialdesign.views.ButtonFloat;
 import com.gc.materialdesign.views.ButtonFloatSmall;
+import com.gc.materialdesign.widgets.Dialog;
 import com.github.lassana.recorder.Mp4ParserWrapper;
 import com.ielts.mcpp.ielts.Constants;
 import com.ielts.mcpp.ielts.MainActivity;
@@ -56,6 +58,7 @@ public class SecondTestFragment extends Fragment implements View.OnClickListener
     Handler handler;
     Runnable runnable;
     boolean isRecording = false;
+    boolean isFinish = false;
     ArrayList<String> listOfAudio;
 
     String[] longTurn;
@@ -89,8 +92,9 @@ public class SecondTestFragment extends Fragment implements View.OnClickListener
         listOfAudio = new ArrayList<>();
         handler = new Handler();
         handler.postDelayed(runnable, 100);
-        final int timeToTest = 300000;
+        final int timeToTest = 30000;
         final int delta = 1000;
+
 
         longTurn = setRandomFrame();
 
@@ -100,87 +104,136 @@ public class SecondTestFragment extends Fragment implements View.OnClickListener
             int timeDelta = timeToTest;
 
             public void onTick(long millisUntilFinished) {
-                //Intro 1   14 seconds
-                if (timeToTest - 1000 < millisUntilFinished) {
-                    Log.d("Jack", String.valueOf(timeDelta));
-                    setBtnRecordingOff();
-                    playQuestion(mQuestionsPath + "part2-intro.mp4");
-                    listOfAudio.add(mQuestionsPath + "part2-intro.mp4");
-                }
-                //Intro 2   8 seconds
-                if (timeToTest - 16000 < millisUntilFinished && millisUntilFinished < timeToTest - 15000) {
-                    timeDelta -= 16000;
-                    setBtnRecordingOff();
-                    playQuestion(mQuestionsPath + "part2-intro-2.mp4");
-                    listOfAudio.add(mQuestionsPath + "part2-intro-2.mp4");
-                    Log.d("Jack", String.valueOf(timeDelta));
-                }
+                if (!isFinish) {
+                    //Intro 1   14 seconds
+                    if (timeToTest - 1000 < millisUntilFinished) {
+                        Log.d("Jack", String.valueOf(timeDelta));
+                        setBtnRecordingOff();
+                        playQuestion(mQuestionsPath + "part2-intro.mp4");
+                        listOfAudio.add(mQuestionsPath + "part2-intro.mp4");
+                    }
+                    //Intro 2   8 seconds
+                    if (timeToTest - 16000 < millisUntilFinished && millisUntilFinished < timeToTest - 15000) {
+                        timeDelta -= 16000;
+                        setBtnRecordingOff();
+                        playQuestion(mQuestionsPath + "part2-intro-2.mp4");
+                        listOfAudio.add(mQuestionsPath + "part2-intro-2.mp4");
+                        Log.d("Jack", String.valueOf(timeDelta));
+                    }
+                    //Intro Unical   8 seconds
+                    if (timeToTest - 16000 - 9000 < millisUntilFinished && millisUntilFinished < timeToTest - 16000 - 8000) {
+                        timeDelta -= 16000;
+                        setBtnRecordingOff();
+                        playQuestion(mQuestionsPath + longTurn[0]);
+                        listOfAudio.add(mQuestionsPath + longTurn[0]);
+                        Log.d("Jack", String.valueOf(timeDelta));
+                    }
 
-                //Speaking now Answer 13 seconds
-                if (timeToTest - 16000 - 9000 < millisUntilFinished && millisUntilFinished < timeToTest - 16000 - 8000) {
-                    timeDelta -= 9000;
-                    setBtnRecordingOff();
-                    playQuestion(mQuestionsPath + "part2-longturn-start.mp4");
-                    listOfAudio.add(mQuestionsPath + "part2-longturn-start.mp4");
+                    String v = String.format("%02d", millisUntilFinished / 60000);
+                    int va = (int) ((millisUntilFinished % 60000) / 1000);
+                    mTimer.setText(v + ":" + String.format("%02d", va));
                 }
+            }
 
-                // Candidate long turn 120 seconds
-                if (timeToTest - 16000 - 9000 - 14000 < millisUntilFinished && millisUntilFinished  < timeToTest - 16000 - 9000 - 13000) {
-                    timeDelta -= 13000;
-                    recordStart(mTestFolderPath + "part2-answ1.mp4");
-                    setBtnRecordingOn();
-                    listOfAudio.add(mTestFolderPath + "part2-answ1.mp4");
-                }
-                //Thanks you  5 seconds
-                if (timeToTest - 16000 - 9000 - 14000 - 121000 < millisUntilFinished && millisUntilFinished < timeToTest - 16000 - 9000 - 14000 - 120000) {
-                    timeDelta -= 121000;
-                    recordStop();
-                    setBtnRecordingOn();
-                    setBtnRecordingOff();
-                    playQuestion(mQuestionsPath + "part2-thanks-after-fuqs.mp4");
-                    listOfAudio.add(mQuestionsPath + "part2-thanks-after-fuqs.mp4");
-                }
-                //Question 1  3 seconds
-                if (timeToTest - 16000 - 9000 - 14000 - 121000 - 6000 < millisUntilFinished && millisUntilFinished <
-                        timeToTest - 16000 - 9000 - 14000 - 121000 - 5000) {
-                    timeDelta -= 6000;
-                    setBtnRecordingOff();
-                    playQuestion(mQuestionsPath + longTurn[1]);
-                    listOfAudio.add(mQuestionsPath + longTurn[1]);
-                }
-                //Answer 2 5 seconds
-                if (timeToTest - 16000 - 9000 - 14000 - 121000 - 6000 - 4000 <
-                        millisUntilFinished && millisUntilFinished < timeToTest - 16000 - 9000 - 14000 - 121000 - 6000 - 3000) {
-                    timeDelta -= 4000;
-                    recordStart(mTestFolderPath + "part2-answ2.mp4");
-                    setBtnRecordingOn();
-                    listOfAudio.add(mTestFolderPath+ "part2-answ2.mp4");
-                }
-                //Question 2   3 seconds
-                if (timeToTest - 16000 - 9000 - 14000 - 121000 - 6000 - 4000 - 6000 < millisUntilFinished && millisUntilFinished <
-                        timeToTest - 16000 - 9000 - 14000 - 121000 - 6000 - 4000 - 5000) {
-                    timeDelta -= 6000;
-                    recordStop();
-                    setBtnRecordingOff();
-                    playQuestion(mQuestionsPath + longTurn[2]);
-                    listOfAudio.add(mQuestionsPath + longTurn[2]);
-                }
-                //Answer 3 5 seconds
-                if (timeToTest - 16000 - 9000 - 14000 - 121000 - 6000 - 4000 - 6000 - 4000 < millisUntilFinished && millisUntilFinished <
-                        timeToTest - 16000 - 9000 - 14000 - 121000 - 6000 - 4000 - 6000 - 3000) {
-                    timeDelta -= 4000;
-                    recordStart(mTestFolderPath + "part2-answ3.mp4");
-                    setBtnRecordingOn();
-                    listOfAudio.add(mTestFolderPath + "part2-answ3.mp4");
-                }
+            public void onFinish() {
+                mTimer.setText("00:00");
+                final Dialog dialog = new Dialog(getActivity(), "Are you ready?", "\n\n");
+                dialog.setOnAcceptButtonClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        timer();
+                    }
+                });
+                dialog.show();
+            }
+        }.start();
 
-                //End
-                if (timeToTest - 16000 - 9000 - 14000 - 121000 - 6000 - 4000 - 6000 - 4000 - 6000 < millisUntilFinished && millisUntilFinished <
-                        timeToTest - 16000 - 9000 - 14000 - 121000 - 6000 - 4000 - 6000 - 4000 - 5000) {
-                    recordStop();
-                    setBtnRecordingOff();
-//                    playQuestion(mQuestionsPath + "intro-frame-s1.mp4");
-                    new MergeTask(getActivity()).execute(listOfAudio);
+        new LoadAds(view, R.id.adViewSecondTest);
+        return view;
+    }
+
+    private void timer() {
+        final int timeDelta = 220000 + 9200;
+        new CountDownTimer(timeDelta, 1000) {
+
+
+            public void onTick(long millisUntilFinished) {
+                if (!isFinish) {
+                    //Preparation 1 minute
+                    if (timeDelta - 1000 < millisUntilFinished) {
+                        setBtnRecordingOff();
+                    }
+
+                    //Speaking now Answer 13 seconds
+                    if (timeDelta - 61000 < millisUntilFinished && millisUntilFinished < timeDelta - 60000) {
+                        long_turn();
+                        setBtnRecordingOff();
+                        playQuestion(mQuestionsPath + "part2-longturn-start.mp4");
+                        listOfAudio.add(mQuestionsPath + "part2-longturn-start.mp4");
+                    }
+
+                    // Candidate long turn 120 seconds
+                    if (timeDelta - 61000 - 14000 < millisUntilFinished && millisUntilFinished < timeDelta - 61000 - 13000) {
+                        recordStart(mTestFolderPath + "part2-answ1.mp4");
+                        setBtnRecordingOn();
+                        listOfAudio.add(mTestFolderPath + "part2-answ1.mp4");
+                    }
+                    //Thanks you  5 seconds
+                    if (timeDelta - 61000 - 14000 - 121000 < millisUntilFinished && millisUntilFinished < timeDelta - 61000 - 14000 - 120000) {
+                        questions();
+                        recordStop();
+                        setBtnRecordingOn();
+                        setBtnRecordingOff();
+                        playQuestion(mQuestionsPath + "part2-thanks-after-fuqs.mp4");
+                        listOfAudio.add(mQuestionsPath + "part2-thanks-after-fuqs.mp4");
+                    }
+                    //Question 1  3 seconds
+                    if (timeDelta - 61000 - 14000 - 121000 - 6000 < millisUntilFinished && millisUntilFinished <
+                            timeDelta - 61000 - 14000 - 121000 - 5000) {
+                        setBtnRecordingOff();
+                        playQuestion(mQuestionsPath + longTurn[1]);
+                        listOfAudio.add(mQuestionsPath + longTurn[1]);
+                    }
+                    //Answer 2 5 seconds
+                    if (timeDelta - 61000 - 14000 - 121000 - 6000 - 4000
+                            < millisUntilFinished && millisUntilFinished < timeDelta - 61000 - 14000 - 121000 - 6000 - 3000) {
+                        recordStart(mTestFolderPath + "part2-answ2.mp4");
+                        setBtnRecordingOn();
+                        listOfAudio.add(mTestFolderPath + "part2-answ2.mp4");
+                    }
+                    //Question 2   3 seconds
+                    if (timeDelta - 61000 - 14000 - 121000 - 6000 - 4000 - 6000 < millisUntilFinished && millisUntilFinished <
+                            timeDelta - 61000 - 14000 - 121000 - 6000 - 4000 - 5000) {
+                        recordStop();
+                        setBtnRecordingOff();
+                        playQuestion(mQuestionsPath + longTurn[2]);
+                        listOfAudio.add(mQuestionsPath + longTurn[2]);
+                    }
+                    //Answer 3 5 seconds
+                    if (timeDelta - 61000 - 14000 - 121000 - 6000 - 4000 - 6000 - 4000 < millisUntilFinished && millisUntilFinished <
+                            timeDelta - 61000 - 14000 - 121000 - 6000 - 4000 - 6000 - 3000) {
+                        recordStart(mTestFolderPath + "part2-answ3.mp4");
+                        setBtnRecordingOn();
+                        listOfAudio.add(mTestFolderPath + "part2-answ3.mp4");
+                    }
+                    //End
+                    if (timeDelta - 61000 - 14000 - 121000 - 6000 - 4000 - 6000 - 4000 - 6000 < millisUntilFinished && millisUntilFinished <
+                            timeDelta - 61000 - 14000 - 121000 - 6000 - 4000 - 6000 - 4000 - 5000) {
+                        recordStop();
+                        setBtnRecordingOff();
+                        playQuestion(mQuestionsPath + "part2-thanks-after-fuqs.mp4");
+                        listOfAudio.add(mQuestionsPath + "part2-thanks-after-fuqs.mp4");
+
+                    }
+
+                    //End
+                    if (timeDelta - 61000 - 14000 - 121000 - 6000 - 4000 - 6000 - 4000 - 6000 - 6000 < millisUntilFinished && millisUntilFinished <
+                            timeDelta - 61000 - 14000 - 121000 - 6000 - 4000 - 6000 - 4000 - 6000 - 5000) {
+    //                    recordStop();
+                        setBtnRecordingOff();
+    //                    playQuestion(mQuestionsPath + "intro-frame-s1.mp4");
+                        new MergeTask(getActivity()).execute(listOfAudio);
+                    }
                 }
                 String v = String.format("%02d", millisUntilFinished / 60000);
                 int va = (int) ((millisUntilFinished % 60000) / 1000);
@@ -189,11 +242,9 @@ public class SecondTestFragment extends Fragment implements View.OnClickListener
 
             public void onFinish() {
                 mTimer.setText("00:00");
+
             }
         }.start();
-
-        new LoadAds(view, R.id.adViewSecondTest);
-        return view;
     }
 
     private void changeColor() {
@@ -211,6 +262,7 @@ public class SecondTestFragment extends Fragment implements View.OnClickListener
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.buttonFloat2:
+                isFinish = true;
                 FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.container, new IntroThirdTestFragment());
                 fragmentTransaction.commit();
@@ -244,10 +296,10 @@ public class SecondTestFragment extends Fragment implements View.OnClickListener
 
     private void questions() {
         ((MainActivity) this.getActivity()).setPageTitle("Part 2 - Follow up");
-        mTopic.setText(
+        mBigText.setText(
                 "• Now answer both of the follow up questions\n" +
                         "• Simple, short answers are fine");
-        mBigText.setText(mBigTextFrame);
+//        mBigText.setText(mBigTextFrame);
     }
 
     private void playQuestion(String fileName) {
@@ -261,6 +313,7 @@ public class SecondTestFragment extends Fragment implements View.OnClickListener
             e.printStackTrace();
         }
     }
+
     private String getNextFileName() {
         //create directory with test if it does not exist
         File fileDir = new File(Environment.getExternalStorageDirectory()
@@ -310,6 +363,10 @@ public class SecondTestFragment extends Fragment implements View.OnClickListener
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
             progressDialog.dismiss();
+            FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.container, new IntroThirdTestFragment());
+            fragmentTransaction.commit();
+            interstitialAds.show();
         }
     }
 
@@ -427,6 +484,7 @@ public class SecondTestFragment extends Fragment implements View.OnClickListener
     private void appendToFile(final String targetFileName, final String newFileName) {
         Mp4ParserWrapper.append(targetFileName, newFileName);
     }
+
     private void releasePlayer() {
         if (mediaPlayer != null) {
             mediaPlayer.release();
@@ -472,3 +530,115 @@ public class SecondTestFragment extends Fragment implements View.OnClickListener
         }
     }
 }
+
+
+//new CountDownTimer(timeToTest, 1000) {
+//        int timeDelta = timeToTest;
+//
+//public void onTick(long millisUntilFinished) {
+//        //Intro 1   14 seconds
+//        if (timeToTest - 1000 < millisUntilFinished) {
+//        Log.d("Jack", String.valueOf(timeDelta));
+//        setBtnRecordingOff();
+//        playQuestion(mQuestionsPath + "part2-intro.mp4");
+//        listOfAudio.add(mQuestionsPath + "part2-intro.mp4");
+//        }
+//        //Intro 2   8 seconds
+//        if (timeToTest - 16000 < millisUntilFinished && millisUntilFinished < timeToTest - 15000) {
+//        timeDelta -= 16000;
+//        setBtnRecordingOff();
+//        playQuestion(mQuestionsPath + "part2-intro-2.mp4");
+//        listOfAudio.add(mQuestionsPath + "part2-intro-2.mp4");
+//        Log.d("Jack", String.valueOf(timeDelta));
+//        }
+//        //Intro Unical   8 seconds
+//        if (timeToTest - 16000 - 9000 < millisUntilFinished && millisUntilFinished <  timeToTest - 16000 - 8000) {
+//        timeDelta -= 16000;
+//        setBtnRecordingOff();
+//        playQuestion(mQuestionsPath + longTurn[0]);
+//        listOfAudio.add(mQuestionsPath + longTurn[0]);
+//        Log.d("Jack", String.valueOf(timeDelta));
+//        }
+//
+//        //Preparation 1 minute
+//        if (timeToTest - 16000 - 9000 - 9000  < millisUntilFinished && millisUntilFinished <  timeToTest - 16000 - 9000 - 8000) {
+//        setBtnRecordingOff();
+//
+//        }
+//
+//
+//        //Speaking now Answer 13 seconds
+//        if (timeToTest - 16000 - 9000 < millisUntilFinished && millisUntilFinished < timeToTest - 16000 - 8000) {
+//        timeDelta -= 9000;
+//        setBtnRecordingOff();
+//        playQuestion(mQuestionsPath + "part2-longturn-start.mp4");
+//        listOfAudio.add(mQuestionsPath + "part2-longturn-start.mp4");
+//        }
+//
+//        // Candidate long turn 120 seconds
+//        if (timeToTest - 16000 - 9000 - 14000 < millisUntilFinished && millisUntilFinished  < timeToTest - 16000 - 9000 - 13000) {
+//        timeDelta -= 13000;
+//        recordStart(mTestFolderPath + "part2-answ1.mp4");
+//        setBtnRecordingOn();
+//        listOfAudio.add(mTestFolderPath + "part2-answ1.mp4");
+//        }
+//        //Thanks you  5 seconds
+//        if (timeToTest - 16000 - 9000 - 14000 - 121000 < millisUntilFinished && millisUntilFinished < timeToTest - 16000 - 9000 - 14000 - 120000) {
+//        timeDelta -= 121000;
+//        recordStop();
+//        setBtnRecordingOn();
+//        setBtnRecordingOff();
+//        playQuestion(mQuestionsPath + "part2-thanks-after-fuqs.mp4");
+//        listOfAudio.add(mQuestionsPath + "part2-thanks-after-fuqs.mp4");
+//        }
+//        //Question 1  3 seconds
+//        if (timeToTest - 16000 - 9000 - 14000 - 121000 - 6000 < millisUntilFinished && millisUntilFinished <
+//        timeToTest - 16000 - 9000 - 14000 - 121000 - 5000) {
+//        timeDelta -= 6000;
+//        setBtnRecordingOff();
+//        playQuestion(mQuestionsPath + longTurn[1]);
+//        listOfAudio.add(mQuestionsPath + longTurn[1]);
+//        }
+//        //Answer 2 5 seconds
+//        if (timeToTest - 16000 - 9000 - 14000 - 121000 - 6000 - 4000 <
+//        millisUntilFinished && millisUntilFinished < timeToTest - 16000 - 9000 - 14000 - 121000 - 6000 - 3000) {
+//        timeDelta -= 4000;
+//        recordStart(mTestFolderPath + "part2-answ2.mp4");
+//        setBtnRecordingOn();
+//        listOfAudio.add(mTestFolderPath+ "part2-answ2.mp4");
+//        }
+//        //Question 2   3 seconds
+//        if (timeToTest - 16000 - 9000 - 14000 - 121000 - 6000 - 4000 - 6000 < millisUntilFinished && millisUntilFinished <
+//        timeToTest - 16000 - 9000 - 14000 - 121000 - 6000 - 4000 - 5000) {
+//        timeDelta -= 6000;
+//        recordStop();
+//        setBtnRecordingOff();
+//        playQuestion(mQuestionsPath + longTurn[2]);
+//        listOfAudio.add(mQuestionsPath + longTurn[2]);
+//        }
+//        //Answer 3 5 seconds
+//        if (timeToTest - 16000 - 9000 - 14000 - 121000 - 6000 - 4000 - 6000 - 4000 < millisUntilFinished && millisUntilFinished <
+//        timeToTest - 16000 - 9000 - 14000 - 121000 - 6000 - 4000 - 6000 - 3000) {
+//        timeDelta -= 4000;
+//        recordStart(mTestFolderPath + "part2-answ3.mp4");
+//        setBtnRecordingOn();
+//        listOfAudio.add(mTestFolderPath + "part2-answ3.mp4");
+//        }
+//
+//        //End
+//        if (timeToTest - 16000 - 9000 - 14000 - 121000 - 6000 - 4000 - 6000 - 4000 - 6000 < millisUntilFinished && millisUntilFinished <
+//        timeToTest - 16000 - 9000 - 14000 - 121000 - 6000 - 4000 - 6000 - 4000 - 5000) {
+//        recordStop();
+//        setBtnRecordingOff();
+////                    playQuestion(mQuestionsPath + "intro-frame-s1.mp4");
+//        new MergeTask(getActivity()).execute(listOfAudio);
+//        }
+//        String v = String.format("%02d", millisUntilFinished / 60000);
+//        int va = (int) ((millisUntilFinished % 60000) / 1000);
+//        mTimer.setText(v + ":" + String.format("%02d", va));
+//        }
+//
+//public void onFinish() {
+//        mTimer.setText("00:00");
+//        }
+//        }.start();
