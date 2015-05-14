@@ -28,7 +28,6 @@ import com.ielts.mcpp.ielts.utils.LoadAds;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 //import com.github.lassana.recorder.AudioRecorder;
 
@@ -98,13 +97,13 @@ public class ThirdTestFragment extends Fragment implements View.OnClickListener 
                 + File.separator;
 
         listOfAudio = new ArrayList<>();
-
+        setRandomFrame();
         new CountDownTimer(300000 + delta, 1000) {
 
 
             public void onTick(long millisUntilFinished) {
                 //audio 14 seconds
-                if (299000 < millisUntilFinished) {
+                if (299000 + delta < millisUntilFinished) {
                     setBtnRecordingOff();
                     playQuestion(mQuestionsPath + mPart1[0]);
                     listOfAudio.add(mQuestionsPath + mPart1[0]);
@@ -266,7 +265,7 @@ public class ThirdTestFragment extends Fragment implements View.OnClickListener 
                     playQuestion(mQuestionsPath + Constants.part3EndOfTestFolder[0]);
                     listOfAudio.add(mTestFolderPath + Constants.part3EndOfTestFolder[0]);
                 }
-                if (-26000 + delta < millisUntilFinished && millisUntilFinished < -25000 + delta) {
+                if (-26000 + delta - 12000 < millisUntilFinished && millisUntilFinished < -25000 + delta - 12000) {
                     new MergeTask(getActivity()).execute(listOfAudio);
                 }
                 String v = String.format("%02d", millisUntilFinished / 60000);
@@ -301,14 +300,14 @@ public class ThirdTestFragment extends Fragment implements View.OnClickListener 
         ((MainActivity) this.getActivity()).setPageTitle("Part3 - Frame 2");
         mTopic.setVisibility(View.VISIBLE);
         mTopic.setText("Topic");
-        mBigText.setText(mBigTextFrame1);
+        mBigText.setText(mBigTextFrame2);
     }
 
     private void part_3() {
         ((MainActivity) this.getActivity()).setPageTitle("Part3 - Frame 3");
         mTopic.setVisibility(View.VISIBLE);
         mTopic.setText("Topic");
-        mBigText.setText(mBigTextFrame1);
+        mBigText.setText(mBigTextFrame3);
     }
 
     private void playQuestion(String fileName) {
@@ -423,9 +422,8 @@ public class ThirdTestFragment extends Fragment implements View.OnClickListener 
         }
     }
 
-    private void setRandomFrame1() {
-        String[] result = null;
-        Random random = new Random();
+    private void setRandomFrame() {
+
         int rand = MainActivity.sTextTask;
 
         Log.d("taras", "rand :" + rand);
