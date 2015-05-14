@@ -110,8 +110,10 @@ public class Constants {
 //    ------  Part 2 -----------------------------------------------------
 //    ====================================================================
 public static String[] part2Intro = {
-        "part2-longturn-start.mp4", "part2-intro.mp4",
-        "part2-intro-1.mp4", "part2-intro-2.mp4",
+        "part2-longturn-start.mp4",
+        "part2-intro.mp4",
+        "part2-intro-1.mp4",
+        "part2-intro-2.mp4",
         "part2-thanks-before-fuqs.mp4",
         "part2-thanks-after-user-has-spoken.mp4"};
 

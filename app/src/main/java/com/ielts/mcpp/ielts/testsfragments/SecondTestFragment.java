@@ -4,11 +4,9 @@ import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -23,17 +21,16 @@ import android.widget.TextView;
 import com.gc.materialdesign.views.ButtonFloat;
 import com.gc.materialdesign.views.ButtonFloatSmall;
 import com.github.lassana.recorder.Mp4ParserWrapper;
+import com.ielts.mcpp.ielts.Constants;
 import com.ielts.mcpp.ielts.MainActivity;
 import com.ielts.mcpp.ielts.R;
 import com.ielts.mcpp.ielts.utils.LoadAds;
 import com.ielts.mcpp.ielts.utils.LoadInterstitialAds;
 
 import java.io.File;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.Random;
 
 //import com.github.lassana.recorder.AudioRecorder;
 
@@ -42,7 +39,6 @@ import java.util.List;
  */
 public class SecondTestFragment extends Fragment implements View.OnClickListener {
     int numberTest = 1;
-    //    private AudioRecorder mAudioRecorder;
     ButtonFloatSmall mMicBtn;
     ButtonFloat mStopBtn;
     LoadInterstitialAds interstitialAds;
@@ -57,12 +53,14 @@ public class SecondTestFragment extends Fragment implements View.OnClickListener
     private TextView mTopic;
     private TextView mBigText;
 
-    String currentFileName;
     Handler handler;
     Runnable runnable;
     boolean isRecording = false;
     ArrayList<String> listOfAudio;
 
+    String[] longTurn;
+    private String mBigTextFrame;
+    private String mTopicText;
 
 
     @Override
@@ -80,7 +78,7 @@ public class SecondTestFragment extends Fragment implements View.OnClickListener
         mMicBtn = (ButtonFloatSmall) view.findViewById(R.id.buttonFloatSmall2);
         mStopBtn = (ButtonFloat) view.findViewById(R.id.buttonFloat2);
         mTimer = (TextView) view.findViewById(R.id.timer2);
-        mTopic = (TextView) view.findViewById(R.id.topic_test2);
+        mTopic = (TextView) view.findViewById(R.id.topic_text);
         mBigText = (TextView) view.findViewById(R.id.text_test2);
         mStopBtn.setBackgroundColor(0xFFA4C904);
         mStopBtn.setRippleColor(0xFF98B606);
@@ -93,6 +91,11 @@ public class SecondTestFragment extends Fragment implements View.OnClickListener
         handler.postDelayed(runnable, 100);
         final int timeToTest = 300000;
         final int delta = 1000;
+
+        longTurn = setRandomFrame();
+
+        preparation();
+
         new CountDownTimer(timeToTest, 1000) {
             int timeDelta = timeToTest;
 
@@ -112,6 +115,7 @@ public class SecondTestFragment extends Fragment implements View.OnClickListener
                     listOfAudio.add(mQuestionsPath + "part2-intro-2.mp4");
                     Log.d("Jack", String.valueOf(timeDelta));
                 }
+
                 //Speaking now Answer 13 seconds
                 if (timeToTest - 16000 - 9000 < millisUntilFinished && millisUntilFinished < timeToTest - 16000 - 8000) {
                     timeDelta -= 9000;
@@ -141,8 +145,8 @@ public class SecondTestFragment extends Fragment implements View.OnClickListener
                         timeToTest - 16000 - 9000 - 14000 - 121000 - 5000) {
                     timeDelta -= 6000;
                     setBtnRecordingOff();
-                    playQuestion(mQuestionsPath + "part2-task 605-fuq1.mp4");
-                    listOfAudio.add(mQuestionsPath + "part2-task 605-fuq1.mp4");
+                    playQuestion(mQuestionsPath + longTurn[1]);
+                    listOfAudio.add(mQuestionsPath + longTurn[1]);
                 }
                 //Answer 2 5 seconds
                 if (timeToTest - 16000 - 9000 - 14000 - 121000 - 6000 - 4000 <
@@ -158,8 +162,8 @@ public class SecondTestFragment extends Fragment implements View.OnClickListener
                     timeDelta -= 6000;
                     recordStop();
                     setBtnRecordingOff();
-                    playQuestion(mQuestionsPath + "part2-task 605-fuq2.mp4");
-                    listOfAudio.add(mQuestionsPath + "part2-task 605-fuq2.mp4");
+                    playQuestion(mQuestionsPath + longTurn[2]);
+                    listOfAudio.add(mQuestionsPath + longTurn[2]);
                 }
                 //Answer 3 5 seconds
                 if (timeToTest - 16000 - 9000 - 14000 - 121000 - 6000 - 4000 - 6000 - 4000 < millisUntilFinished && millisUntilFinished <
@@ -188,7 +192,6 @@ public class SecondTestFragment extends Fragment implements View.OnClickListener
             }
         }.start();
 
-        introductoryFrame();
         new LoadAds(view, R.id.adViewSecondTest);
         return view;
     }
@@ -204,21 +207,12 @@ public class SecondTestFragment extends Fragment implements View.OnClickListener
 
     }
 
-    private void test1() {
-
-    }
-
-    private void recordAnswer(long duration) {
-
-
-    }
-
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.buttonFloat2:
                 FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.container, new ThirdTestFragment());
+                fragmentTransaction.replace(R.id.container, new IntroThirdTestFragment());
                 fragmentTransaction.commit();
                 interstitialAds.show();
                 break;
@@ -235,25 +229,25 @@ public class SecondTestFragment extends Fragment implements View.OnClickListener
         mMicBtn.setBackgroundColor(0xafc4c4c4);
     }
 
-    private void introductoryFrame() {
-        ((MainActivity) this.getActivity()).setPageTitle("Introductory frame");
-        mTopic.setVisibility(View.GONE);
-        mBigText.setText(
-                "• Listen whilst the examiner introduces the test\n" +
-                        "• The clock on the right will start to countdown when the test starts");
-    }
-    //
 
-    private void frame_1() {
-
+    private void preparation() {
+        ((MainActivity) this.getActivity()).setPageTitle("Part 2 - preparation");
+        mTopic.setText(mTopicText);
+        mBigText.setText(mBigTextFrame);
     }
 
-    private void frame_2() {
-
+    private void long_turn() {
+        ((MainActivity) this.getActivity()).setPageTitle("Part 2 - long turn");
+        mTopic.setText(mTopicText);
+        mBigText.setText(mBigTextFrame);
     }
 
-    private void frame_3() {
-
+    private void questions() {
+        ((MainActivity) this.getActivity()).setPageTitle("Part 2 - Follow up");
+        mTopic.setText(
+                "• Now answer both of the follow up questions\n" +
+                        "• Simple, short answers are fine");
+        mBigText.setText(mBigTextFrame);
     }
 
     private void playQuestion(String fileName) {
@@ -276,12 +270,12 @@ public class SecondTestFragment extends Fragment implements View.OnClickListener
             fileDir.mkdirs();
         }
         //build filename
-        GregorianCalendar gregorianCalendar = new GregorianCalendar();
-        gregorianCalendar.setTime(new Date(System.currentTimeMillis()));
-        String date = new SimpleDateFormat("dd-MM-yy_HH-mm").format(gregorianCalendar.getTime());
+//        GregorianCalendar gregorianCalendar = new GregorianCalendar();
+//        gregorianCalendar.setTime(new Date(System.currentTimeMillis()));
+//        String date = new SimpleDateFormat("dd-MM-yy_HH-mm").format(gregorianCalendar.getTime());
         return Environment.getExternalStorageDirectory()
                 + File.separator + mTestFolderName
-                + File.separator + date
+                + File.separator + "merge_T2_" + MainActivity.sTestFileDate
                 + ".mp4";
     }
 
@@ -298,6 +292,7 @@ public class SecondTestFragment extends Fragment implements View.OnClickListener
         protected void onPreExecute() {
             super.onPreExecute();
             progressDialog = new ProgressDialog(context);
+            progressDialog.setCancelable(false);
             progressDialog.show();
         }
 
@@ -316,6 +311,117 @@ public class SecondTestFragment extends Fragment implements View.OnClickListener
             super.onPostExecute(aVoid);
             progressDialog.dismiss();
         }
+    }
+
+    private String[] setRandomFrame() {
+        String[] result = null;
+        Random random = new Random();
+        int rand = random.nextInt(8) + 1;
+
+        Log.d("taras", "rand :" + rand);
+        switch (rand) {
+            case 1:
+                MainActivity.sTextTask = 605;
+                result = Constants.part2Task605;
+                mTopicText = "Describe  something you bought that you weren`t satisfied with";
+                mBigTextFrame =
+                        "You should say:\n" +
+                                "what you bought\n" +
+                                "where you bought it\n" +
+                                "why you bought it\n" +
+                                "and explain why you weren't satisfied with what you bought";
+                break;
+            case 2:
+                MainActivity.sTextTask = 606;
+                result = Constants.part2Task606;
+                mTopicText = "Describe a decision someone you know made that you think was wrong";
+                mBigTextFrame =
+                        "You should say:\n" +
+                                "who made the decision and what it was\n" +
+                                "why the person made the decision\n" +
+                                "what happened as a result of the decision\n" +
+                                "and explain why you think the decision was wrong.";
+                break;
+            case 3:
+                MainActivity.sTextTask = 607;
+                result = Constants.part2Task607;
+                mTopicText = "Describe something you plan to do in your life, NOT related to your work or studies";
+                mBigTextFrame =
+                        "You should say:\n" +
+                                "what you plan to do\n" +
+                                "why you plan to do this\n" +
+                                "what you need to do first\n" +
+                                "and explain how you will feel if you succeed with your plan";
+                break;
+            case 4:
+                MainActivity.sTextTask = 608;
+                result = Constants.part2Task608;
+                mTopicText = "Describe a person you enjoy talking to";
+                mBigTextFrame =
+                        "You should say:\n" +
+                                "who the person is\n" +
+                                "how often you talk to the person\n" +
+                                "what you talk about\n" +
+                                "and explain why you enjoy talking to this person";
+
+                break;
+            case 5:
+                MainActivity.sTextTask = 609;
+                result = Constants.part2Task609;
+                mTopicText = "Describe a film you enjoyed that was about a real person or real event";
+                mBigTextFrame =
+                        "You should say:\n" +
+                                "when you saw the film\n" +
+                                "who or what the film was about\n" +
+                                "what you learned about the person or the event\n" +
+                                "and explain why you enjoyed watching this film";
+                break;
+            case 6:
+                MainActivity.sTextTask = 610;
+                result = Constants.part2Task610;
+                mTopicText = "Describe a vehicle (e.g. a car or a bicycle) you would like to have";
+                mBigTextFrame =
+                        "You should say:\n" +
+                                "what vehicle you would like to have\n" +
+                                "why you would like to have this vehicle\n" +
+                                "how you would get this vehicle\n" +
+                                "and explain whether you think you will ever have this vehicle";
+                break;
+            case 7:
+                MainActivity.sTextTask = 611;
+                result = Constants.part2Task611;
+                mTopicText = "Describe something useful you learned from a member of your family";
+                mBigTextFrame =
+                        "You should say:\n" +
+                                "what you learned\n" +
+                                "who in your family you learned it from\n" +
+                                "how you learned it\n" +
+                                "and explain why learning this has been useful to you";
+                break;
+            case 8:
+                MainActivity.sTextTask = 612;
+                result = Constants.part2Task612;
+                mTopicText = "Describe a gift or present you gave someone recently";
+                mBigTextFrame =
+                        "You should say:\n" +
+                                "what the gift was\n" +
+                                "who you gave the gift to\n" +
+                                "what he/she thought of the gift\n" +
+                                "and explain why you chose this gift";
+                break;
+            default:
+                MainActivity.sTextTask = 612;
+                result = Constants.part2Task612;
+                mTopicText = "Describe a gift or present you gave someone recently";
+                mBigTextFrame =
+                        "You should say:\n" +
+                                "what the gift was\n" +
+                                "who you gave the gift to\n" +
+                                "what he/she thought of the gift\n" +
+                                "and explain why you chose this gift";
+                break;
+        }
+        return result;
     }
 
     private void appendToFile(final String targetFileName, final String newFileName) {

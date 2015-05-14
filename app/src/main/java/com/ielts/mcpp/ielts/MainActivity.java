@@ -24,6 +24,8 @@ public class MainActivity extends MaterialNavigationDrawer {
 
     public static ProgressDialog pd;
     public static MaterialSection testSection;
+    public static int sTextTask;
+    public static String sTestFileDate;
 
     @Override
     public void init(Bundle savedInstanceState) {
