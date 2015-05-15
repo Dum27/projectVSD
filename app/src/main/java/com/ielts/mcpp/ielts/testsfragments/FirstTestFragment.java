@@ -459,7 +459,7 @@ public class FirstTestFragment extends Fragment implements View.OnClickListener 
                 releaseRecorder();
                 isFinished = true;
                 FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.container, new SecondTestFragment());
+                fragmentTransaction.replace(R.id.container, new IntroSecondTestFragment());
                 fragmentTransaction.commit();
                 interstitialAds.show();
                 break;
