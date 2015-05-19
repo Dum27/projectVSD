@@ -2,31 +2,38 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#cf000000">
+    android:background="#cf000000"
+    android:weightSum="1">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Title"
-        android:id="@+id/title"
-        android:gravity="center"
-        android:minWidth="500dp"
-        android:textAlignment="gravity"
-        android:textColor="#ffffffff"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="10dp" />
-
-    <TextView
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Ok. i used that in my code and understood how it works ... BUT, i want my pop-up window to be in the CENTER of the screen and not tagged to my call Button. Is that possible? Right now, if i have 4 buttons on screen, every pop-up window shows up in different places in the screen depending on the position of the button that calls it. I want ALL pop-up windows to be shown only in the center of the screen. Any help is appreciated."
-        android:id="@+id/textView2"
-        android:minWidth="500dp"
-        android:textColor="#ffffffff"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp" />
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Title"
+            android:id="@+id/title"
+            android:gravity="center"
+            android:minWidth="500dp"
+            android:textAlignment="gravity"
+            android:textColor="#ffffffff"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/listViewWords"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp" />
+    </LinearLayout>
 
     <Button
         android:layout_width="wrap_content"
@@ -37,5 +44,6 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"
-        android:layout_marginBottom="10dp" />
+        android:layout_marginBottom="10dp"
+        android:layout_weight="0" />
 </LinearLayout>

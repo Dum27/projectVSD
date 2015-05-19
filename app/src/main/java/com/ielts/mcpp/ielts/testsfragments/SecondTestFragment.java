@@ -1,6 +1,5 @@
 package com.ielts.mcpp.ielts.testsfragments;
 
-import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
@@ -298,7 +297,7 @@ public class SecondTestFragment extends Fragment implements View.OnClickListener
         ((MainActivity) this.getActivity()).setPageTitle("Part 2 - Follow up");
         mBigText.setText(
                 "• Now answer both of the follow up questions\n" +
-                        "• Simple, short answers are fine");
+                "• Simple, short answers are fine");
 //        mBigText.setText(mBigTextFrame);
     }
 
@@ -363,10 +362,10 @@ public class SecondTestFragment extends Fragment implements View.OnClickListener
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
             progressDialog.dismiss();
-            FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.container, new IntroThirdTestFragment());
-            fragmentTransaction.commit();
-            interstitialAds.show();
+//            FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+//            fragmentTransaction.replace(R.id.container, new IntroThirdTestFragment());
+//            fragmentTransaction.commit();
+//            interstitialAds.show();
         }
     }
 
@@ -382,7 +381,7 @@ public class SecondTestFragment extends Fragment implements View.OnClickListener
                 result = Constants.part2Task605;
                 mTopicText = "Describe  something you bought that you weren`t satisfied with";
                 mBigTextFrame =
-                        "You should say:\n" +
+                        "You should say:\n\n" +
                                 "what you bought\n" +
                                 "where you bought it\n" +
                                 "why you bought it\n" +
@@ -393,7 +392,7 @@ public class SecondTestFragment extends Fragment implements View.OnClickListener
                 result = Constants.part2Task606;
                 mTopicText = "Describe a decision someone you know made that you think was wrong";
                 mBigTextFrame =
-                        "You should say:\n" +
+                        "You should say:\n\n" +
                                 "who made the decision and what it was\n" +
                                 "why the person made the decision\n" +
                                 "what happened as a result of the decision\n" +
@@ -404,7 +403,7 @@ public class SecondTestFragment extends Fragment implements View.OnClickListener
                 result = Constants.part2Task607;
                 mTopicText = "Describe something you plan to do in your life, NOT related to your work or studies";
                 mBigTextFrame =
-                        "You should say:\n" +
+                        "You should say:\n\n" +
                                 "what you plan to do\n" +
                                 "why you plan to do this\n" +
                                 "what you need to do first\n" +
@@ -415,7 +414,7 @@ public class SecondTestFragment extends Fragment implements View.OnClickListener
                 result = Constants.part2Task608;
                 mTopicText = "Describe a person you enjoy talking to";
                 mBigTextFrame =
-                        "You should say:\n" +
+                        "You should say:\n\n" +
                                 "who the person is\n" +
                                 "how often you talk to the person\n" +
                                 "what you talk about\n" +
@@ -427,7 +426,7 @@ public class SecondTestFragment extends Fragment implements View.OnClickListener
                 result = Constants.part2Task609;
                 mTopicText = "Describe a film you enjoyed that was about a real person or real event";
                 mBigTextFrame =
-                        "You should say:\n" +
+                        "You should say:\n\n" +
                                 "when you saw the film\n" +
                                 "who or what the film was about\n" +
                                 "what you learned about the person or the event\n" +
@@ -438,7 +437,7 @@ public class SecondTestFragment extends Fragment implements View.OnClickListener
                 result = Constants.part2Task610;
                 mTopicText = "Describe a vehicle (e.g. a car or a bicycle) you would like to have";
                 mBigTextFrame =
-                        "You should say:\n" +
+                        "You should say:\n\n" +
                                 "what vehicle you would like to have\n" +
                                 "why you would like to have this vehicle\n" +
                                 "how you would get this vehicle\n" +
@@ -449,7 +448,7 @@ public class SecondTestFragment extends Fragment implements View.OnClickListener
                 result = Constants.part2Task611;
                 mTopicText = "Describe something useful you learned from a member of your family";
                 mBigTextFrame =
-                        "You should say:\n" +
+                        "You should say:\n\n" +
                                 "what you learned\n" +
                                 "who in your family you learned it from\n" +
                                 "how you learned it\n" +
@@ -460,7 +459,7 @@ public class SecondTestFragment extends Fragment implements View.OnClickListener
                 result = Constants.part2Task612;
                 mTopicText = "Describe a gift or present you gave someone recently";
                 mBigTextFrame =
-                        "You should say:\n" +
+                        "You should say:\n\n" +
                                 "what the gift was\n" +
                                 "who you gave the gift to\n" +
                                 "what he/she thought of the gift\n" +
@@ -471,11 +470,11 @@ public class SecondTestFragment extends Fragment implements View.OnClickListener
                 result = Constants.part2Task612;
                 mTopicText = "Describe a gift or present you gave someone recently";
                 mBigTextFrame =
-                        "You should say:\n" +
-                                "what the gift was\n" +
-                                "who you gave the gift to\n" +
-                                "what he/she thought of the gift\n" +
-                                "and explain why you chose this gift";
+                        "You should say:\n\n" +
+                        "what the gift was\n" +
+                        "who you gave the gift to\n" +
+                        "what he/she thought of the gift\n" +
+                        "and explain why you chose this gift";
                 break;
         }
         return result;
