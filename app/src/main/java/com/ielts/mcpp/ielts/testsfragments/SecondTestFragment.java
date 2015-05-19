@@ -154,7 +154,9 @@ public class SecondTestFragment extends Fragment implements View.OnClickListener
     private void timer() {
         final int timeDelta = 220000 + 9200;
         new CountDownTimer(timeDelta, 1000) {
-
+            int oneMinute = 60000;
+            int twoMinute = timeDelta - 60000;
+            boolean isOneMinuteEnd = false;
 
             public void onTick(long millisUntilFinished) {
                 if (!isFinish) {
@@ -228,15 +230,27 @@ public class SecondTestFragment extends Fragment implements View.OnClickListener
                     //End
                     if (timeDelta - 61000 - 14000 - 121000 - 6000 - 4000 - 6000 - 4000 - 6000 - 6000 < millisUntilFinished && millisUntilFinished <
                             timeDelta - 61000 - 14000 - 121000 - 6000 - 4000 - 6000 - 4000 - 6000 - 5000) {
-    //                    recordStop();
+                        //                    recordStop();
                         setBtnRecordingOff();
-    //                    playQuestion(mQuestionsPath + "intro-frame-s1.mp4");
+                        //                    playQuestion(mQuestionsPath + "intro-frame-s1.mp4");
                         new MergeTask(getActivity()).execute(listOfAudio);
                     }
                 }
-                String v = String.format("%02d", millisUntilFinished / 60000);
-                int va = (int) ((millisUntilFinished % 60000) / 1000);
-                mTimer.setText(v + ":" + String.format("%02d", va));
+                if (oneMinute == 0)
+                    isOneMinuteEnd = true;
+
+                if (oneMinute != 0 ) {
+                    String v = String.format("%02d", oneMinute / 60000);
+                    int va = (int) ((oneMinute % 60000) / 1000);
+                    mTimer.setText(v + ":" + String.format("%02d", va));
+                    oneMinute -= 1000;
+                }
+                if (twoMinute != 0 && isOneMinuteEnd){
+                    String v = String.format("%02d", twoMinute / 60000);
+                    int va = (int) ((twoMinute % 60000) / 1000);
+                    mTimer.setText(v + ":" + String.format("%02d", va));
+                    twoMinute -= 1000;
+                }
             }
 
             public void onFinish() {

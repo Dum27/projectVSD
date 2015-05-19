@@ -49,28 +49,44 @@ public class MyTestsFragment extends Fragment {
         finishTests = new ArrayList<>();
         traverse(new File(Environment.getExternalStorageDirectory() + "/" + "ielts_tests"));
         TextView emptyView = (TextView) v.findViewById(R.id.empty_view_my_test);
-        if(finishTests.size() == 0)
+        if (finishTests.size() == 0)
             emptyView.setVisibility(View.VISIBLE);
         mRecyclerView = (RecyclerView) v.findViewById(R.id.my_recycler_view);
-        mRecyclerView.addOnItemTouchListener(
-                new RecyclerItemClickListener(getActivity(), new RecyclerItemClickListener.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(View view, int position) {
-                        TextView textView = (TextView) view.findViewById(R.id.text_test);
-                        String filePathToSend = Environment.getExternalStorageDirectory() + "/ielts_tests/" +
-                                textView.getText();
-                        String filePathToSend2 = Environment.getExternalStorageDirectory() + "/ielts_tests/" +
-                                textView.getText().toString().substring(0, 7 ) + "2" + textView.getText().toString().substring(8);
-                        String filePathToSend3 = Environment.getExternalStorageDirectory() + "/ielts_tests/" +
-                                textView.getText().toString().substring(0, 7 ) + "3" + textView.getText().toString().substring(8);
-//                        /storage/emulated/0/intro-f2ame-answ1.mp4
-//                                            merge_T1
-                        new AudioSend().sendAudio(getActivity(),filePathToSend, filePathToSend2,
-                                filePathToSend3);
-
-                    }
-                })
-        );
+        mRecyclerView.addOnItemTouchListener(new RecyclerItemClickListener(getActivity(), new RecyclerItemClickListener.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                TextView textView = (TextView) view.findViewById(R.id.text_test);
+                Log.d("Jack", Environment.getExternalStorageDirectory() + "/ielts_tests/merge_T1_" +
+                        textView.getText() + ".mp4");
+                String filePathToSend =  Environment.getExternalStorageDirectory() + "/ielts_tests/merge_T1_" +
+                        textView.getText() + ".mp4";
+                String filePathToSend2 = Environment.getExternalStorageDirectory() + "/ielts_tests/merge_T2_" +
+                        textView.getText() + ".mp4";
+                String filePathToSend3 = Environment.getExternalStorageDirectory() + "/ielts_tests/merge_T3_" +
+                        textView.getText() + ".mp4";
+                new AudioSend().sendAudio(getActivity(), filePathToSend, filePathToSend2,
+                        filePathToSend3);
+            }
+        }));
+//        mRecyclerView.addOnItemTouchListener(
+//                new RecyclerItemClickListener(getActivity(), new RecyclerItemClickListener.OnItemClickListener() {
+//                    @Override
+//                    public void onItemClick(View view, int position) {
+//                        TextView textView = (TextView) view.findViewById(R.id.text_test);
+//                        String filePathToSend = Environment.getExternalStorageDirectory() + "/ielts_tests/" +
+//                                textView.getText();
+//                        String filePathToSend2 = Environment.getExternalStorageDirectory() + "/ielts_tests/" +
+//                                textView.getText().toString().substring(0, 7 ) + "2" + textView.getText().toString().substring(8);
+//                        String filePathToSend3 = Environment.getExternalStorageDirectory() + "/ielts_tests/" +
+//                                textView.getText().toString().substring(0, 7 ) + "3" + textView.getText().toString().substring(8);
+////                        /storage/emulated/0/intro-f2ame-answ1.mp4
+////                                            merge_T1
+//                        new AudioSend().sendAudio(getActivity(),filePathToSend, filePathToSend2,
+//                                filePathToSend3);
+//
+//                    }
+//                })
+//        );
         mRecyclerView.setOnScrollListener
                 (new RecyclerView.OnScrollListener() {
                     @Override
@@ -93,7 +109,7 @@ public class MyTestsFragment extends Fragment {
         return v;
     }
 
-    public void findThreeTests(File dir){
+    public void findThreeTests(File dir) {
 
     }
 
@@ -106,7 +122,7 @@ public class MyTestsFragment extends Fragment {
                     traverse(file);
                 } else {
                     if (file.getName().contains("merge_T1"))
-                        finishTests.add(file.getName());
+                        finishTests.add(file.getName().substring(9, file.getName().length() - 4));
                 }
             }
         }
