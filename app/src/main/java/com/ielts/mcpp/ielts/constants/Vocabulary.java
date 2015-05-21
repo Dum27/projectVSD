@@ -1,5 +1,7 @@
 package com.ielts.mcpp.ielts.constants;
 
+import android.util.Log;
+
 /**
  * Created by taras on 18.05.2015.
  */
@@ -640,7 +642,7 @@ public class Vocabulary {
             "A decision", "Something you plan to do","A person who you enjoy talking to",
             "A film about a real person/event","A vehicle you would like to have",
             "Something useful you learned","A gift you gave someone recently","Consumer products",
-            "family decisions","Day-to-day planning","Spoken communication skills","Films about real people and events",
+            "Family decisions","Day-to-day planning","Spoken communication skills","Films about real people and events",
             "Cars and society","How parents help young children","Gifts for children","online shopping",
             "Ways of making decisions","Planning a career", "Learning to speak","Film actors",
             "Public transport","The influence of family, friends and school","Attitudes to gifts",
@@ -650,8 +652,12 @@ public class Vocabulary {
     };
 
     public static String [] getEngWords(String topic){
+        Log.d("taras", "getEngWordsTopic :" + topic);
         String [] res;
         switch (topic){
+            case "intro":
+                res = INTRODUCTORY_FRAME_VOCAB_ENG;
+                break;
             case "Where you live":
                 res = COMPULSORY_FRAME1_VOCAB1_ENG;
                 break;
@@ -721,7 +727,7 @@ public class Vocabulary {
             case "Consumer products":
                 res = PART3_TASK605_1_ENG;
                 break;
-            case "family decisions":
+            case "Family decisions":
                 res = PART3_TASK606_1_ENG;
                 break;
             case "Day-to-day planning":
@@ -742,7 +748,7 @@ public class Vocabulary {
             case "Gifts for children":
                 res = PART3_TASK612_1_ENG;
                 break;
-            case "online shopping":
+            case "Online shopping":
                 res = PART3_TASK605_2_ENG;
                 break;
             case "Ways of making decisions":
@@ -799,6 +805,9 @@ public class Vocabulary {
     public static String [] getChiWords(String topic){
         String [] res;
         switch (topic){
+            case "intro":
+                res = INTRODUCTORY_FRAME_VOCAB_CHI;
+                break;
             case "Where you live":
                 res = COMPULSORY_FRAME1_VOCAB1_CHI;
                 break;
@@ -868,7 +877,7 @@ public class Vocabulary {
             case "Consumer products":
                 res = PART3_TASK605_1_CHI;
                 break;
-            case "family decisions":
+            case "Family decisions":
                 res = PART3_TASK606_1_CHI;
                 break;
             case "Day-to-day planning":

@@ -80,6 +80,7 @@ public class VocabularyFragment extends Fragment {
 
                 TextView title = (TextView) popupView.findViewById(R.id.title);
                 title.setText(topic);
+
                 Log.d("taras","topic :"+topic);
                 mVocabAdapter = new VocabAdapter(getActivity(),Vocabulary.getEngWords(topic),
                         Vocabulary.getChiWords(topic));

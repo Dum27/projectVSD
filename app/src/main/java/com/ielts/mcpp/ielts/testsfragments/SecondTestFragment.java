@@ -9,13 +9,16 @@ import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.os.Environment;
 import android.os.Handler;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ListView;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.gc.materialdesign.views.ButtonFloat;
@@ -25,6 +28,9 @@ import com.github.lassana.recorder.Mp4ParserWrapper;
 import com.ielts.mcpp.ielts.Constants;
 import com.ielts.mcpp.ielts.MainActivity;
 import com.ielts.mcpp.ielts.R;
+import com.ielts.mcpp.ielts.adapters.VocabAdapter;
+import com.ielts.mcpp.ielts.constants.Vocabulary;
+import com.ielts.mcpp.ielts.utils.CountDownTimerPausable;
 import com.ielts.mcpp.ielts.utils.LoadAds;
 import com.ielts.mcpp.ielts.utils.LoadInterstitialAds;
 
@@ -64,6 +70,13 @@ public class SecondTestFragment extends Fragment implements View.OnClickListener
     private String mBigTextFrame;
     private String mTopicText;
 
+    VocabAdapter mVocabAdapter;
+    PopupWindow popupWindow;
+    private View popupView;
+    private ListView listViewWords;
+    private CountDownTimerPausable countDownTimer;
+    private String mTopicName;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -94,18 +107,26 @@ public class SecondTestFragment extends Fragment implements View.OnClickListener
         final int timeToTest = 30000;
         final int delta = 1000;
 
+        popupView = inflater.inflate(R.layout.vocabulary_popup_window, null);
+        listViewWords = (ListView) popupView.findViewById(R.id.listViewWords);
+        popupWindow = new PopupWindow(popupView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
 
         longTurn = setRandomFrame();
 
         preparation();
 
-        new CountDownTimer(timeToTest, 1000) {
+        countDownTimer = new CountDownTimerPausable(timeToTest+1000, 1000) {
             int timeDelta = timeToTest;
 
             public void onTick(long millisUntilFinished) {
                 if (!isFinish) {
+                    if(timeToTest < millisUntilFinished && millisUntilFinished < timeToTest+1000){
+                        pauseTimer();
+                        showVocabDialog(mTopicName);
+                    }
                     //Intro 1   14 seconds
-                    if (timeToTest - 1000 < millisUntilFinished) {
+                    if (timeToTest - 1000 < millisUntilFinished && millisUntilFinished < timeToTest) {
                         Log.d("Jack", String.valueOf(timeDelta));
                         setBtnRecordingOff();
                         playQuestion(mQuestionsPath + "part2-intro.mp4");
@@ -153,7 +174,7 @@ public class SecondTestFragment extends Fragment implements View.OnClickListener
 
     private void timer() {
         final int timeDelta = 220000 + 9200;
-        new CountDownTimer(timeDelta, 1000) {
+         new CountDownTimerPausable(timeDelta, 1000) {
             int oneMinute = 60000;
             int twoMinute = timeDelta - 60000;
             boolean isOneMinuteEnd = false;
@@ -382,7 +403,36 @@ public class SecondTestFragment extends Fragment implements View.OnClickListener
 //            interstitialAds.show();
         }
     }
+    private void pauseTimer() {
+        countDownTimer.pause();
+    }
 
+    private void resumeTimer() {
+        countDownTimer.resume();
+    }
+
+    private void showVocabDialog(String topic){
+        popupWindow.dismiss();
+        String Topic = topic;
+
+        TextView title = (TextView) popupView.findViewById(R.id.title);
+        title.setText("You need to knew...");
+
+        Log.d("taras","topic :"+Topic);
+        mVocabAdapter = new VocabAdapter(getActivity(), Vocabulary.getEngWords(Topic),
+                Vocabulary.getChiWords(Topic));
+        listViewWords.setAdapter(mVocabAdapter);
+
+        Button btnDismiss = (Button) popupView.findViewById(R.id.dismiss);
+        btnDismiss.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                popupWindow.dismiss();
+                resumeTimer();
+            }
+        });
+        popupWindow.showAtLocation(popupView, Gravity.CENTER, 0, 0);
+    }
     private String[] setRandomFrame() {
         String[] result = null;
         Random random = new Random();
@@ -394,6 +444,7 @@ public class SecondTestFragment extends Fragment implements View.OnClickListener
                 MainActivity.sTextTask = 605;
                 result = Constants.part2Task605;
                 mTopicText = "Describe  something you bought that you weren`t satisfied with";
+                mTopicName = "Something you bought";
                 mBigTextFrame =
                         "You should say:\n\n" +
                                 "what you bought\n" +
@@ -405,6 +456,7 @@ public class SecondTestFragment extends Fragment implements View.OnClickListener
                 MainActivity.sTextTask = 606;
                 result = Constants.part2Task606;
                 mTopicText = "Describe a decision someone you know made that you think was wrong";
+                mTopicName = "A decision";
                 mBigTextFrame =
                         "You should say:\n\n" +
                                 "who made the decision and what it was\n" +
@@ -416,6 +468,7 @@ public class SecondTestFragment extends Fragment implements View.OnClickListener
                 MainActivity.sTextTask = 607;
                 result = Constants.part2Task607;
                 mTopicText = "Describe something you plan to do in your life, NOT related to your work or studies";
+                mTopicName = "Something you plan to do";
                 mBigTextFrame =
                         "You should say:\n\n" +
                                 "what you plan to do\n" +
@@ -427,6 +480,7 @@ public class SecondTestFragment extends Fragment implements View.OnClickListener
                 MainActivity.sTextTask = 608;
                 result = Constants.part2Task608;
                 mTopicText = "Describe a person you enjoy talking to";
+                mTopicName = "A person who you enjoy talking to";
                 mBigTextFrame =
                         "You should say:\n\n" +
                                 "who the person is\n" +
@@ -439,6 +493,7 @@ public class SecondTestFragment extends Fragment implements View.OnClickListener
                 MainActivity.sTextTask = 609;
                 result = Constants.part2Task609;
                 mTopicText = "Describe a film you enjoyed that was about a real person or real event";
+                mTopicName = "A film about a real person/event";
                 mBigTextFrame =
                         "You should say:\n\n" +
                                 "when you saw the film\n" +
@@ -450,6 +505,7 @@ public class SecondTestFragment extends Fragment implements View.OnClickListener
                 MainActivity.sTextTask = 610;
                 result = Constants.part2Task610;
                 mTopicText = "Describe a vehicle (e.g. a car or a bicycle) you would like to have";
+                mTopicName = "A vehicle you would like to have";
                 mBigTextFrame =
                         "You should say:\n\n" +
                                 "what vehicle you would like to have\n" +
@@ -461,6 +517,7 @@ public class SecondTestFragment extends Fragment implements View.OnClickListener
                 MainActivity.sTextTask = 611;
                 result = Constants.part2Task611;
                 mTopicText = "Describe something useful you learned from a member of your family";
+                mTopicName = "Something useful you learned";
                 mBigTextFrame =
                         "You should say:\n\n" +
                                 "what you learned\n" +
@@ -472,6 +529,7 @@ public class SecondTestFragment extends Fragment implements View.OnClickListener
                 MainActivity.sTextTask = 612;
                 result = Constants.part2Task612;
                 mTopicText = "Describe a gift or present you gave someone recently";
+                mTopicName = "A gift you gave someone recently";
                 mBigTextFrame =
                         "You should say:\n\n" +
                                 "what the gift was\n" +
@@ -483,6 +541,7 @@ public class SecondTestFragment extends Fragment implements View.OnClickListener
                 MainActivity.sTextTask = 612;
                 result = Constants.part2Task612;
                 mTopicText = "Describe a gift or present you gave someone recently";
+                mTopicName = "A gift you gave someone recently";
                 mBigTextFrame =
                         "You should say:\n\n" +
                         "what the gift was\n" +

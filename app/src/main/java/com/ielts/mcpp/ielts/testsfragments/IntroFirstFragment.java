@@ -17,10 +17,12 @@ import com.ielts.mcpp.ielts.utils.LoadAds;
 /**
  * Created by taras on 06.05.2015.
  */
-public class IntroFragment extends Fragment implements View.OnClickListener {
-    TextView mTitle;
-    TextView mBigText;
-    ButtonFloat mNextBtn;
+public class IntroFirstFragment extends Fragment implements View.OnClickListener {
+
+    private TextView     mTitle;
+    private TextView     mBigText;
+    private ButtonFloat  mNextBtn;
+
     boolean during_the_test = true;
 
     @Override

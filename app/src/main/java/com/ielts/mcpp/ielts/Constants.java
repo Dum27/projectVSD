@@ -92,7 +92,7 @@ public class Constants {
                     "part1-c and p-fr6-q3.mp4",
                     "part1-c and p-fr6-q4.mp4"};
 
-    public static String[] part1Frame7Cards =
+    public static String[] part1Frame7Bags =
             {"part1-frame7-intro.mp4",
                     "part1-bags-fr7-q1.mp4",
                     "part1-bags-fr7-q2.mp4",

@@ -8,12 +8,15 @@ import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.os.Environment;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ListView;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,6 +26,9 @@ import com.github.lassana.recorder.Mp4ParserWrapper;
 import com.ielts.mcpp.ielts.Constants;
 import com.ielts.mcpp.ielts.MainActivity;
 import com.ielts.mcpp.ielts.R;
+import com.ielts.mcpp.ielts.adapters.VocabAdapter;
+import com.ielts.mcpp.ielts.constants.Vocabulary;
+import com.ielts.mcpp.ielts.utils.CountDownTimerPausable;
 import com.ielts.mcpp.ielts.utils.LoadAds;
 
 import java.io.File;
@@ -67,6 +73,13 @@ public class ThirdTestFragment extends Fragment implements View.OnClickListener 
     private String[] mPart2;
     private String[] mPart3;
 
+    private View popupView;
+    private ListView listViewWords;
+    VocabAdapter mVocabAdapter;
+    PopupWindow popupWindow;
+
+    CountDownTimerPausable countDownTimer;
+
     int delta = 45000;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -83,6 +96,10 @@ public class ThirdTestFragment extends Fragment implements View.OnClickListener 
         mStopBtn.setRippleColor(0xBFBE220D);
         mStopBtn.setOnClickListener(this);
 
+        popupView = inflater.inflate(R.layout.vocabulary_popup_window, null);
+        listViewWords = (ListView) popupView.findViewById(R.id.listViewWords);
+        popupWindow = new PopupWindow(popupView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
         ((MainActivity) this.getActivity()).setPageTitle("Part 3");
         ((MainActivity) this.getActivity()).setPageColor(0xFFDD230D, Color.BLACK);
 
@@ -98,12 +115,13 @@ public class ThirdTestFragment extends Fragment implements View.OnClickListener 
 
         listOfAudio = new ArrayList<>();
         setRandomFrame();
-        new CountDownTimer(300000 + delta, 1000) {
+        countDownTimer = new CountDownTimerPausable(300000 + delta, 1000) {
 
 
             public void onTick(long millisUntilFinished) {
+
                 //audio 14 seconds
-                if (299000 + delta < millisUntilFinished) {
+                if (299000 + delta < millisUntilFinished && millisUntilFinished < 300000+ delta) {
                     setBtnRecordingOff();
                     playQuestion(mQuestionsPath + mPart1[0]);
                     listOfAudio.add(mQuestionsPath + mPart1[0]);
@@ -112,6 +130,10 @@ public class ThirdTestFragment extends Fragment implements View.OnClickListener 
 //////////////////////////////////////////////////////////////////////////
 //                FRAME 1
 //////////////////////////////////////////////////////////////////////////
+                if(285000+ delta < millisUntilFinished && millisUntilFinished < 286000+ delta){
+                    pauseTimer();
+                    showVocabDialog(mBigTextFrame1);
+                }
                 //question 6 seconds
                 if (284000 + delta < millisUntilFinished && millisUntilFinished < 285000 + delta) {
                     Log.d("taras", "FRAME 1!!");
@@ -156,6 +178,10 @@ public class ThirdTestFragment extends Fragment implements View.OnClickListener 
 //////////////////////////////////////////////////////////////////////////
 //                FRAME 2
 //////////////////////////////////////////////////////////////////////////
+                if(186000 +delta< millisUntilFinished && millisUntilFinished < 187000 +delta){
+                    pauseTimer();
+                    showVocabDialog(mBigTextFrame2);
+                }
                 //question 6 seconds
                 if (185000 + delta < millisUntilFinished && millisUntilFinished < 186000 + delta) {
                     recordStop();
@@ -210,6 +236,10 @@ public class ThirdTestFragment extends Fragment implements View.OnClickListener 
 //////////////////////////////////////////////////////////////////////////
 //                FRAME 3
 //////////////////////////////////////////////////////////////////////////
+                if(87000 +delta- 6000< millisUntilFinished && millisUntilFinished < 88000 +delta- 6000){
+                    pauseTimer();
+                    showVocabDialog(mBigTextFrame3);
+                }
                 //question 6 seconds
                 if (86000 + delta - 6000 < millisUntilFinished && millisUntilFinished < 87000 + delta - 6000) {
                     recordStop();
@@ -442,31 +472,31 @@ public class ThirdTestFragment extends Fragment implements View.OnClickListener 
                 mPart3 = Constants.part3Task606_3;
                 mBigTextFrame1 = "Family decisions";
                 mBigTextFrame2 = "Ways of making decisions";
-                mBigTextFrame3 = "International coop";
+                mBigTextFrame3 = "International co-operation";
                 break;
             case 607:
                 mPart1 = Constants.part3Task607_1;
                 mPart2 = Constants.part3Task607_2;
                 mPart3 = Constants.part3Task607_3;
-                mBigTextFrame1 = "Day to day";
-                mBigTextFrame2 = "Planning career";
-                mBigTextFrame3 = "Gov planning";
+                mBigTextFrame1 = "Day-to-day planning";
+                mBigTextFrame2 = "Planning a career";
+                mBigTextFrame3 = "Government planning";
                 break;
             case 608:
                 mPart1 = Constants.part3Task608_1;
                 mPart2 = Constants.part3Task608_2;
                 mPart3 = Constants.part3Task608_3;
-                mBigTextFrame1 = "Communication skills";
+                mBigTextFrame1 = "Spoken communication skills";
                 mBigTextFrame2 = "Learning to speak";
-                mBigTextFrame3 = "Language species";
+                mBigTextFrame3 = "Language and species";
                 break;
             case 609:
                 mPart1 = Constants.part3Task609_1;
                 mPart2 = Constants.part3Task609_2;
                 mPart3 = Constants.part3Task609_3;
-                mBigTextFrame1 = "Films real events";
+                mBigTextFrame1 = "Films about real people and events";
                 mBigTextFrame2 = "Film actors";
-                mBigTextFrame3 = "Film influence";
+                mBigTextFrame3 = "The influence of films on audiences";
                 break;
             case 610:
                 mPart1 = Constants.part3Task610_1;
@@ -474,15 +504,15 @@ public class ThirdTestFragment extends Fragment implements View.OnClickListener 
                 mPart3 = Constants.part3Task610_3;
                 mBigTextFrame1 = "Cars and society";
                 mBigTextFrame2 = "Public transport";
-                mBigTextFrame3 = "Road network";
+                mBigTextFrame3 = "Road networks";
                 break;
             case 611:
                 mPart1 = Constants.part3Task611_1;
                 mPart2 = Constants.part3Task611_2;
                 mPart3 = Constants.part3Task611_3;
-                mBigTextFrame1 = "Parents help";
-                mBigTextFrame2 = "Families influence";
-                mBigTextFrame3 = "Learning old people";
+                mBigTextFrame1 = "How parents help young children";
+                mBigTextFrame2 = "The influence of family";
+                mBigTextFrame3 = "Learning from old people";
                 break;
             case 612:
                 mPart1 = Constants.part3Task612_1;
@@ -502,8 +532,39 @@ public class ThirdTestFragment extends Fragment implements View.OnClickListener 
                 mBigTextFrame3 = "Commercial aspects of gift giving";
                 break;
         }
+        Log.d("taras","frame1 :"+mBigTextFrame1+"\n"+
+                "frame2 :"+mBigTextFrame2+"\n"+
+                "frame3 :"+mBigTextFrame3);
+    }
+    private void pauseTimer() {
+        countDownTimer.pause();
     }
 
+    private void resumeTimer() {
+        countDownTimer.resume();
+    }
+
+    private void showVocabDialog(String topic){
+        popupWindow.dismiss();
+        String Topic = topic;
+
+        TextView title = (TextView) popupView.findViewById(R.id.title);
+        title.setText("You need to knew...");
+
+        mVocabAdapter = new VocabAdapter(getActivity(), Vocabulary.getEngWords(Topic),
+                Vocabulary.getChiWords(Topic));
+        listViewWords.setAdapter(mVocabAdapter);
+
+        Button btnDismiss = (Button) popupView.findViewById(R.id.dismiss);
+        btnDismiss.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                popupWindow.dismiss();
+                resumeTimer();
+            }
+        });
+        popupWindow.showAtLocation(popupView, Gravity.CENTER, 0, 0);
+    }
     @Override
     public void onClick(View v) {
 //        switch(v.getId()){
