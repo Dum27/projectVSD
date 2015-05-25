@@ -30,6 +30,7 @@ import com.ielts.mcpp.ielts.adapters.VocabAdapter;
 import com.ielts.mcpp.ielts.constants.Vocabulary;
 import com.ielts.mcpp.ielts.utils.CountDownTimerPausable;
 import com.ielts.mcpp.ielts.utils.LoadAds;
+import com.ielts.mcpp.ielts.utils.PercentView;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -77,6 +78,7 @@ public class ThirdTestFragment extends Fragment implements View.OnClickListener 
     private ListView listViewWords;
     VocabAdapter mVocabAdapter;
     PopupWindow popupWindow;
+    PercentView mTimerClock;
 
     CountDownTimerPausable countDownTimer;
 
@@ -92,6 +94,10 @@ public class ThirdTestFragment extends Fragment implements View.OnClickListener 
         mTimer = (TextView) view.findViewById(R.id.timer3);
         mTopic = (TextView) view.findViewById(R.id.topic_test3);
         mBigText = (TextView) view.findViewById(R.id.big_text_test3);
+        mTimerClock = (PercentView)   view.findViewById(R.id.percentview3);
+
+        mTimerClock.setProgressColor(0xFFF36C3B);
+        mTimerClock.setPercentage(0);
         mStopBtn.setBackgroundColor(0xFFDD230D);
         mStopBtn.setRippleColor(0xBFBE220D);
         mStopBtn.setOnClickListener(this);
@@ -301,6 +307,9 @@ public class ThirdTestFragment extends Fragment implements View.OnClickListener 
                 String v = String.format("%02d", millisUntilFinished / 60000);
                 int va = (int) ((millisUntilFinished % 60000) / 1000);
                 mTimer.setText(v + ":" + String.format("%02d", va));
+                long persents = (300000+delta-millisUntilFinished)/((300000+delta)/100);
+                Log.d("taras","progress :"+persents);
+                mTimerClock.setPercentage(persents);
             }
 
             public void onFinish() {
