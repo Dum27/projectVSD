@@ -8,12 +8,15 @@ import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.os.Environment;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ListView;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.gc.materialdesign.views.ButtonFloat;
@@ -22,8 +25,12 @@ import com.github.lassana.recorder.Mp4ParserWrapper;
 import com.ielts.mcpp.ielts.Constants;
 import com.ielts.mcpp.ielts.MainActivity;
 import com.ielts.mcpp.ielts.R;
+import com.ielts.mcpp.ielts.adapters.VocabAdapter;
+import com.ielts.mcpp.ielts.constants.Vocabulary;
+import com.ielts.mcpp.ielts.utils.CountDownTimerPausable;
 import com.ielts.mcpp.ielts.utils.LoadAds;
 import com.ielts.mcpp.ielts.utils.LoadInterstitialAds;
+import com.ielts.mcpp.ielts.utils.PercentView;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -51,16 +58,26 @@ public class FirstTestFragment extends Fragment implements View.OnClickListener 
 
     String[] mCompulsoryFrame;
     String[] mAdditionalFrame2;
-    LoadInterstitialAds interstitialAds;
     String[] mAdditionalFrame3;
+
+    LoadInterstitialAds interstitialAds;
 
     ArrayList<String> listOfAudio;
 
-    private String mBigTextFrame1;
-    private String mBigTextFrame2;
-    private String mBigTextFrame3;
+    private String mTopicNameFrame1;
+    private String mTopicNameFrame2;
+    private String mTopicNameFrame3;
 
-    CountDownTimer countDownTimer;
+    private String mPart1TopicName;
+    private View popupView;
+    private ListView listViewWords;
+
+    CountDownTimerPausable countDownTimer;
+    private long timerValue = 300000;
+    VocabAdapter mVocabAdapter;
+    PopupWindow popupWindow;
+    PercentView mTimerClock;
+
     boolean isFinished = false;
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -73,12 +90,18 @@ public class FirstTestFragment extends Fragment implements View.OnClickListener 
                              Bundle savedInstanceState) {
         View view;
         view = inflater.inflate(R.layout.fragment_test_task, container, false);
-        mMicBtn = (ButtonFloatSmall) view.findViewById(R.id.buttonFloatSmall);
-        mStopBtn = (ButtonFloat) view.findViewById(R.id.buttonFloat);
-        mTimer = (TextView) view.findViewById(R.id.timer);
-        mTopic = (TextView) view.findViewById(R.id.topic_test1);
-        mBigText = (TextView) view.findViewById(R.id.text_test1);
+        mMicBtn  = (ButtonFloatSmall) view.findViewById(R.id.buttonFloatSmall);
+        mStopBtn = (ButtonFloat)      view.findViewById(R.id.buttonFloat);
+        mTimer   = (TextView)         view.findViewById(R.id.timer);
+        mTopic   = (TextView)         view.findViewById(R.id.topic_test1);
+        mBigText = (TextView)         view.findViewById(R.id.text_test1);
+        mTimerClock = (PercentView)   view.findViewById(R.id.percentview);
 
+        mTimerClock.setProgressColor(0xFFF36C3B);
+        mTimerClock.setPercentage(0);
+        popupView = inflater.inflate(R.layout.vocabulary_popup_window, null);
+        listViewWords = (ListView) popupView.findViewById(R.id.listViewWords);
+        popupWindow = new PopupWindow(popupView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
         mStopBtn.setBackgroundColor(0xFFF36C3B);
         mStopBtn.setRippleColor(0xF8D16F37);
@@ -86,7 +109,7 @@ public class FirstTestFragment extends Fragment implements View.OnClickListener 
 
         mCurFileName = getNextFileName();
 
-        mCompulsoryFrame = setRandomCompulsoryFrame();
+        mCompulsoryFrame  = setRandomCompulsoryFrame();
         mAdditionalFrame2 = setRandomAdditionalFrame2();
         mAdditionalFrame3 = setRandomAdditionalFrame3();
 
@@ -100,12 +123,17 @@ public class FirstTestFragment extends Fragment implements View.OnClickListener 
 
         listOfAudio = new ArrayList<>();
 
-        countDownTimer = new CountDownTimer(300000, 1000) {
+        countDownTimer = new CountDownTimerPausable(301000, 1000) {
 
             public void onTick(long millisUntilFinished) {
+                Log.d("taras","millis :"+millisUntilFinished);
                 if (!isFinished) {
+                    if(300000 < millisUntilFinished && millisUntilFinished < 301000){
+                        pauseTimer();
+                        showVocabDialog("intro");
+                    }
                     //audio 5 seconds
-                    if (299000 < millisUntilFinished) {
+                    if (299000 < millisUntilFinished && millisUntilFinished < 300000) {
                         setBtnRecordingOff();
                         playQuestion(mQuestionsPath + "intro-frame-good-morning.mp4");
                         listOfAudio.add(mQuestionsPath + "intro-frame-good-morning.mp4");
@@ -162,10 +190,15 @@ public class FirstTestFragment extends Fragment implements View.OnClickListener 
                         setBtnRecordingOff();
                         playQuestion(mQuestionsPath + "intro-frame-s2.mp4");
                         listOfAudio.add(mTestFolderPath + "intro-frame-s2.mp4");
+
                     }
 //////////////////////////////////////////////////////////////////////////
 //                FRAME 1
 //////////////////////////////////////////////////////////////////////////
+                    if(256000 < millisUntilFinished && millisUntilFinished < 257000){
+                        pauseTimer();
+                        showVocabDialog(mPart1TopicName);
+                    }
                     //question 3 seconds
                     if (255000 < millisUntilFinished && millisUntilFinished < 256000) {
                         Log.d("taras", "FRAME 1!!");
@@ -216,6 +249,10 @@ public class FirstTestFragment extends Fragment implements View.OnClickListener 
 //////////////////////////////////////////////////////////////////////////
 //                FRAME 2
 //////////////////////////////////////////////////////////////////////////
+                    if(178000 < millisUntilFinished && millisUntilFinished < 179000){
+                        pauseTimer();
+                        showVocabDialog(mTopicNameFrame2);
+                    }
                     //question 6 seconds
                     if (177000 < millisUntilFinished && millisUntilFinished < 178000) {
                         recordStop();
@@ -270,6 +307,10 @@ public class FirstTestFragment extends Fragment implements View.OnClickListener 
 //////////////////////////////////////////////////////////////////////////
 //                FRAME 3
 //////////////////////////////////////////////////////////////////////////
+                    if(93000 < millisUntilFinished && millisUntilFinished < 94000){
+                        pauseTimer();
+                        showVocabDialog(mTopicNameFrame3);
+                    }
                     //question 6 seconds
                     if (92000 < millisUntilFinished && millisUntilFinished < 93000) {
                         recordStop();
@@ -328,6 +369,9 @@ public class FirstTestFragment extends Fragment implements View.OnClickListener 
                     String v = String.format("%02d", millisUntilFinished / 60000);
                     int va = (int) ((millisUntilFinished % 60000) / 1000);
                     mTimer.setText(v + ":" + String.format("%02d", va));
+                    long persents = (301000-millisUntilFinished)/3000;
+                    Log.d("taras","progress :"+persents);
+                    mTimerClock.setPercentage(persents);
                 }
             }
 
@@ -364,21 +408,21 @@ public class FirstTestFragment extends Fragment implements View.OnClickListener 
         ((MainActivity) this.getActivity()).setPageTitle("Part1 - Frame 1");
         mTopic.setVisibility(View.VISIBLE);
         mTopic.setText("Topic");
-        mBigText.setText(mBigTextFrame1);
+        mBigText.setText(mTopicNameFrame1);
     }
 
     private void frame_2() {
         ((MainActivity) this.getActivity()).setPageTitle("Part1 - Frame 2");
         mTopic.setVisibility(View.VISIBLE);
         mTopic.setText("Topic");
-        mBigText.setText(mBigTextFrame2);
+        mBigText.setText(mTopicNameFrame2);
     }
 
     private void frame_3() {
         ((MainActivity) this.getActivity()).setPageTitle("Part1 - Frame 3");
         mTopic.setVisibility(View.VISIBLE);
         mTopic.setText("Topic");
-        mBigText.setText(mBigTextFrame3);
+        mBigText.setText(mTopicNameFrame3);
     }
 
     private void playQuestion(String fileName) {
@@ -394,9 +438,11 @@ public class FirstTestFragment extends Fragment implements View.OnClickListener 
     }
     private String getNextFileName() {
         //create directory with test if it does not exist
+
         File fileDir = new File(Environment.getExternalStorageDirectory()
                 + File.separator + mTestFolderName
                 + File.separator);
+
         if (!fileDir.exists()) {
             fileDir.mkdirs();
         }
@@ -448,6 +494,14 @@ public class FirstTestFragment extends Fragment implements View.OnClickListener 
         }
     }
 
+    private void pauseTimer() {
+        countDownTimer.pause();
+    }
+
+    private void resumeTimer() {
+        countDownTimer.resume();
+    }
+
     private void appendToFile(final String targetFileName, final String newFileName) {
         Mp4ParserWrapper.append(targetFileName, newFileName);
     }
@@ -457,7 +511,8 @@ public class FirstTestFragment extends Fragment implements View.OnClickListener 
             case R.id.buttonFloat:
                 releasePlayer();
                 releaseRecorder();
-                isFinished = true;
+                countDownTimer.cancel();
+//                isFinished = true;
                 FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.container, new IntroSecondTestFragment());
                 fragmentTransaction.commit();
@@ -513,6 +568,29 @@ public class FirstTestFragment extends Fragment implements View.OnClickListener 
         }
     }
 
+    private void showVocabDialog(String topic){
+        popupWindow.dismiss();
+        String Topic = topic;
+
+        TextView title = (TextView) popupView.findViewById(R.id.title);
+        title.setText("You need to knew...");
+
+        Log.d("taras","topic :"+Topic);
+        mVocabAdapter = new VocabAdapter(getActivity(), Vocabulary.getEngWords(Topic),
+                Vocabulary.getChiWords(Topic));
+        listViewWords.setAdapter(mVocabAdapter);
+
+        Button btnDismiss = (Button) popupView.findViewById(R.id.dismiss);
+        btnDismiss.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                popupWindow.dismiss();
+                resumeTimer();
+            }
+        });
+        popupWindow.showAtLocation(popupView, Gravity.CENTER, 0, 0);
+    }
+
     private String[] setRandomCompulsoryFrame() {
         String[] result = null;
         Random random = new Random();
@@ -522,32 +600,41 @@ public class FirstTestFragment extends Fragment implements View.OnClickListener 
         switch (rand) {
             case 1:
                 result = Constants.part1Frame1Home;
-                mBigTextFrame1 = "Home";
+                mTopicNameFrame1 = "Where you live";
+                mPart1TopicName  = "Where you live";
+
                 break;
             case 2:
                 result = Constants.part1Frame1Home2;
-                mBigTextFrame1 = "Home";
+                mTopicNameFrame1 = "Home";
+                mPart1TopicName  = "Home";
+
                 break;
             case 3:
                 result = Constants.part1Frame2Study;
-                mBigTextFrame1 = "Study";
+                mTopicNameFrame1 = "Study";
+                mPart1TopicName  = "Study";
                 break;
             case 4:
                 result = Constants.part1Frame2Study2;
-                mBigTextFrame1 = "Study";
+                mTopicNameFrame1 = "Study";
+                mPart1TopicName  = "Study2";
                 break;
             case 5:
                 result = Constants.part1Frame2Work;
-                mBigTextFrame1 = "Work";
+                mTopicNameFrame1 = "Work";
+                mPart1TopicName  = "Work";
                 break;
             case 6:
                 result = Constants.part1Frame2Work2;
-                mBigTextFrame1 = "Work";
+                mTopicNameFrame1 = "Work";
+                mPart1TopicName  = "Work2";
                 break;
             default:
                 Log.d("taras", "default");
                 result = Constants.part1Frame1Home;
-                mBigTextFrame1 = "Home";
+                mTopicNameFrame1 = "Where you live";
+                mPart1TopicName  = "Where you live";
                 break;
         }
         return result;
@@ -559,31 +646,31 @@ public class FirstTestFragment extends Fragment implements View.OnClickListener 
         switch (rand) {
             case 1:
                 result = Constants.part1Frame3PlacesOfEntertainment;
-                mBigTextFrame2 = "Places of Entertainment";
+                mTopicNameFrame2 = "Places of Entertainment";
                 break;
             case 2:
                 result = Constants.part1Frame4Weather;
-                mBigTextFrame2 = "Weather";
+                mTopicNameFrame2 = "Weather";
                 break;
             case 3:
                 result = Constants.part1Frame5Internet;
-                mBigTextFrame2 = "Internet";
+                mTopicNameFrame2 = "Internet";
                 break;
             case 4:
                 result = Constants.part1Frame6Cards;
-                mBigTextFrame2 = "Cards";
+                mTopicNameFrame2 = "Cards";
                 break;
             case 5:
-                result = Constants.part1Frame7Cards;
-                mBigTextFrame2 = "Cards";
+                result = Constants.part1Frame7Bags;
+                mTopicNameFrame2 = "Bags";
                 break;
             case 6:
                 result = Constants.part1Frame8Museums;
-                mBigTextFrame2 = "Museums";
+                mTopicNameFrame2 = "Museums";
                 break;
             default:
                 result = Constants.part1Frame3PlacesOfEntertainment;
-                mBigTextFrame2 = "Places of Entertainment";
+                mTopicNameFrame2 = "Places of Entertainment";
                 break;
         }
         return result;
@@ -595,31 +682,31 @@ public class FirstTestFragment extends Fragment implements View.OnClickListener 
         switch (rand) {
             case 1:
                 result = Constants.part1Frame3PlacesOfEntertainment;
-                mBigTextFrame3 = "Places of Entertainment";
+                mTopicNameFrame3 = "Places of Entertainment";
                 break;
             case 2:
                 result = Constants.part1Frame4Weather;
-                mBigTextFrame3 = "Weather";
+                mTopicNameFrame3 = "Weather";
                 break;
             case 3:
                 result = Constants.part1Frame5Internet;
-                mBigTextFrame3 = "Internet";
+                mTopicNameFrame3 = "Internet";
                 break;
             case 4:
                 result = Constants.part1Frame6Cards;
-                mBigTextFrame3 = "Cards";
+                mTopicNameFrame3 = "Cards";
                 break;
             case 5:
-                result = Constants.part1Frame7Cards;
-                mBigTextFrame3 = "Cards";
+                result = Constants.part1Frame7Bags;
+                mTopicNameFrame3 = "Bags";
                 break;
             case 6:
                 result = Constants.part1Frame8Museums;
-                mBigTextFrame3 = "Museums";
+                mTopicNameFrame3 = "Museums";
                 break;
             default:
                 result = Constants.part1Frame3PlacesOfEntertainment;
-                mBigTextFrame3 = "Places of Entertainment";
+                mTopicNameFrame3 = "Places of Entertainment";
                 break;
         }
         // check for not using the same audios as in additional_frame1

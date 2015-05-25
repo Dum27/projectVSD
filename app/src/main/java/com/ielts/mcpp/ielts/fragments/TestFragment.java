@@ -16,8 +16,6 @@ import com.gc.materialdesign.views.ButtonRectangle;
 import com.google.common.io.ByteStreams;
 import com.ielts.mcpp.ielts.R;
 import com.ielts.mcpp.ielts.testsfragments.IntroFragment;
-import com.ielts.mcpp.ielts.testsfragments.IntroSecondTestFragment;
-import com.ielts.mcpp.ielts.testsfragments.SecondTestFragment;
 import com.ielts.mcpp.ielts.utils.LoadAds;
 import com.parse.GetDataCallback;
 import com.parse.ParseException;
@@ -54,8 +52,7 @@ public class TestFragment extends Fragment {
         @Override
         public void onClick(View v) {
             FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-//            fragmentTransaction.replace(R.id.container, new IntroFragment());
-            fragmentTransaction.replace(R.id.container, new IntroSecondTestFragment());
+            fragmentTransaction.replace(R.id.container, new IntroFragment());
             fragmentTransaction.commit();
 
         }

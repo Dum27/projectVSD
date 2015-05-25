@@ -1,9 +1,9 @@
 package com.ielts.mcpp.ielts.fragments;
 
 
+import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +24,7 @@ public class LayerTestTaskFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_layer_test_task, container, false);
         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
         fragmentTransaction.add(R.id.container, new TestFragment());
+        fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
         return view;
     }

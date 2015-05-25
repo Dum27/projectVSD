@@ -31,13 +31,24 @@
                 android:gravity="center_vertical|right"
                 android:padding="20dp">
 
-                <TextView
+                <FrameLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="00:00"
-                    android:id="@+id/timer"
-                    android:textSize="30sp" />
+                    android:layout_height="wrap_content">
+
+                    <com.ielts.mcpp.ielts.utils.PercentView
+                        android:id="@+id/percentview"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_below="@+id/textView"
+                        android:layout_centerHorizontal="true" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="00:23"
+                        android:id="@+id/timer"
+                        android:layout_gravity="center" />
+                </FrameLayout>
 
             </LinearLayout>
 

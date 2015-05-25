@@ -24,44 +24,72 @@
 
 
             <LinearLayout
-                android:orientation="vertical"
+                android:orientation="horizontal"
                 android:layout_width="fill_parent"
                 android:layout_height="0dp"
                 android:layout_weight="3"
                 android:gravity="right"
                 android:paddingRight="20dp"
                 android:paddingTop="5dp"
-                android:paddingLeft="20dp">
+                android:paddingLeft="20dp"
+                android:weightSum="1">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="Topic"
-                    android:id="@+id/topic_test2"
-                    android:textStyle="bold"
-                    android:background="#FFA4C904"
-                    android:textSize="28sp"
-                    android:layout_gravity="left" />
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="New Text"
-                    android:id="@+id/topic_text"
-                    android:layout_gravity="left"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginRight="70dp"
-                    android:textColor="#ff000000"
-                    android:background="#4e717171" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:text="Topic"
+                        android:id="@+id/topic_test2"
+                        android:textStyle="bold"
+                        android:background="#FFA4C904"
+                        android:textSize="28sp"
+                        android:layout_gravity="left" />
 
-                <TextView
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="New Text"
+                        android:id="@+id/topic_text"
+                        android:layout_gravity="left"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginRight="70dp"
+                        android:textColor="#ff000000"
+                        android:background="#4e717171" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="00:00"
-                    android:id="@+id/timer2"
-                    android:textSize="30sp" />
+                    android:layout_height="fill_parent"
+                    android:layout_weight="0"
+                    android:gravity="bottom">
+
+                    <FrameLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <com.ielts.mcpp.ielts.utils.PercentView
+                            android:id="@+id/percentview2"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_below="@+id/textView"
+                            android:layout_centerHorizontal="true" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="00:23"
+                            android:id="@+id/timer2"
+                            android:layout_gravity="center" />
+                    </FrameLayout>
+                </LinearLayout>
+
             </LinearLayout>
 
             <LinearLayout
