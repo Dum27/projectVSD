@@ -33,6 +33,7 @@ import com.ielts.mcpp.ielts.constants.Vocabulary;
 import com.ielts.mcpp.ielts.utils.CountDownTimerPausable;
 import com.ielts.mcpp.ielts.utils.LoadAds;
 import com.ielts.mcpp.ielts.utils.LoadInterstitialAds;
+import com.ielts.mcpp.ielts.utils.PercentView;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -76,6 +77,8 @@ public class SecondTestFragment extends Fragment implements View.OnClickListener
     private ListView listViewWords;
     private CountDownTimerPausable countDownTimer;
     private String mTopicName;
+    PercentView mTimerClock;
+
 
 
     @Override
@@ -95,10 +98,15 @@ public class SecondTestFragment extends Fragment implements View.OnClickListener
         mTimer = (TextView) view.findViewById(R.id.timer2);
         mTopic = (TextView) view.findViewById(R.id.topic_text);
         mBigText = (TextView) view.findViewById(R.id.text_test2);
+        mTimerClock = (PercentView)   view.findViewById(R.id.percentview2);
         mStopBtn.setBackgroundColor(0xFFA4C904);
         mStopBtn.setRippleColor(0xFF98B606);
         mStopBtn.setOnClickListener(this);
         mCurFileName = getNextFileName();
+
+        mTimerClock.setProgressColor(0xFFA4C904);
+        mTimerClock.setPercentage(0);
+
         ((MainActivity) this.getActivity()).setPageTitle("Part 2");
         ((MainActivity) this.getActivity()).setPageColor(0xFFA4C904, Color.BLACK);
         listOfAudio = new ArrayList<>();
@@ -264,12 +272,18 @@ public class SecondTestFragment extends Fragment implements View.OnClickListener
                     String v = String.format("%02d", oneMinute / 60000);
                     int va = (int) ((oneMinute % 60000) / 1000);
                     mTimer.setText(v + ":" + String.format("%02d", va));
+                    long persents = (timeDelta)/2292;
+                    Log.d("taras","progress :"+persents);
+                    mTimerClock.setPercentage(persents);
                     oneMinute -= 1000;
                 }
                 if (twoMinute != 0 && isOneMinuteEnd){
                     String v = String.format("%02d", twoMinute / 60000);
                     int va = (int) ((twoMinute % 60000) / 1000);
                     mTimer.setText(v + ":" + String.format("%02d", va));
+                    long persents = (timeDelta)/2292;
+                    Log.d("taras","progress :"+persents);
+                    mTimerClock.setPercentage(persents);
                     twoMinute -= 1000;
                 }
             }

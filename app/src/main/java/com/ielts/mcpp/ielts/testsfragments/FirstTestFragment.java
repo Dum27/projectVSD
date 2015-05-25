@@ -30,6 +30,7 @@ import com.ielts.mcpp.ielts.constants.Vocabulary;
 import com.ielts.mcpp.ielts.utils.CountDownTimerPausable;
 import com.ielts.mcpp.ielts.utils.LoadAds;
 import com.ielts.mcpp.ielts.utils.LoadInterstitialAds;
+import com.ielts.mcpp.ielts.utils.PercentView;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -75,6 +76,7 @@ public class FirstTestFragment extends Fragment implements View.OnClickListener 
     private long timerValue = 300000;
     VocabAdapter mVocabAdapter;
     PopupWindow popupWindow;
+    PercentView mTimerClock;
 
     boolean isFinished = false;
     @Override
@@ -93,7 +95,10 @@ public class FirstTestFragment extends Fragment implements View.OnClickListener 
         mTimer   = (TextView)         view.findViewById(R.id.timer);
         mTopic   = (TextView)         view.findViewById(R.id.topic_test1);
         mBigText = (TextView)         view.findViewById(R.id.text_test1);
+        mTimerClock = (PercentView)   view.findViewById(R.id.percentview);
 
+        mTimerClock.setProgressColor(0xFFF36C3B);
+        mTimerClock.setPercentage(0);
         popupView = inflater.inflate(R.layout.vocabulary_popup_window, null);
         listViewWords = (ListView) popupView.findViewById(R.id.listViewWords);
         popupWindow = new PopupWindow(popupView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -104,7 +109,7 @@ public class FirstTestFragment extends Fragment implements View.OnClickListener 
 
         mCurFileName = getNextFileName();
 
-        mCompulsoryFrame = setRandomCompulsoryFrame();
+        mCompulsoryFrame  = setRandomCompulsoryFrame();
         mAdditionalFrame2 = setRandomAdditionalFrame2();
         mAdditionalFrame3 = setRandomAdditionalFrame3();
 
@@ -364,6 +369,9 @@ public class FirstTestFragment extends Fragment implements View.OnClickListener 
                     String v = String.format("%02d", millisUntilFinished / 60000);
                     int va = (int) ((millisUntilFinished % 60000) / 1000);
                     mTimer.setText(v + ":" + String.format("%02d", va));
+                    long persents = (301000-millisUntilFinished)/3000;
+                    Log.d("taras","progress :"+persents);
+                    mTimerClock.setPercentage(persents);
                 }
             }
 
