@@ -96,18 +96,21 @@
             android:id="@+id/button_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="#7A0C66"
             android:text="Login" />
 
         <com.gc.materialdesign.views.ButtonRectangle
             android:id="@+id/button_sign_up"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="#7A0C66"
             android:text="Sign Up" />
 
         <com.gc.materialdesign.views.ButtonRectangle
             android:id="@+id/button_restore"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="#7A0C66"
             android:text="Restore password" />
     </LinearLayout>
 </LinearLayout>

@@ -17,6 +17,7 @@ import com.ielts.mcpp.ielts.R;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 /**
  * Created by Jack on 4/15/2015.
@@ -41,11 +42,13 @@ public class SignUpFirstFragment extends Fragment {
         dateOfBirth.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                Calendar now = Calendar.getInstance();
-                if (v == dateOfBirth && event.getAction() == MotionEvent.ACTION_DOWN)
-                    DatePickerDialog.newInstance(datePickerListener, now.get(Calendar.YEAR),
-                            now.get(Calendar.MONTH), now.get(Calendar.DAY_OF_MONTH))
-                            .show(getFragmentManager(), "Datepickerdialog");;
+//                Calendar now = Calendar.getInstance();
+                Calendar now = GregorianCalendar.getInstance();
+                if (v == dateOfBirth && event.getAction() == MotionEvent.ACTION_DOWN) {
+                    DatePickerDialog datePickerDialog = DatePickerDialog.newInstance(datePickerListener, now.get(Calendar.YEAR),
+                            now.get(Calendar.MONTH), now.get(Calendar.DAY_OF_MONTH));
+                    datePickerDialog.show(getFragmentManager(), "Datepickerdialog");
+                }
                 return false;
             }
         });
@@ -60,6 +63,7 @@ public class SignUpFirstFragment extends Fragment {
 
         return view;
     }
+
     View.OnClickListener homeButtonListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -92,11 +96,12 @@ public class SignUpFirstFragment extends Fragment {
         }
     };
 
-    DatePickerDialog.OnDateSetListener datePickerListener =  new DatePickerDialog.OnDateSetListener() {
+    DatePickerDialog.OnDateSetListener datePickerListener = new DatePickerDialog.OnDateSetListener() {
         @Override
         public void onDateSet(DatePickerDialog datePickerDialog, int year, int month, int day) {
+            month += 1;
             EditText dateText = (EditText) getActivity().findViewById(R.id.edit_date_of_birth);
-            dateText.setText(day + "/" + month + "/" + year);
+            dateText.setText(day + "/" + month  + "/" + year);
         }
     };
 

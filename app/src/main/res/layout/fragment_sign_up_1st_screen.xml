@@ -248,6 +248,7 @@
             android:layout_height="wrap_content"
             android:text="Home"
             android:id="@+id/button_screen_1_home"
+            android:background="#7A0C66"
             android:layout_weight="1" />
 
         <com.gc.materialdesign.views.ButtonRectangle
@@ -255,6 +256,7 @@
             android:layout_height="wrap_content"
             android:text="Next"
             android:id="@+id/button_screen_1_next"
+            android:background="#7A0C66"
             android:layout_weight="1" />
     </LinearLayout>
 </LinearLayout>
