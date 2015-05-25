@@ -1,4 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="app_name">IELTS</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
@@ -22,7 +24,9 @@
     <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
     <string name="banner_interstitial_ad">ca-app-pub-3940256099942544/1033173712</string>
     <string name="email_regex">^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$</string>
-    <!--<string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>-->
-    <!--<string name="banner_ad_unit_id">ca-app-pub-7470792561469718/6446236366</string>-->
+    <!-- <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string> -->
+    <!-- <string name="banner_ad_unit_id">ca-app-pub-7470792561469718/6446236366</string> -->
+
+    <string name="title_activity_splash">SplashActivity</string>
 
 </resources>

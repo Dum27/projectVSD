@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="english_level">
+        <item>Beginner</item>
+        <item>Intermediate</item>
+        <item>Advanced</item>
+    </string-array>
+    <string-array name="score_level">
+        <item>4</item>
+        <item>4.5</item>
+        <item>5</item>
+        <item>5.5</item>
+        <item>6</item>
+        <item>6.5</item>
+        <item>7</item>
+        <item>7.5</item>
+        <item>8</item>
+        <item>8.5</item>
+        <item>9</item>
+    </string-array>
+    <string-array name="screen_language">
+        <item>English + Arabic</item>
+        <item>English + Bengali</item>
+        <item>English + Chinese</item>
+        <item>English + Hindi</item>
+        <item>English + Sinhalese</item>
+        <item>English + Spanish</item>
+        <item>English + Russian</item>
+        <item>English + Urdu</item>
+    </string-array>
+</resources>

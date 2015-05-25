@@ -1,16 +1,22 @@
 package com.ielts.mcpp.ielts.connect;
 
 import android.app.Activity;
+import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.os.CountDownTimer;
 import android.widget.Toast;
 
 import com.ielts.mcpp.ielts.MainActivity;
+import com.ielts.mcpp.ielts.R;
 import com.ielts.mcpp.ielts.dao.SecurityDAO;
 import com.ielts.mcpp.ielts.dao.SecurityDaoImpl;
 import com.ielts.mcpp.ielts.model.ParseKeys;
 import com.ielts.mcpp.ielts.model.RegistrationForm;
+import com.ielts.mcpp.ielts.registration.LoginFragment;
+import com.ielts.mcpp.ielts.registration.SplashActivity;
+import com.ielts.mcpp.ielts.registration.SplashFragment;
 import com.parse.FindCallback;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
@@ -60,9 +66,8 @@ public class RegistrationAuthorization {
                     SecurityDAO securityDAO = new SecurityDaoImpl(context);
                     securityDAO.saveUsername(registrationForm.getEmail());
                     securityDAO.savePassword(registrationForm.getPassword());
-                    Toast.makeText(context, "Successfully Signed up, please log in.", Toast.LENGTH_LONG).show();
-
-                    context.startActivity(new Intent(context, MainActivity.class));
+//                    context.startActivity(new Intent(context, MainActivity.class));
+                    context.startActivity(new Intent(context, SplashActivity.class));
                     activity.finish();
                 } else {
                     progressDialog.dismiss();
@@ -84,9 +89,10 @@ public class RegistrationAuthorization {
                             SecurityDAO securityDAO = new SecurityDaoImpl(myContext);
                             securityDAO.saveUsername(username);
                             securityDAO.savePassword(password);
-                            Intent intent = new Intent(myContext, MainActivity.class);
+//                            Intent intent = new Intent(myContext, MainActivity.class);
+                            Intent intent = new Intent(myContext, SplashActivity.class);
                             myContext.startActivity(intent);
-                            Toast.makeText(myContext, "Successfully Logged in", Toast.LENGTH_LONG).show();
+//                            Toast.makeText(myContext, "Successfully Logged in", Toast.LENGTH_LONG).show();
                             activity.finish();
                         } else {
                             progressDialog.dismiss();

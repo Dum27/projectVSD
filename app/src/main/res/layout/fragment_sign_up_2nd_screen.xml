@@ -164,6 +164,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Next"
+            android:background="#7A0C66"
             android:id="@+id/button_screen_2_next" />
     </LinearLayout>
 </LinearLayout>
