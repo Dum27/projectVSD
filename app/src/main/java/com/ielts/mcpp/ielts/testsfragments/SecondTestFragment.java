@@ -160,11 +160,14 @@ public class SecondTestFragment extends Fragment implements View.OnClickListener
                     String v = String.format("%02d", millisUntilFinished / 60000);
                     int va = (int) ((millisUntilFinished % 60000) / 1000);
                     mTimer.setText(v + ":" + String.format("%02d", va));
+                    long persents = (30000-millisUntilFinished)/300;
+                    mTimerClock.setPercentage(persents);
                 }
             }
 
             public void onFinish() {
                 mTimer.setText("00:00");
+                mTimerClock.setPercentage(0);
                 final Dialog dialog = new Dialog(getActivity(), "Are you ready?", "\n\n");
                 dialog.setOnAcceptButtonClickListener(new View.OnClickListener() {
                     @Override
@@ -184,6 +187,7 @@ public class SecondTestFragment extends Fragment implements View.OnClickListener
         final int timeDelta = 220000 + 9200;
          new CountDownTimerPausable(timeDelta, 1000) {
             int oneMinute = 60000;
+            int oneMinuteForPercentCounter = 60000;
             int twoMinute = timeDelta - 60000;
             boolean isOneMinuteEnd = false;
 
@@ -269,10 +273,11 @@ public class SecondTestFragment extends Fragment implements View.OnClickListener
                     isOneMinuteEnd = true;
 
                 if (oneMinute != 0 ) {
+                    oneMinuteForPercentCounter -= 1000;
                     String v = String.format("%02d", oneMinute / 60000);
                     int va = (int) ((oneMinute % 60000) / 1000);
                     mTimer.setText(v + ":" + String.format("%02d", va));
-                    long persents = (timeDelta)/2292;
+                    long persents = (60000 - oneMinuteForPercentCounter)/600;
                     Log.d("taras","progress :"+persents);
                     mTimerClock.setPercentage(persents);
                     oneMinute -= 1000;
@@ -281,7 +286,7 @@ public class SecondTestFragment extends Fragment implements View.OnClickListener
                     String v = String.format("%02d", twoMinute / 60000);
                     int va = (int) ((twoMinute % 60000) / 1000);
                     mTimer.setText(v + ":" + String.format("%02d", va));
-                    long persents = (timeDelta)/2292;
+                    long persents = (timeDelta - 60000 - millisUntilFinished)/1600;
                     Log.d("taras","progress :"+persents);
                     mTimerClock.setPercentage(persents);
                     twoMinute -= 1000;
