@@ -83,21 +83,21 @@
             android:orientation="horizontal"
             android:weightSum="2">
 
-            <com.gc.materialdesign.views.ButtonRectangle
-                android:id="@+id/button_screen_1_home"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="#7A0C66"
-                android:text="Home" />
+            <!--<com.gc.materialdesign.views.ButtonRectangle-->
+                <!--android:id="@+id/button_screen_1_home"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_weight="1"-->
+                <!--android:background="#7A0C66"-->
+                <!--android:text="Home" />-->
 
-            <com.gc.materialdesign.views.ButtonRectangle
-                android:id="@+id/button_screen_1_next"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="#7A0C66"
-                android:text="Next" />
+            <!--<com.gc.materialdesign.views.ButtonRectangle-->
+                <!--android:id="@+id/button_screen_1_next"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_weight="1"-->
+                <!--android:background="#7A0C66"-->
+                <!--android:text="Next" />-->
         </LinearLayout>
     </LinearLayout>
 

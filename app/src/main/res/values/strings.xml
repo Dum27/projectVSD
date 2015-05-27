@@ -28,5 +28,6 @@
     <!-- <string name="banner_ad_unit_id">ca-app-pub-7470792561469718/6446236366</string> -->
 
     <string name="title_activity_splash">SplashActivity</string>
+    <string name="error_wrong_date_of_birth">Wrong birth date</string>
 
 </resources>

@@ -286,7 +286,7 @@ public class SecondTestFragment extends Fragment implements View.OnClickListener
                     String v = String.format("%02d", twoMinute / 60000);
                     int va = (int) ((twoMinute % 60000) / 1000);
                     mTimer.setText(v + ":" + String.format("%02d", va));
-                    long persents = (timeDelta - 60000 - millisUntilFinished)/1600;
+                    long persents = (169200 - millisUntilFinished)/1600;
                     Log.d("taras","progress :"+persents);
                     mTimerClock.setPercentage(persents);
                     twoMinute -= 1000;
@@ -416,10 +416,10 @@ public class SecondTestFragment extends Fragment implements View.OnClickListener
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
             progressDialog.dismiss();
-//            FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-//            fragmentTransaction.replace(R.id.container, new IntroThirdTestFragment());
-//            fragmentTransaction.commit();
-//            interstitialAds.show();
+            FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.container, new IntroThirdTestFragment());
+            fragmentTransaction.commit();
+            interstitialAds.show();
         }
     }
     private void pauseTimer() {

@@ -26,6 +26,7 @@ public class SignUpFirstFragment extends Fragment {
     View view;
     private EditText usernameEditText;
     private EditText passwordEditText;
+    private EditText dateOfBirthEditText;
     AwesomeValidation mAwesomeValidation;
 
     @Override
@@ -36,6 +37,7 @@ public class SignUpFirstFragment extends Fragment {
         ButtonRectangle btnNext = (ButtonRectangle) view.findViewById(R.id.button_screen_1_next);
         usernameEditText = (EditText) view.findViewById(R.id.edit_email);
         passwordEditText = (EditText) view.findViewById(R.id.edit_password);
+        dateOfBirthEditText  = (EditText) view.findViewById(R.id.edit_date_of_birth);
         btnHome.setOnClickListener(homeButtonListener);
         btnNext.setOnClickListener(nextButtonListener);
         final EditText dateOfBirth = (EditText) view.findViewById(R.id.edit_date_of_birth);
@@ -59,6 +61,8 @@ public class SignUpFirstFragment extends Fragment {
                 getResources().getString(R.string.error_wrong_email));
         mAwesomeValidation.addValidation(passwordEditText, "^[a-zA-Z0-9]*.{6,20}",
                 getResources().getString(R.string.error_wrong_password));
+        mAwesomeValidation.addValidation(dateOfBirthEditText, "^.{2,}$",
+                getResources().getString(R.string.error_wrong_date_of_birth));
         mAwesomeValidation.setColor(Color.BLUE);
 
         return view;

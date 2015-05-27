@@ -1,6 +1,7 @@
 package com.ielts.mcpp.ielts.testsfragments;
 
 import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Color;
@@ -313,7 +314,7 @@ public class ThirdTestFragment extends Fragment implements View.OnClickListener 
             }
 
             public void onFinish() {
-                Toast.makeText(getActivity(), "Test finished! Thank you!", Toast.LENGTH_LONG);
+//                Toast.makeText(getActivity(), "Test finished! Thank you!", Toast.LENGTH_LONG);
             }
         }.start();
         new LoadAds(view, R.id.adViewThirdTest);
@@ -409,6 +410,9 @@ public class ThirdTestFragment extends Fragment implements View.OnClickListener 
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
             progressDialog.dismiss();
+            FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.container, new SendResultFragment());
+            fragmentTransaction.commit();
         }
     }
 
@@ -576,14 +580,14 @@ public class ThirdTestFragment extends Fragment implements View.OnClickListener 
     }
     @Override
     public void onClick(View v) {
-//        switch(v.getId()){
-//            case R.id.buttonFloat:
-//                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-//                fragmentTransaction.replace(R.id.container, new SecondTestFragment());
-//                fragmentTransaction.commit();
-//                break;
-//            default:
-//                break;
-//        }
+        switch(v.getId()){
+            case R.id.buttonFloat3:
+                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.container, new SendResultFragment());
+                fragmentTransaction.commit();
+                break;
+            default:
+                break;
+        }
     }
 }
