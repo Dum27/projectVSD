@@ -14,6 +14,7 @@ import android.util.Log;
 
 import com.google.common.io.ByteStreams;
 import com.ielts.mcpp.ielts.R;
+import com.ielts.mcpp.ielts.dao.SecurityDaoImpl;
 import com.ielts.mcpp.ielts.registration.WelcomeActivity;
 import com.parse.ParseException;
 import com.parse.ParseFile;
@@ -59,6 +60,7 @@ public class AudioSend {
                 e.printStackTrace();
             }
         }
+        jobApplication.put("student_id", new SecurityDaoImpl(context).getUsername());
         NotificationManager notifyManager;
         NotificationCompat.Builder builder;
         id = 1;

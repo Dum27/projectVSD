@@ -48,7 +48,7 @@ public class SignUpSecondFragment extends Fragment {
                     case R.id.radioButtonStudent:
                         layoutAfterRadio.setVisibility(View.VISIBLE);
                         WelcomeActivity.registrationForm.setWorkOrStudy("student");
-                        afterRadioText.setText("Graduated yet?");
+                        afterRadioText.setText("Your major");
                         break;
                     case R.id.radioButtonBoth:
                         layoutAfterRadio.setVisibility(View.GONE);
