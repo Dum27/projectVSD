@@ -1,7 +1,9 @@
 package com.ielts.mcpp.ielts.fragments;
 
 
+import android.app.Activity;
 import android.content.Context;
+import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.os.Environment;
@@ -15,6 +17,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.anjlab.android.iab.v3.BillingProcessor;
+import com.anjlab.android.iab.v3.TransactionDetails;
+import com.ielts.mcpp.ielts.MainActivity;
 import com.ielts.mcpp.ielts.R;
 import com.ielts.mcpp.ielts.adapters.MyTestsRecyclerAdapter;
 import com.ielts.mcpp.ielts.adapters.RecyclerItemClickListener;
@@ -36,6 +41,7 @@ public class MyTestsFragment extends Fragment {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private List<String> finishTests;
+    private OnFragmentInteractionListener mListener;
 
     public MyTestsFragment() {
     }
@@ -56,16 +62,18 @@ public class MyTestsFragment extends Fragment {
             @Override
             public void onItemClick(View view, int position) {
                 TextView textView = (TextView) view.findViewById(R.id.text_test);
-                Log.d("Jack", Environment.getExternalStorageDirectory() + "/ielts_tests/merge_T1_" +
-                        textView.getText() + ".mp4");
-                String filePathToSend =  Environment.getExternalStorageDirectory() + "/ielts_tests/merge_T1_" +
-                        textView.getText() + ".mp4";
-                String filePathToSend2 = Environment.getExternalStorageDirectory() + "/ielts_tests/merge_T2_" +
-                        textView.getText() + ".mp4";
-                String filePathToSend3 = Environment.getExternalStorageDirectory() + "/ielts_tests/merge_T3_" +
-                        textView.getText() + ".mp4";
-                new AudioSend().sendAudio(getActivity(), filePathToSend, filePathToSend2,
-                        filePathToSend3);
+                if (MainActivity.readyToPurchase) {
+                    if (checkPayment()) {
+                        String filePathToSend = Environment.getExternalStorageDirectory() + "/ielts_tests/merge_T1_" +
+                                textView.getText() + ".mp4";
+                        String filePathToSend2 = Environment.getExternalStorageDirectory() + "/ielts_tests/merge_T2_" +
+                                textView.getText() + ".mp4";
+                        String filePathToSend3 = Environment.getExternalStorageDirectory() + "/ielts_tests/merge_T3_" +
+                                textView.getText() + ".mp4";
+                        new AudioSend().sendAudio(getActivity(), filePathToSend, filePathToSend2,
+                                filePathToSend3);
+                    }
+                }
             }
         }));
 //        mRecyclerView.addOnItemTouchListener(
@@ -126,22 +134,32 @@ public class MyTestsFragment extends Fragment {
                 }
             }
         }
-
     }
 
-//    new String[]{
-//        "10-04-15 12:55",
-//                "18-04-15 11:01",
-//                "23-04-15 16:20",
-//                "30-04-15 18:45",
-//                " 2-05-15 12:35",
-//                "11-05-15  9:55",
-//                "11-05-15 14:05",
-//                "10-04-15 12:55",
-//                "18-04-15 11:01",
-//                "23-04-15 16:20",
-//                "30-04-15 18:45",
-//                " 2-05-15 12:35",
-//                "11-05-15  9:55",
-//                "11-05-15 14:05"}
+    public boolean checkPayment() {
+        if (mListener != null) {
+            return mListener.onFragmentInteraction();
+        }
+        return false;
+    }
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        try {
+            mListener = (OnFragmentInteractionListener) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString()
+                    + " must implement OnFragmentInteractionListener");
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mListener = null;
+    }
+
+    public interface OnFragmentInteractionListener {
+        public boolean onFragmentInteraction();
+    }
 }
