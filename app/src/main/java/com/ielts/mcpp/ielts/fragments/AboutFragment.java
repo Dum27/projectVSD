@@ -1,21 +1,17 @@
 package com.ielts.mcpp.ielts.fragments;
 
-import android.app.Activity;
+import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.gc.materialdesign.views.ButtonRectangle;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
 import com.ielts.mcpp.ielts.R;
-import com.ielts.mcpp.ielts.connect.DownloadAudio;
 import com.ielts.mcpp.ielts.utils.LoadAds;
 
 
@@ -32,7 +28,7 @@ public class AboutFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_about, null);
-        mBtnRateUs = (ButtonRectangle) v.findViewById(R.id.btn_rate_us);
+//        mBtnRateUs = (ButtonRectangle) v.findViewById(R.id.btn_rate_us);
         mBtnAboutUs = (ButtonRectangle) v.findViewById(R.id.btn_about_us);
         mBtnFeatures = (ButtonRectangle) v.findViewById(R.id.btn_features);
         mBtnFeedback = (ButtonRectangle) v.findViewById(R.id.btn_feedback);

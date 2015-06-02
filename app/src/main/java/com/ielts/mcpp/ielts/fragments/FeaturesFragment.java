@@ -3,7 +3,6 @@ package com.ielts.mcpp.ielts.fragments;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,7 +23,7 @@ public class FeaturesFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_features,null);
-        mSpeakingTest = (ButtonRectangle) v.findViewById(R.id.btn_speaking_test);
+//        mSpeakingTest = (ButtonRectangle) v.findViewById(R.id.btn_speaking_test);
         mTestScore = (ButtonRectangle) v.findViewById(R.id.btn_test_score);
         mScoreReport = (ButtonRectangle) v.findViewById(R.id.btn_score_report);
 

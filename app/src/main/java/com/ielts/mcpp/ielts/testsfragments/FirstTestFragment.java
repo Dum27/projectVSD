@@ -35,6 +35,7 @@ import com.ielts.mcpp.ielts.utils.PercentView;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -135,7 +136,17 @@ public class FirstTestFragment extends Fragment implements View.OnClickListener 
                     //audio 5 seconds
                     if (299000 < millisUntilFinished && millisUntilFinished < 300000) {
                         setBtnRecordingOff();
-                        playQuestion(mQuestionsPath + "intro-frame-good-morning.mp4");
+                        Calendar c = Calendar.getInstance();
+                        int timeOfDay = c.get(Calendar.HOUR_OF_DAY);
+
+                        if(timeOfDay >= 0 && timeOfDay < 12){
+                            playQuestion(mQuestionsPath + "intro-frame-good-morning.mp4");
+                        }else if(timeOfDay >= 12 && timeOfDay < 16){
+                            playQuestion(mQuestionsPath + "intro-frame-good-afternoon.mp4");
+                        }else if(timeOfDay >= 16 && timeOfDay < 24){
+                            playQuestion(mQuestionsPath + "intro-frame-good-evening.mp4");
+                        }
+
                         listOfAudio.add(mQuestionsPath + "intro-frame-good-morning.mp4");
                     }
                     if (297000 < millisUntilFinished && millisUntilFinished < 298000) {
@@ -186,7 +197,14 @@ public class FirstTestFragment extends Fragment implements View.OnClickListener 
                         setBtnRecordingOff();
                         playQuestion(mQuestionsPath + "intro-frame-q4.mp4");
                     }
+                    //answer 6 seconds
                     if (262000 < millisUntilFinished && millisUntilFinished < 263000) {
+                        setBtnRecordingOn();
+                        recordStart(mTestFolderPath + "intro-frame-answ4.mp4");
+                        listOfAudio.add(mTestFolderPath + "intro-frame-answ4.mp4");
+                    }
+                    if (262000 -6000< millisUntilFinished && millisUntilFinished < 263000-6000) {
+                        recordStop();
                         setBtnRecordingOff();
                         playQuestion(mQuestionsPath + "intro-frame-s2.mp4");
                         listOfAudio.add(mTestFolderPath + "intro-frame-s2.mp4");
@@ -195,12 +213,12 @@ public class FirstTestFragment extends Fragment implements View.OnClickListener 
 //////////////////////////////////////////////////////////////////////////
 //                FRAME 1
 //////////////////////////////////////////////////////////////////////////
-                    if(256000 < millisUntilFinished && millisUntilFinished < 257000){
+                    if(256000 -6000< millisUntilFinished && millisUntilFinished < 257000-6000){
                         pauseTimer();
                         showVocabDialog(mPart1TopicName);
                     }
                     //question 3 seconds
-                    if (255000 < millisUntilFinished && millisUntilFinished < 256000) {
+                    if (255000 -6000< millisUntilFinished && millisUntilFinished < 256000-6000) {
                         Log.d("taras", "FRAME 1!!");
                         frame_1();
                         setBtnRecordingOff();
@@ -208,40 +226,40 @@ public class FirstTestFragment extends Fragment implements View.OnClickListener 
                         listOfAudio.add(mTestFolderPath + mCompulsoryFrame[0]);
                     }
                     //question 3 seconds
-                    if (251000 < millisUntilFinished && millisUntilFinished < 252000) {
+                    if (251000 -6000< millisUntilFinished && millisUntilFinished < 252000-6000) {
                         setBtnRecordingOff();
                         playQuestion(mQuestionsPath + mCompulsoryFrame[1]);
                         listOfAudio.add(mTestFolderPath + mCompulsoryFrame[1]);
                     }
                     //answer 18 seconds
-                    if (248000 < millisUntilFinished && millisUntilFinished < 249000) {
+                    if (248000 -6000< millisUntilFinished && millisUntilFinished < 249000-6000) {
 
                         setBtnRecordingOn();
                         recordStart(mTestFolderPath + "part1-home-answ1.mp4");
                         listOfAudio.add(mTestFolderPath + "part1-home-answ1.mp4");
                     }
                     //question 5 seconds
-                    if (228000 < millisUntilFinished && millisUntilFinished < 229000) {
+                    if (228000 -6000< millisUntilFinished && millisUntilFinished < 229000-6000) {
                         recordStop();
                         setBtnRecordingOff();
                         playQuestion(mQuestionsPath + mCompulsoryFrame[2]);
                         listOfAudio.add(mTestFolderPath + mCompulsoryFrame[2]);
                     }
                     //answer 18 seconds
-                    if (222000 < millisUntilFinished && millisUntilFinished < 223000) {
+                    if (222000 -6000< millisUntilFinished && millisUntilFinished < 223000-6000) {
                         setBtnRecordingOn();
                         recordStart(mTestFolderPath + "part1-home-answ2.mp4");
                         listOfAudio.add(mTestFolderPath + "part1-home-answ2.mp4");
                     }
                     //question 6 seconds
-                    if (203000 < millisUntilFinished && millisUntilFinished < 204000) {
+                    if (203000 -6000< millisUntilFinished && millisUntilFinished < 204000-6000) {
                         recordStop();
                         setBtnRecordingOff();
                         playQuestion(mQuestionsPath + mCompulsoryFrame[3]);
                         listOfAudio.add(mTestFolderPath + mCompulsoryFrame[3]);
                     }
                     //answer 18 seconds
-                    if (196000 < millisUntilFinished && millisUntilFinished < 197000) {
+                    if (196000 -6000< millisUntilFinished && millisUntilFinished < 197000-6000) {
                         setBtnRecordingOn();
                         recordStart(mTestFolderPath + "part1-home-answ3.mp4");
                         listOfAudio.add(mTestFolderPath + "part1-home-answ3.mp4");
@@ -249,12 +267,12 @@ public class FirstTestFragment extends Fragment implements View.OnClickListener 
 //////////////////////////////////////////////////////////////////////////
 //                FRAME 2
 //////////////////////////////////////////////////////////////////////////
-                    if(178000 < millisUntilFinished && millisUntilFinished < 179000){
+                    if(178000 -6000< millisUntilFinished && millisUntilFinished < 179000-6000){
                         pauseTimer();
                         showVocabDialog(mTopicNameFrame2);
                     }
                     //question 6 seconds
-                    if (177000 < millisUntilFinished && millisUntilFinished < 178000) {
+                    if (177000 -6000< millisUntilFinished && millisUntilFinished < 178000-6000) {
                         recordStop();
                         frame_2();
                         setBtnRecordingOff();
@@ -262,41 +280,41 @@ public class FirstTestFragment extends Fragment implements View.OnClickListener 
                         listOfAudio.add(mTestFolderPath + mAdditionalFrame2[0]);
                     }
                     //question 6 seconds
-                    if (170000 < millisUntilFinished && millisUntilFinished < 171000) {
+                    if (170000 -6000< millisUntilFinished && millisUntilFinished < 171000-6000) {
                         setBtnRecordingOff();
                         playQuestion(mQuestionsPath + mAdditionalFrame2[1]);
                         listOfAudio.add(mTestFolderPath + mAdditionalFrame2[1]);
                     }
                     //answer 18 seconds
-                    if (163000 < millisUntilFinished && millisUntilFinished < 164000) {
+                    if (163000 -6000< millisUntilFinished && millisUntilFinished < 164000-6000) {
                         Log.d("taras", "answer1");
                         setBtnRecordingOn();
                         recordStart(mTestFolderPath + "part1-museums-fr8-answ1.mp4");
                         listOfAudio.add(mTestFolderPath + "part1-museums-fr8-answ1.mp4");
                     }
                     //question 6 seconds
-                    if (144000 < millisUntilFinished && millisUntilFinished < 145000) {
+                    if (144000 -6000< millisUntilFinished && millisUntilFinished < 145000-6000) {
                         recordStop();
                         setBtnRecordingOff();
                         playQuestion(mQuestionsPath + mAdditionalFrame2[2]);
                         listOfAudio.add(mTestFolderPath + mAdditionalFrame2[2]);
                     }
                     //answer 18 seconds
-                    if (137000 < millisUntilFinished && millisUntilFinished < 138000) {
+                    if (137000 -6000< millisUntilFinished && millisUntilFinished < 138000-6000) {
                         Log.d("taras", "answer3");
                         setBtnRecordingOn();
                         recordStart(mTestFolderPath + "part1-museums-fr8-answ2.mp4");
                         listOfAudio.add(mTestFolderPath + "part1-museums-fr8-answ2.mp4");
                     }
                     //question 6 seconds
-                    if (118000 < millisUntilFinished && millisUntilFinished < 119000) {
+                    if (118000 -6000< millisUntilFinished && millisUntilFinished < 119000-6000) {
                         recordStop();
                         setBtnRecordingOff();
                         playQuestion(mQuestionsPath + mAdditionalFrame2[3]);
                         listOfAudio.add(mTestFolderPath + mAdditionalFrame2[3]);
                     }
                     //answer 18 seconds
-                    if (110000 < millisUntilFinished && millisUntilFinished < 111000) {
+                    if (110000 -6000< millisUntilFinished && millisUntilFinished < 111000-6000) {
                         Log.d("taras", "answer3");
                         setBtnRecordingOn();
                         recordStart(mTestFolderPath + "part1-museums-fr8-answ3.mp4");
@@ -307,12 +325,12 @@ public class FirstTestFragment extends Fragment implements View.OnClickListener 
 //////////////////////////////////////////////////////////////////////////
 //                FRAME 3
 //////////////////////////////////////////////////////////////////////////
-                    if(93000 < millisUntilFinished && millisUntilFinished < 94000){
+                    if(93000 -6000< millisUntilFinished && millisUntilFinished < 94000-6000){
                         pauseTimer();
                         showVocabDialog(mTopicNameFrame3);
                     }
                     //question 6 seconds
-                    if (92000 < millisUntilFinished && millisUntilFinished < 93000) {
+                    if (92000 -6000< millisUntilFinished && millisUntilFinished < 93000-6000) {
                         recordStop();
                         frame_3();
                         setBtnRecordingOff();
@@ -320,47 +338,47 @@ public class FirstTestFragment extends Fragment implements View.OnClickListener 
                         listOfAudio.add(mTestFolderPath + mAdditionalFrame3[0]);
                     }
                     //question 6 seconds
-                    if (85000 < millisUntilFinished && millisUntilFinished < 86000) {
+                    if (85000 -6000< millisUntilFinished && millisUntilFinished < 86000-6000) {
                         setBtnRecordingOff();
                         playQuestion(mQuestionsPath + mAdditionalFrame3[1]);
                         listOfAudio.add(mTestFolderPath + mAdditionalFrame3[1]);
                     }
                     //answer 18 seconds
-                    if (78000 < millisUntilFinished && millisUntilFinished < 79000) {
+                    if (78000 -6000< millisUntilFinished && millisUntilFinished < 79000-6000) {
                         Log.d("taras", "answer1");
                         setBtnRecordingOn();
                         recordStart(mTestFolderPath + "part1-weather-fr4-answ1.mp4");
                         listOfAudio.add(mTestFolderPath + "part1-weather-fr4-answ1.mp4");
                     }
                     //question 6 seconds
-                    if (59000 < millisUntilFinished && millisUntilFinished < 60000) {
+                    if (59000 -6000< millisUntilFinished && millisUntilFinished < 60000-6000) {
                         recordStop();
                         setBtnRecordingOff();
                         playQuestion(mQuestionsPath + mAdditionalFrame3[2]);
                         listOfAudio.add(mTestFolderPath + mAdditionalFrame3[2]);
                     }
                     //answer 18 seconds
-                    if (52000 < millisUntilFinished && millisUntilFinished < 53000) {
+                    if (52000 -6000< millisUntilFinished && millisUntilFinished < 53000-6000) {
                         Log.d("taras", "answer3");
                         setBtnRecordingOn();
                         recordStart(mTestFolderPath + "part1-weather-fr4-answ2.mp4");
                         listOfAudio.add(mTestFolderPath + "part1-weather-fr4-answ2.mp4");
                     }
                     //question 6 seconds
-                    if (33000 < millisUntilFinished && millisUntilFinished < 34000) {
+                    if (33000 -6000< millisUntilFinished && millisUntilFinished < 34000-6000) {
                         recordStop();
                         setBtnRecordingOff();
                         playQuestion(mQuestionsPath + mAdditionalFrame3[3]);
                         listOfAudio.add(mTestFolderPath + mAdditionalFrame3[3]);
                     }
                     //answer 18 seconds
-                    if (26000 < millisUntilFinished && millisUntilFinished < 27000) {
+                    if (26000 -6000< millisUntilFinished && millisUntilFinished < 27000-6000) {
                         Log.d("taras", "answer3");
                         setBtnRecordingOn();
                         recordStart(mTestFolderPath + "part1-weather-fr4-answ3.mp4");
                         listOfAudio.add(mTestFolderPath + "part1-weather-fr4-answ3.mp4");
                     }
-                    if (7000 < millisUntilFinished && millisUntilFinished < 8000) {
+                    if (7000 -6000< millisUntilFinished && millisUntilFinished < 8000-6000) {
 
                         setBtnRecordingOff();
                         recordStop();
@@ -376,6 +394,7 @@ public class FirstTestFragment extends Fragment implements View.OnClickListener 
             }
 
             public void onFinish() {
+                mTimerClock.setPercentage(100);
                 mTimer.setText("00:00");
             }
         };

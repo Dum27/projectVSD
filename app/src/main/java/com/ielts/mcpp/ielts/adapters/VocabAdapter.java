@@ -55,8 +55,11 @@ public class VocabAdapter extends BaseAdapter {
         TextView mWordChi = (TextView) view.findViewById(R.id.word_chi);
 
         Log.d("taras","length :"+mEngWords.length+" position :"+position);
-        mWordEng.setText(mEngWords[position]);
-        mWordChi.setText(mChiWords[position]);
+        if(mEngWords.length>position) {
+            mWordEng.setText(mEngWords[position]);
+        }if(mChiWords.length>position) {
+            mWordChi.setText(mChiWords[position]);
+        }
 
         return view;
     }

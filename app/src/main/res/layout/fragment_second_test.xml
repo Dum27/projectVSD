@@ -6,6 +6,12 @@
     android:layout_height="match_parent"
     tools:context="com.ielts.mcpp.ielts.testsfragments.FirstTestFragment">
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView5"
+        android:src="@drawable/background_test_2" />
+
     <LinearLayout
         android:id="@+id/test2_task_fragment_layout"
         android:layout_width="match_parent"
