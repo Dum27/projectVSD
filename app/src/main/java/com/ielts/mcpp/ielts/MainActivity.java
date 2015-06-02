@@ -3,9 +3,13 @@ package com.ielts.mcpp.ielts;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
+import com.anjlab.android.iab.v3.BillingProcessor;
+import com.anjlab.android.iab.v3.TransactionDetails;
 import com.gc.materialdesign.widgets.Dialog;
 import com.ielts.mcpp.ielts.fragments.LayerAboutFrament;
 import com.ielts.mcpp.ielts.fragments.LayerStaffFragment;
@@ -20,12 +24,20 @@ import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 
-public class MainActivity extends MaterialNavigationDrawer {
+public class MainActivity extends MaterialNavigationDrawer implements MyTestsFragment.OnFragmentInteractionListener {
 
     public static ProgressDialog pd;
     public static MaterialSection testSection;
     public static int sTextTask;
     public static String sTestFileDate;
+    // PRODUCT & SUBSCRIPTION IDS
+    public static final String PRODUCT_ID = "com.anjlab.test.iab.s2.p5";
+    public static final String SUBSCRIPTION_ID = "com.anjlab.test.iab.subs1";
+    public static final String LICENSE_KEY = null; // PUT YOUR MERCHANT KEY HERE;
+
+    public static boolean readyToPurchase = false;
+    public BillingProcessor bp;
+
 
     @Override
     public void init(Bundle savedInstanceState) {
@@ -34,6 +46,7 @@ public class MainActivity extends MaterialNavigationDrawer {
                         .setFontAttrId(R.attr.fontPath)
                         .build()
         );
+        Log.d("Jack", "!! " + getApplicationContext().getPackageName());
         // set the header image
         this.setDrawerBackgroundColor(Color.parseColor("#FF616261"));
         this.setDrawerHeaderImage(R.mipmap.logo_rectangle);
@@ -51,8 +64,35 @@ public class MainActivity extends MaterialNavigationDrawer {
                 new SettingsFragment()).setSectionColor(Color.parseColor("#7A0C66")));
         this.addBottomSection(newSection(getString(R.string.nav_drawer_about),
                 new LayerAboutFrament()).setSectionColor(Color.parseColor("#7A0C66")));
+        bp = new BillingProcessor(this, MainActivity.LICENSE_KEY, new BillingProcessor.IBillingHandler() {
+            @Override
+            public void onProductPurchased(String productId, TransactionDetails details) {
+//                showToast("onProductPurchased: " + productId);
+//                updateTextViews();
+            }
 
-//        this.addBottomSection(newSection(getResources().getString(R.string.about), new AboutFragment()));
+            @Override
+            public void onBillingError(int errorCode, Throwable error) {
+//                showToast("onBillingError: " + Integer.toString(errorCode));
+            }
+
+            @Override
+            public void onBillingInitialized() {
+//                showToast("onBillingInitialized");
+                MainActivity.readyToPurchase = true;
+//                updateTextViews();
+            }
+
+            @Override
+            public void onPurchaseHistoryRestored() {
+//                showToast("onPurchaseHistoryRestored");
+//                for(String sku : bp.listOwnedProducts())
+//                    Log.d(LOG_TAG, "Owned Managed Product: " + sku);
+//                for(String sku : bp.listOwnedSubscriptions())
+//                    Log.d(LOG_TAG, "Owned Subscription: " + sku);
+//                updateTextViews();
+            }
+        });
 //        this.addSection(newSection("Section 3", R.drawable.ic_mic_white_24dp, new FragmentButton()).setSectionColor(Color.parseColor("#9c27b0")));
 //        this.addSection(newSection("Section", R.drawable.ic_hotel_grey600_24dp, new FragmentButton()).setSectionColor(Color.parseColor("#03a9f4")));
 //
@@ -98,5 +138,18 @@ public class MainActivity extends MaterialNavigationDrawer {
     @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+    }
+
+    @Override
+    public void onDestroy() {
+        if (bp != null)
+            bp.release();
+        super.onDestroy();
+    }
+
+    @Override
+    public boolean onFragmentInteraction() {
+        bp.purchase(this, PRODUCT_ID);
+        return bp.isPurchased(PRODUCT_ID);
     }
 }

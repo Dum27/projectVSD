@@ -1,1 +1,1 @@
-include ':app', ':MaterialNavigationDrawerModule', ':materialText', ':awesomeValidation', ':recorder'
+include ':app', ':MaterialNavigationDrawerModule', ':materialText', ':awesomeValidation', ':recorder', ':billing'
