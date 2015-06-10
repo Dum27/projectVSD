@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.gc.materialdesign.views.ButtonRectangle;
@@ -16,10 +17,11 @@ import com.ielts.mcpp.ielts.utils.LoadAds;
 
 
 public class AboutFragment extends Fragment {
-    ButtonRectangle mBtnRateUs;
-    ButtonRectangle mBtnAboutUs;
-    ButtonRectangle mBtnFeatures;
-    ButtonRectangle mBtnFeedback;
+
+   // ButtonRectangle mBtnRateUs;
+    Button mBtnAboutUs;
+    Button mBtnFeatures;
+    Button mBtnFeedback;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,9 +31,9 @@ public class AboutFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_about, null);
 //        mBtnRateUs = (ButtonRectangle) v.findViewById(R.id.btn_rate_us);
-        mBtnAboutUs = (ButtonRectangle) v.findViewById(R.id.btn_about_us);
-        mBtnFeatures = (ButtonRectangle) v.findViewById(R.id.btn_features);
-        mBtnFeedback = (ButtonRectangle) v.findViewById(R.id.btn_feedback);
+        mBtnAboutUs  = (Button) v.findViewById(R.id.btn_about_us);
+        mBtnFeatures = (Button) v.findViewById(R.id.btn_features);
+        mBtnFeedback = (Button) v.findViewById(R.id.btn_feedback);
         mBtnAboutUs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

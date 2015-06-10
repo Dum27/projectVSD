@@ -35,34 +35,74 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:drawableRight="@drawable/arrow_36"
-
                 android:text="Speaking test"
                 android:id="@+id/btn_rate_us"
+                android:textAllCaps="false"
+                android:textSize="20dp"
+                android:textColor="@android:color/white"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/buttonshape"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="20dp" />
+
+
+            <!--<com.gc.materialdesign.views.ButtonRectangle-->
+                <!--android:id="@+id/btn_about_us"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:background="#008000"-->
+                <!--android:text="About us" />-->
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:drawableRight="@drawable/arrow_36"
+                android:text="About us"
+                android:id="@+id/btn_about_us"
+                android:textAllCaps="false"
+                android:textSize="20dp"
+                android:textColor="@android:color/white"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/buttonshape"
+                android:layout_marginBottom="15dp" />
+            <!--<com.gc.materialdesign.views.ButtonRectangle-->
+                <!--android:id="@+id/btn_features"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:background="#008000"-->
+                <!--android:text="Features" />-->
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:drawableRight="@drawable/arrow_36"
+                android:text="Features"
+                android:id="@+id/btn_features"
+                android:textAllCaps="false"
+                android:textSize="20dp"
+                android:textColor="@android:color/white"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/buttonshape"
+                android:layout_marginBottom="15dp" />
+            <!--<com.gc.materialdesign.views.ButtonRectangle-->
+                <!--android:id="@+id/btn_feedback"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:background="#008000"-->
+                <!--android:text="Feedback" />-->
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:drawableRight="@drawable/arrow_36"
+                android:text="Feedback"
+                android:id="@+id/btn_feedback"
+                android:textAllCaps="false"
                 android:textSize="20dp"
                 android:textColor="@android:color/white"
                 android:layout_marginLeft="50dp"
                 android:layout_marginRight="20dp"
                 android:background="@drawable/buttonshape" />
-
-
-            <com.gc.materialdesign.views.ButtonRectangle
-                android:id="@+id/btn_about_us"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#008000"
-                android:text="About us" />
-            <com.gc.materialdesign.views.ButtonRectangle
-                android:id="@+id/btn_features"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#008000"
-                android:text="Features" />
-            <com.gc.materialdesign.views.ButtonRectangle
-                android:id="@+id/btn_feedback"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#008000"
-                android:text="Feedback" />
             </LinearLayout>
 
         <LinearLayout
