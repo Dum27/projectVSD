@@ -30,7 +30,7 @@ public class AboutFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_about, null);
-//        mBtnRateUs = (ButtonRectangle) v.findViewById(R.id.btn_rate_us);
+//       mBtnRateUs = (ButtonRectangle) v.findViewById(R.id.btn_rate_us);
         mBtnAboutUs  = (Button) v.findViewById(R.id.btn_about_us);
         mBtnFeatures = (Button) v.findViewById(R.id.btn_features);
         mBtnFeedback = (Button) v.findViewById(R.id.btn_feedback);
